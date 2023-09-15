@@ -1,0 +1,5 @@
+platform :ios, '15.0'
+
+target 'GoodThing' do
+  pod 'SwiftLint'
+end
