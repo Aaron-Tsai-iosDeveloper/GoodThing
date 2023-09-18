@@ -22,6 +22,12 @@
 		45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */; };
 		45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */; };
 		45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */; };
+		45545BC12AB8175000749CFA /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC02AB8175000749CFA /* GroupModel.swift */; };
+		45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC32AB8190400749CFA /* PostGroupViewController.swift */; };
+		45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */; };
+		45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC72AB839C000749CFA /* GroupsTableViewCell.swift */; };
+		45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */; };
+		45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */; };
 		459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459552202AB44E2900A002C8 /* GoogleService-Info.plist */; };
 		663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +50,12 @@
 		45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMemoryViewController.swift; sourceTree = "<group>"; };
 		45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMemoryTableViewCell.swift; sourceTree = "<group>"; };
 		45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicMemoryTableViewCell.swift; sourceTree = "<group>"; };
+		45545BC02AB8175000749CFA /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		45545BC32AB8190400749CFA /* PostGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupViewController.swift; sourceTree = "<group>"; };
+		45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGroupViewController.swift; sourceTree = "<group>"; };
+		45545BC72AB839C000749CFA /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
+		45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupViewController.swift; sourceTree = "<group>"; };
+		45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupTableViewCell.swift; sourceTree = "<group>"; };
 		459552202AB44E2900A002C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		826B7CA5B2E1C66A4E635160 /* Pods-GoodThing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.release.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.release.xcconfig"; sourceTree = "<group>"; };
 		A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +122,7 @@
 			children = (
 				454AA8052AB5804400D404EC /* TaskModel.swift */,
 				45545BB22AB77E1100749CFA /* MemoryModel.swift */,
+				45545BC02AB8175000749CFA /* GroupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +138,7 @@
 		454AA8092AB584AE00D404EC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				45545BC22AB818E300749CFA /* Group */,
 				45545BB52AB77F5200749CFA /* Memory */,
 				45545BB42AB77F4100749CFA /* Task */,
 			);
@@ -158,6 +172,18 @@
 				45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */,
 			);
 			path = Memory;
+			sourceTree = "<group>";
+		};
+		45545BC22AB818E300749CFA /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				45545BC32AB8190400749CFA /* PostGroupViewController.swift */,
+				45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */,
+				45545BC72AB839C000749CFA /* GroupsTableViewCell.swift */,
+				45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */,
+				45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 		6444B4C7F11244551C7FBB32 /* Pods */ = {
@@ -310,11 +336,17 @@
 				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
 				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
+				45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */,
+				45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */,
 				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
+				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
+				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
 				45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */,
+				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
+				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
