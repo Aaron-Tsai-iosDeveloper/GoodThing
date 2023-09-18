@@ -1,5 +1,19 @@
 platform :ios, '15.0'
 
 target 'GoodThing' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
   pod 'SwiftLint'
+
+  # Add the pods for the Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+  pod 'FirebaseAnalytics', '~> 10.0'
+  pod 'FirebaseAuth', '~> 10.0'
+  pod 'FirebaseFirestore', '~> 10.0'
+  pod 'FirebaseAnalytics', '~> 10.0'
+  pod 'FirebaseCrashlytics', '~> 10.0'
+  pod 'FirebaseFirestoreSwift', '~> 10.0'
+  pod 'FirebaseCoreInternal', '~> 10.0', :modular_headers => true
+  pod 'FirebaseSessions', '~> 10.0', :modular_headers => true
 end

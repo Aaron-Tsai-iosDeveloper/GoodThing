@@ -9,24 +9,44 @@
 /* Begin PBXBuildFile section */
 		451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451098EF2AB35CBD000B3BD2 /* AppDelegate.swift */; };
 		451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451098F12AB35CBD000B3BD2 /* SceneDelegate.swift */; };
-		451098F42AB35CBD000B3BD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451098F32AB35CBD000B3BD2 /* ViewController.swift */; };
+		451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */; };
 		451098F72AB35CBD000B3BD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098F52AB35CBD000B3BD2 /* Main.storyboard */; };
 		451098F92AB35CBE000B3BD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451098F82AB35CBE000B3BD2 /* Assets.xcassets */; };
 		451098FC2AB35CBE000B3BD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098FA2AB35CBE000B3BD2 /* LaunchScreen.storyboard */; };
-		5426C8D9456E0E31B0498640 /* libPods-GoodThing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B586661840308E6F1CB87D1E /* libPods-GoodThing.a */; };
+		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
+		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
+		454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */; };
+		45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */; };
+		45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB22AB77E1100749CFA /* MemoryModel.swift */; };
+		45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */; };
+		45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */; };
+		45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */; };
+		45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */; };
+		459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459552202AB44E2900A002C8 /* GoogleService-Info.plist */; };
+		663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		451098EC2AB35CBD000B3BD2 /* GoodThing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodThing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		451098EF2AB35CBD000B3BD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		451098F12AB35CBD000B3BD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		451098F32AB35CBD000B3BD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTaskViewController.swift; sourceTree = "<group>"; };
 		451098F62AB35CBD000B3BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		451098F82AB35CBE000B3BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		451098FB2AB35CBE000B3BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		451098FD2AB35CBE000B3BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTaskViewController.swift; sourceTree = "<group>"; };
+		45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
+		45545BB22AB77E1100749CFA /* MemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
+		45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemoryViewController.swift; sourceTree = "<group>"; };
+		45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMemoryViewController.swift; sourceTree = "<group>"; };
+		45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMemoryTableViewCell.swift; sourceTree = "<group>"; };
+		45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicMemoryTableViewCell.swift; sourceTree = "<group>"; };
+		459552202AB44E2900A002C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		826B7CA5B2E1C66A4E635160 /* Pods-GoodThing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.release.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.release.xcconfig"; sourceTree = "<group>"; };
-		B586661840308E6F1CB87D1E /* libPods-GoodThing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoodThing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D034242AB197283776C29B71 /* Pods-GoodThing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.debug.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5426C8D9456E0E31B0498640 /* libPods-GoodThing.a in Frameworks */,
+				663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +65,7 @@
 		1FC0AA5EB51A231E6456262F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B586661840308E6F1CB87D1E /* libPods-GoodThing.a */,
+				A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -71,15 +91,73 @@
 		451098EE2AB35CBD000B3BD2 /* GoodThing */ = {
 			isa = PBXGroup;
 			children = (
-				451098EF2AB35CBD000B3BD2 /* AppDelegate.swift */,
-				451098F12AB35CBD000B3BD2 /* SceneDelegate.swift */,
-				451098F32AB35CBD000B3BD2 /* ViewController.swift */,
-				451098F52AB35CBD000B3BD2 /* Main.storyboard */,
+				454AA8072AB5848300D404EC /* Model */,
+				454AA8082AB5849700D404EC /* View */,
+				454AA8092AB584AE00D404EC /* Controller */,
+				454AA80A2AB72DFB00D404EC /* Helper */,
 				451098F82AB35CBE000B3BD2 /* Assets.xcassets */,
 				451098FA2AB35CBE000B3BD2 /* LaunchScreen.storyboard */,
 				451098FD2AB35CBE000B3BD2 /* Info.plist */,
+				459552202AB44E2900A002C8 /* GoogleService-Info.plist */,
+				451098EF2AB35CBD000B3BD2 /* AppDelegate.swift */,
+				451098F12AB35CBD000B3BD2 /* SceneDelegate.swift */,
 			);
 			path = GoodThing;
+			sourceTree = "<group>";
+		};
+		454AA8072AB5848300D404EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				454AA8052AB5804400D404EC /* TaskModel.swift */,
+				45545BB22AB77E1100749CFA /* MemoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		454AA8082AB5849700D404EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				451098F52AB35CBD000B3BD2 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		454AA8092AB584AE00D404EC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				45545BB52AB77F5200749CFA /* Memory */,
+				45545BB42AB77F4100749CFA /* Task */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		454AA80A2AB72DFB00D404EC /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				454AA80B2AB72E2C00D404EC /* DateHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		45545BB42AB77F4100749CFA /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
+				454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */,
+				45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		45545BB52AB77F5200749CFA /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */,
+				45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */,
+				45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */,
+				45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */,
+			);
+			path = Memory;
 			sourceTree = "<group>";
 		};
 		6444B4C7F11244551C7FBB32 /* Pods */ = {
@@ -103,6 +181,7 @@
 				451098E92AB35CBD000B3BD2 /* Frameworks */,
 				451098EA2AB35CBD000B3BD2 /* Resources */,
 				4595521B2AB386CD00A002C8 /* ShellScript */,
+				D352F75D8D742102CCF2DDB0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				451098FC2AB35CBE000B3BD2 /* LaunchScreen.storyboard in Resources */,
+				459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */,
 				451098F92AB35CBE000B3BD2 /* Assets.xcassets in Resources */,
 				451098F72AB35CBD000B3BD2 /* Main.storyboard in Resources */,
 			);
@@ -199,6 +279,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		D352F75D8D742102CCF2DDB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodThing/Pods-GoodThing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodThing/Pods-GoodThing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoodThing/Pods-GoodThing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -206,9 +303,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				451098F42AB35CBD000B3BD2 /* ViewController.swift in Sources */,
+				45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */,
+				45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */,
+				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
+				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
+				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
+				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
+				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
+				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
+				45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */,
+				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
