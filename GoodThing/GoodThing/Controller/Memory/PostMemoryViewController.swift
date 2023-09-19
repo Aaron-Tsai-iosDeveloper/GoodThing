@@ -14,15 +14,22 @@ class PostMemoryViewController: UIViewController {
     @IBOutlet weak var memoryTitleTextField: UITextField!
     @IBOutlet weak var memoryContentTextView: UITextView!
     @IBOutlet weak var postMemoryButton: UIButton!
+    @IBOutlet weak var postPublicMemoryButton: UIButton!
     @IBOutlet weak var privateMemoryImageView: UIImageView!
     @IBOutlet weak var addMemoryImageButton: UIButton!
+    
     var imageURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         postMemoryButton.addTarget(self, action: #selector(postMemory), for: .touchUpInside)
+        postPublicMemoryButton.addTarget(self, action: #selector(postPublicMemory), for: .touchUpInside)
     }
-    @objc func postMemory(privacy privacyStatus: Bool = false) {
+    @objc func postPublicMemory() {
+        postMemory(privacy: false)
+    }
+    
+    @objc func postMemory(privacy privacyStatus: Bool = true) {
         guard let title = memoryTitleTextField.text, !title.isEmpty,
               let content = memoryContentTextView.text, !content.isEmpty else { return }
         let db = Firestore.firestore()

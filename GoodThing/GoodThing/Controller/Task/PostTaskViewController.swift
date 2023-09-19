@@ -19,9 +19,12 @@ class PostTaskViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet private var timeLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
     var recordURL: String?
+    private var timer: Timer?
+    private var elapsedTimeInSecond: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,7 @@ class PostTaskViewController: UIViewController {
         
         configure()
     }
+    
     @objc func postPrivateTask() {
         postTask(privacy: false)
     }
@@ -71,6 +75,7 @@ class PostTaskViewController: UIViewController {
         stopButton.isEnabled = false
         playButton.isEnabled = true
         audioRecorder?.stop()
+        resetTimer()
         
         let audioSession = AVAudioSession.sharedInstance()
         
@@ -83,16 +88,14 @@ class PostTaskViewController: UIViewController {
 
     @IBAction func play(sender: UIButton) {
         if !audioRecorder.isRecording {
-            MediaDownloader.shared.downloadAudio(from: recordURL ?? "") { downloadedURL in
-                guard let downloadedURL = downloadedURL else { return }
-                
-                do {
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: downloadedURL)
-                    self.audioPlayer?.play()
-                } catch {
-                    print("Failed to initialize AVAudioPlayer")
-                }
+            guard let player = try? AVAudioPlayer(contentsOf: audioRecorder.url) else {
+                print("Failed to initialize AVAudioPlayer")
+                return
             }
+            audioPlayer = player
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            startTimer()
         }
     }
 
@@ -108,6 +111,7 @@ class PostTaskViewController: UIViewController {
             do {
                 try audioSession.setActive(true)
                 audioRecorder.record()
+                startTimer()
                 recordButton.setImage(UIImage(named: "Pause"), for: UIControl.State.normal)
             } catch {
                 print(error)
@@ -115,6 +119,7 @@ class PostTaskViewController: UIViewController {
             
         } else {
             audioRecorder.pause()
+            pauseTimer()
             recordButton.setImage(UIImage(named: "Record"), for: UIControl.State.normal)
         }
         
@@ -182,10 +187,36 @@ extension PostTaskViewController {
     }
 }
 
+extension PostTaskViewController {
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
+            self.elapsedTimeInSecond += 1
+            self.updateTimeLabel()
+        })
+        
+    }
+    func pauseTimer() {
+        timer?.invalidate()
+    }
+
+    func resetTimer() {
+        timer?.invalidate()
+        elapsedTimeInSecond = 0
+        updateTimeLabel()
+    }
+
+    func updateTimeLabel() {
+        
+        let seconds = elapsedTimeInSecond % 60
+        let minutes = (elapsedTimeInSecond / 60) % 60
+        
+        timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+}
 extension PostTaskViewController: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            let alertMessage = UIAlertController(title: "錄音完成", message: "錄音已經儲存!", preferredStyle: .alert)
+            let alertMessage = UIAlertController(title: "錄音完成", message: "加油語錄已經儲存!", preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertMessage, animated: true, completion: nil)
             uploadAudioToFirebase()
@@ -195,8 +226,8 @@ extension PostTaskViewController: AVAudioRecorderDelegate {
 extension PostTaskViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playButton.isSelected = false
-        
-        let alertMessage = UIAlertController(title: "完成播放", message: "如果不滿意，你可以重新錄製！", preferredStyle: .alert)
+        resetTimer()
+        let alertMessage = UIAlertController(title: "播放完成", message: "如果想重錄，再點一次錄音就好囉！", preferredStyle: .alert)
         alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertMessage, animated: true, completion: nil)
     }
