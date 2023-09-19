@@ -28,6 +28,7 @@
 		45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC72AB839C000749CFA /* GroupsTableViewCell.swift */; };
 		45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */; };
 		45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */; };
+		45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */; };
 		459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459552202AB44E2900A002C8 /* GoogleService-Info.plist */; };
 		663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		45545BC72AB839C000749CFA /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
 		45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupViewController.swift; sourceTree = "<group>"; };
 		45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupTableViewCell.swift; sourceTree = "<group>"; };
+		45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
 		459552202AB44E2900A002C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		826B7CA5B2E1C66A4E635160 /* Pods-GoodThing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.release.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.release.xcconfig"; sourceTree = "<group>"; };
 		A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 		451098EE2AB35CBD000B3BD2 /* GoodThing */ = {
 			isa = PBXGroup;
 			children = (
+				45545BCD2AB97E8900749CFA /* NetWork */,
 				454AA8072AB5848300D404EC /* Model */,
 				454AA8082AB5849700D404EC /* View */,
 				454AA8092AB584AE00D404EC /* Controller */,
@@ -184,6 +187,14 @@
 				45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */,
 			);
 			path = Group;
+			sourceTree = "<group>";
+		};
+		45545BCD2AB97E8900749CFA /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */,
+			);
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 		6444B4C7F11244551C7FBB32 /* Pods */ = {
@@ -334,6 +345,7 @@
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
 				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
 				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
+				45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */,
 				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
 				45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */,
