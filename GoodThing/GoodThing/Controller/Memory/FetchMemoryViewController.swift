@@ -92,11 +92,13 @@ extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
             cell.privateMemoryCreatedTimeLabel.text = privateMemory[indexPath.row].memoryCreatedTime
             cell.privateMemoryTagLabel.text = privateMemory[indexPath.row].memoryTag
             cell.privateMemoryContentLabel.text = privateMemory[indexPath.row].memoryContent
-            
+            let imageUrlString = privateMemory[indexPath.row].memoryImage
+            MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
+                cell.privateMemoryImage.image = image
+            }
             cell.deletePrivateMemory = { [weak self] in
                 self?.deletePrivateMemory(at: indexPath)
             }
-            
             return cell
         } else if tableView == publicMemoryTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PublicMemoryTableViewCell", for: indexPath) as? PublicMemoryTableViewCell  else { return UITableViewCell() }

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 
 class PostMemoryViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class PostMemoryViewController: UIViewController {
     @IBOutlet weak var postMemoryButton: UIButton!
     @IBOutlet weak var privateMemoryImageView: UIImageView!
     @IBOutlet weak var addMemoryImageButton: UIButton!
+    var imageURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +29,19 @@ class PostMemoryViewController: UIViewController {
         let document = db.collection("GoodThingMemory").document()
         let id = document.documentID
         let time = Date.dateFormatter.string(from: Date())
-        db.collection("GoodThingMemory").document(id).setData([
+        var data: [String: Any] = [
             "memoryID": id,
             "memoryTitle": title,
             "memoryContent": content,
             "memoryTag": "感謝",
-            "memoryImage": "",
-            "memoryPrivacyStatus": true,
+            "memoryPrivacyStatus": privacyStatus,
             "memoryCreatedTime": time,
             "memoryCreatorID": "Aaron"
-        ]) { err in
+        ]
+        if let imageURL = imageURL {
+            data["memoryImage"] = imageURL
+        }
+        db.collection("GoodThingMemory").document(id).setData(data) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
@@ -59,6 +64,7 @@ extension PostMemoryViewController: UIImagePickerControllerDelegate,UINavigation
         if let selectedImage = info[.originalImage] as? UIImage {
             privateMemoryImageView.image = selectedImage
             privateMemoryImageView.contentMode = .scaleAspectFit
+            uploadImageToFirebase(selectedImage)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -68,7 +74,7 @@ extension PostMemoryViewController: UIImagePickerControllerDelegate,UINavigation
 }
 
 extension PostMemoryViewController {
-    func uploadImageToFirebase(_ image: UIImage) {
+     func uploadImageToFirebase(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
             print("Could not convert image to data.")
             return
@@ -84,13 +90,12 @@ extension PostMemoryViewController {
             } else {
                 print("Successfully uploaded image.")
                 
-                // 獲取下載 URL
+             
                 imageRef.downloadURL { (url, error) in
                     if let error = error {
                         print("Failed to get download URL: \(error)")
                     } else if let downloadURL = url {
-                        // 將 URL 保存到 Firestore
-                        self.saveImageURLToFirestore(downloadURL.absoluteString)
+                        self.imageURL = downloadURL.absoluteString
                     }
                 }
             }
