@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 
 class FetchMemoryViewController: UIViewController {
     @IBOutlet weak var fetchPrivateMemoryButton: UIButton!
-    @IBOutlet weak var PrivateMemoryTableView: UITableView!
+    @IBOutlet weak var privateMemoryTableView: UITableView!
     @IBOutlet weak var fetchPublicMemoryButton: UIButton!
-    @IBOutlet weak var PublicMemoryTableView: UITableView!
+    @IBOutlet weak var publicMemoryTableView: UITableView!
     
     lazy var db = Firestore.firestore()
     var privateMemory = [GoodThingMemory]()
@@ -22,19 +22,19 @@ class FetchMemoryViewController: UIViewController {
         super.viewDidLoad()
         fetchPrivateMemoryButton.addTarget(self, action: #selector(fetchPrivateMemory), for: .touchUpInside)
         fetchPublicMemoryButton.addTarget(self, action: #selector(fetchPublicMemory), for: .touchUpInside)
-        PrivateMemoryTableView.dataSource = self
-        PrivateMemoryTableView.delegate = self
-        PublicMemoryTableView.dataSource = self
-        PublicMemoryTableView.delegate = self
+        privateMemoryTableView.dataSource = self
+        privateMemoryTableView.delegate = self
+        publicMemoryTableView.dataSource = self
+        publicMemoryTableView.delegate = self
     }
     @objc func fetchPrivateMemory() {
         fetchMemory(byCreatorID: "Aaron", withPrivateStatus: true){
-            self.PrivateMemoryTableView.reloadData()
+            self.privateMemoryTableView.reloadData()
         }
     }
     @objc func fetchPublicMemory() {
         fetchMemory(withPrivateStatus: false){
-            self.PublicMemoryTableView.reloadData()
+            self.publicMemoryTableView.reloadData()
         }
     }
     func fetchMemory(byCreatorID creatorID: String? = nil, withPrivateStatus isPrivate: Bool? = nil, completion: @escaping () -> Void) {
@@ -77,23 +77,28 @@ class FetchMemoryViewController: UIViewController {
 
 extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == PrivateMemoryTableView {
+        if tableView == privateMemoryTableView {
             return privateMemory.count
-        } else if tableView == PublicMemoryTableView {
+        } else if tableView == publicMemoryTableView {
             return publicMemory.count
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == PrivateMemoryTableView {
+        if tableView == privateMemoryTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PrivateMemoryTableViewCell", for: indexPath) as? PrivateMemoryTableViewCell else { return UITableViewCell() }
             cell.privateMemoryTitleLabel.text = privateMemory[indexPath.row].memoryTitle
             cell.privateMemoryCreatedTimeLabel.text = privateMemory[indexPath.row].memoryCreatedTime
             cell.privateMemoryTagLabel.text = privateMemory[indexPath.row].memoryTag
             cell.privateMemoryContentLabel.text = privateMemory[indexPath.row].memoryContent
+            
+            cell.deletePrivateMemory = { [weak self] in
+                self?.deletePrivateMemory(at: indexPath)
+            }
+            
             return cell
-        } else if tableView == PublicMemoryTableView {
+        } else if tableView == publicMemoryTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PublicMemoryTableViewCell", for: indexPath) as? PublicMemoryTableViewCell  else { return UITableViewCell() }
             cell.publicMemoryTitleLabel.text = publicMemory[indexPath.row].memoryTitle
             cell.publicMemoryTagLabel.text = publicMemory[indexPath.row].memoryTag
@@ -104,4 +109,19 @@ extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    func deletePrivateMemory(at indexPath: IndexPath) {
+        let privateMemory = privateMemory[indexPath.row]
+        let Id = privateMemory.memoryID
+        db.collection("GoodThingMemory").document(Id).delete() { [weak self] error in
+            if let error = error {
+                print("Failed to delete memory: \(error)")
+            } else {
+                self?.privateMemory.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self?.privateMemoryTableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+    }
+
 }

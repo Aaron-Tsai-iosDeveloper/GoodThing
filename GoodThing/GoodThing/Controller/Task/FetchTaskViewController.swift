@@ -90,8 +90,28 @@ extension FetchTaskViewController:UITableViewDelegate,UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListTableViewCell",for: indexPath) as? TaskListTableViewCell {
             let task = tasks[indexPath.row]
             cell.taskTitleListLabel.text = task.taskTitle
+            cell.onDelete = { [weak self] in
+                self?.deleteTask(at: indexPath)
+            }
+            
             return cell
         }
         return UITableViewCell()
     }
+    
+    func deleteTask(at indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        let Id = task.taskID
+        db.collection("GoodThingTasks").document(Id).delete() { [weak self] error in
+            if let error = error {
+                print("Failed to delete task: \(error)")
+            } else {
+                self?.tasks.remove(at: indexPath.row)
+                DispatchQueue.main.async {
+                    self?.taskListTableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+    }
+
 }

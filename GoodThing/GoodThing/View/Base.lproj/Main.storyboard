@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z0I-dp-fc2">
-                                <rect key="frame" x="58" y="111" width="268" height="34"/>
+                                <rect key="frame" x="58" y="260" width="268" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fhE-w8-Ci4">
-                                <rect key="frame" x="58" y="181" width="268" height="195"/>
+                                <rect key="frame" x="58" y="302" width="268" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -32,7 +32,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lT0-Hd-Igu">
-                                <rect key="frame" x="97" y="471" width="198" height="35"/>
+                                <rect key="frame" x="97" y="512" width="198" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.89979210430000001" green="0.70859156160000003" blue="0.43655149560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -41,7 +41,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO2-Ye-vz2">
-                                <rect key="frame" x="97" y="559" width="198" height="35"/>
+                                <rect key="frame" x="97" y="555" width="198" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.092553583930000002" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.64414321190000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -50,7 +50,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYR-oo-Ocp">
-                                <rect key="frame" x="120" y="688" width="150" height="35"/>
+                                <rect key="frame" x="121" y="747" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="next"/>
@@ -151,13 +151,33 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEz-uH-hfl">
+                                                    <rect key="frame" x="312" y="18" width="38" height="35"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="Vby-MU-pIQ"/>
+                                                        <constraint firstAttribute="width" constant="38" id="yUf-07-div"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="x">
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteTaskButton:" destination="ydP-Ly-wbr" eventType="touchUpInside" id="wI5-rT-Osy"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="xEz-uH-hfl" firstAttribute="top" secondItem="7xg-Tz-JXw" secondAttribute="top" constant="18" id="87b-Y4-5fo"/>
                                                 <constraint firstItem="6nY-nv-Jps" firstAttribute="leading" secondItem="7xg-Tz-JXw" secondAttribute="leading" constant="19" id="8OK-nb-Mu9"/>
+                                                <constraint firstAttribute="trailing" secondItem="xEz-uH-hfl" secondAttribute="trailing" constant="7" id="DKH-aG-OU2"/>
                                                 <constraint firstItem="6nY-nv-Jps" firstAttribute="top" secondItem="7xg-Tz-JXw" secondAttribute="top" constant="20" id="E56-c1-pSY"/>
+                                                <constraint firstAttribute="bottom" secondItem="xEz-uH-hfl" secondAttribute="bottom" constant="9" id="XRB-DI-nwK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="taskListDeleteButton" destination="xEz-uH-hfl" id="Xpe-ZH-MTZ"/>
                                             <outlet property="taskTitleListLabel" destination="6nY-nv-Jps" id="tav-Wl-bvW"/>
                                         </connections>
                                     </tableViewCell>
@@ -403,11 +423,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXW-WX-Zqs">
+                                                    <rect key="frame" x="307" y="11" width="38" height="35"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="ECq-Qg-iNB"/>
+                                                        <constraint firstAttribute="height" constant="35" id="LgG-zW-kVs"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="sjF-0b-ifO"/>
+                                                        <constraint firstAttribute="width" constant="38" id="zCx-OP-cw6"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="x">
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="privateDeleteButtonTapped:" destination="6No-1E-FMy" eventType="touchUpInside" id="Wkb-2G-ivJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qcb-Zk-hai" firstAttribute="top" secondItem="inA-A2-Hvj" secondAttribute="top" constant="10" id="1Cg-6D-Lwh"/>
+                                                <constraint firstAttribute="trailing" secondItem="IXW-WX-Zqs" secondAttribute="trailing" constant="12" id="1IK-e1-k4y"/>
                                                 <constraint firstItem="qcb-Zk-hai" firstAttribute="leading" secondItem="inA-A2-Hvj" secondAttribute="leading" constant="20" id="1KI-CJ-agb"/>
                                                 <constraint firstItem="sOh-83-NW0" firstAttribute="leading" secondItem="inA-A2-Hvj" secondAttribute="leading" constant="20" id="Eph-TA-p4V"/>
+                                                <constraint firstItem="IXW-WX-Zqs" firstAttribute="top" secondItem="inA-A2-Hvj" secondAttribute="top" constant="11" id="Ip9-ci-nWg"/>
                                                 <constraint firstItem="cGd-o1-6RG" firstAttribute="leading" secondItem="inA-A2-Hvj" secondAttribute="leading" constant="20" id="SwM-CG-bga"/>
                                                 <constraint firstItem="fpc-fM-X3w" firstAttribute="leading" secondItem="inA-A2-Hvj" secondAttribute="leading" constant="20" id="e5P-Wb-l25"/>
                                                 <constraint firstAttribute="trailing" secondItem="sOh-83-NW0" secondAttribute="trailing" constant="20" id="hOG-gv-QAD"/>
@@ -450,10 +490,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="KjT-Fz-dBr"/>
                     <connections>
-                        <outlet property="PrivateMemoryTableView" destination="E9b-tY-bM3" id="QJi-IW-utN"/>
-                        <outlet property="PublicMemoryTableView" destination="a8S-5B-9Rl" id="OSE-MH-sZJ"/>
                         <outlet property="fetchPrivateMemoryButton" destination="QfO-0J-8m8" id="Iw2-GM-CzR"/>
                         <outlet property="fetchPublicMemoryButton" destination="Bhc-0a-eZL" id="KDe-Xq-3bV"/>
+                        <outlet property="privateMemoryTableView" destination="E9b-tY-bM3" id="QJi-IW-utN"/>
+                        <outlet property="publicMemoryTableView" destination="a8S-5B-9Rl" id="OSE-MH-sZJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHs-MS-5uW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -777,7 +817,6 @@
         <!--Post Group View Controller-->
         <scene sceneID="45p-JC-khL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wUZ-at-Ayg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="E2H-WY-90g" customClass="PostGroupViewController" customModule="GoodThing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bQe-AF-21C">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
@@ -854,6 +893,7 @@
                         <outlet property="postGroupButton" destination="oxv-VP-Oh8" id="INs-6f-kbH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUZ-at-Ayg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3151.9083969465646" y="719.71830985915494"/>
         </scene>
@@ -864,6 +904,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
