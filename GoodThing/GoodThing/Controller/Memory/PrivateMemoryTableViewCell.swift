@@ -13,16 +13,15 @@ class PrivateMemoryTableViewCell: UITableViewCell {
     @IBOutlet weak var privateMemoryCreatedTimeLabel: UILabel!
     @IBOutlet weak var privateMemoryTagLabel: UILabel!
     @IBOutlet weak var privateMemoryContentLabel: UILabel!
+    var deletePrivateMemory: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        
     }
-
+    @IBAction func privateDeleteButtonTapped(_ sender: UIButton) {
+        deletePrivateMemory?()
+    }
 }

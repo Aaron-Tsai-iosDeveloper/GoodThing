@@ -9,8 +9,10 @@ import UIKit
 
 class TaskListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var taskListDeleteButton: UIButton!
     @IBOutlet weak var taskTitleListLabel: UILabel!
     
+    var onDelete: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,4 +23,8 @@ class TaskListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    
+    @IBAction func deleteTaskButton(_ sender: UIButton) {
+        onDelete?()
+    }
 }

@@ -14,6 +14,11 @@ class PostTaskViewController: UIViewController {
     @IBOutlet weak var taskContentTextView: UITextView!
     @IBOutlet weak var postPrivateTaskButton: UIButton!
     @IBOutlet weak var postPublicTaskButton: UIButton!
+    
+    @IBOutlet weak var publicTaskTitleLabel: UILabel!
+    @IBOutlet weak var publicTaskContentLabel: UILabel!
+    @IBOutlet weak var modifyTaskButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         postPrivateTaskButton.addTarget(self, action: #selector(postPrivateTask), for: .touchUpInside)
