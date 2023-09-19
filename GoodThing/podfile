@@ -14,6 +14,7 @@ target 'GoodThing' do
   pod 'FirebaseAnalytics', '~> 10.0'
   pod 'FirebaseCrashlytics', '~> 10.0'
   pod 'FirebaseFirestoreSwift', '~> 10.0'
+  pod 'Firebase/Storage', '~> 10.0'
   pod 'FirebaseCoreInternal', '~> 10.0', :modular_headers => true
   pod 'FirebaseSessions', '~> 10.0', :modular_headers => true
 end

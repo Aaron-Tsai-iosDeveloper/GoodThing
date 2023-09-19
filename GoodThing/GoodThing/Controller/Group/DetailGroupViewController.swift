@@ -11,7 +11,6 @@ import FirebaseFirestore
 class DetailGroupViewController: UIViewController {
     var groupDetailInfo: GoodThingGroup?
     @IBOutlet weak var detailGroupTableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         detailGroupTableView.dataSource = self
@@ -23,7 +22,6 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailGroupTableViewCell", for: indexPath) as? DetailGroupTableViewCell else { return UITableViewCell() }
         let groupID = groupDetailInfo?.groupID ?? ""
@@ -36,7 +34,6 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
         let peopleNumberLimit = groupDetailInfo?.peopleNumberLimit ?? 0
         let currentPeopleNumber = groupDetailInfo?.currentPeopleNumber ?? 0
         let createdTime = groupDetailInfo?.createdTime ?? ""
-        
         cell.detailGroupIDLabel.text = "揪團ID:\(groupID)"
         cell.detailGroupNameLabel.text = "好事揪團：\(groupName)"
         cell.detailGroupTimeLabel.text = "時間：\(groupTime)"
@@ -59,7 +56,6 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
         let documentReference =
         db.collection("GoodThingGroup").document("\(id)")
         documentReference.getDocument { document, error in
-            
             guard let document,
                   document.exists,
                   var group = try? document.data(as: GoodThingGroup.self)
@@ -81,7 +77,6 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
             } catch {
                 print(error)
             }
-            
         }
     }
 }

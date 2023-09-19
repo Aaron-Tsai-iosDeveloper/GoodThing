@@ -219,13 +219,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-tH-WtT">
-                                <rect key="frame" x="49" y="158" width="268" height="34"/>
+                                <rect key="frame" x="49" y="72" width="268" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X0u-2q-gHc">
-                                <rect key="frame" x="49" y="228" width="268" height="195"/>
+                                <rect key="frame" x="49" y="132" width="268" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -233,7 +233,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmE-pP-ch0">
-                                <rect key="frame" x="88" y="518" width="198" height="35"/>
+                                <rect key="frame" x="84" y="669" width="198" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.89979210430000001" green="0.70859156160000003" blue="0.43655149560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -242,7 +242,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWA-WW-FnS">
-                                <rect key="frame" x="121" y="622" width="150" height="35"/>
+                                <rect key="frame" x="108" y="757" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="next"/>
@@ -250,15 +250,30 @@
                                     <segue destination="9I3-IS-bTi" kind="show" id="mb3-oS-IWq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUx-Nc-IVi">
+                                <rect key="frame" x="49" y="574" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="添加照片"/>
+                                <connections>
+                                    <action selector="addMemoryImageButtonTapped:" destination="rRp-Vf-iow" eventType="touchUpInside" id="yC6-o5-YMM"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-Gx-054">
+                                <rect key="frame" x="49" y="370" width="268" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wCz-xD-Dgd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="BEG-2b-3Rr"/>
                     <connections>
+                        <outlet property="addMemoryImageButton" destination="OUx-Nc-IVi" id="MfC-TI-d7a"/>
                         <outlet property="memoryContentTextView" destination="X0u-2q-gHc" id="qjg-Ww-oaI"/>
-                        <outlet property="momeryTitleTextField" destination="Nwp-tH-WtT" id="JON-tp-YaZ"/>
+                        <outlet property="memoryTitleTextField" destination="Nwp-tH-WtT" id="JON-tp-YaZ"/>
                         <outlet property="postMemoryButton" destination="tmE-pP-ch0" id="pFy-bu-1ZR"/>
+                        <outlet property="privateMemoryImageView" destination="8o4-Gx-054" id="WR8-7u-aLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7V-io-p5V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
