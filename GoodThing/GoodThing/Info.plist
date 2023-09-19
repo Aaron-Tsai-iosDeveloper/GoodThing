@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>我們需要訪問您的麥克風，因為app有傳接加油語音的功能。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>我們需要訪問您的麥克風，因為app有加油語錄的錄音功能。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
