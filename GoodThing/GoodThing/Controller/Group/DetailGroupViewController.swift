@@ -50,7 +50,7 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     //TODO: 登入系統建置後，移除userId預設值Aaron
-    func modifyCurrentPeopleNumber(userId: String = "Aaron") {
+    func modifyCurrentPeopleNumber(userId: String = "王花月") {
         let db = Firestore.firestore()
         let id = groupDetailInfo?.groupID ?? ""
         let documentReference =
@@ -66,9 +66,18 @@ extension DetailGroupViewController: UITableViewDataSource,UITableViewDelegate {
                 group.currentPeopleNumber += 1
                 group.participants.append(userId)
                 print("加入揪團成功！")
+                let alertMessage = UIAlertController(title: "好事通知", message: "揪團加入成功！", preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
             } else if group.participants.contains(userId) {
+                let alertMessage = UIAlertController(title: "好事通知", message: "您已經加入此揪團！", preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
                 print("您已經加入此揪團！")
             } else {
+                let alertMessage = UIAlertController(title: "揪團已滿", message: "很多很棒的人正在努力創造更多好事，沒關係我們去看下一團！", preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
                 print("揪團人數已達上限")
                 return
             }
