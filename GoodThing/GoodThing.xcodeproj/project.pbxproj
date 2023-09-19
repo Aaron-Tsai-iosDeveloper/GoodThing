@@ -29,6 +29,7 @@
 		45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */; };
 		45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */; };
 		45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */; };
+		45545BD12AB9A82700749CFA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD02AB9A82700749CFA /* UserModel.swift */; };
 		459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459552202AB44E2900A002C8 /* GoogleService-Info.plist */; };
 		663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		45545BC92AB84B8B00749CFA /* DetailGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupViewController.swift; sourceTree = "<group>"; };
 		45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupTableViewCell.swift; sourceTree = "<group>"; };
 		45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
+		45545BD02AB9A82700749CFA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		459552202AB44E2900A002C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		826B7CA5B2E1C66A4E635160 /* Pods-GoodThing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.release.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.release.xcconfig"; sourceTree = "<group>"; };
 		A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				454AA8052AB5804400D404EC /* TaskModel.swift */,
+				45545BD02AB9A82700749CFA /* UserModel.swift */,
 				45545BB22AB77E1100749CFA /* MemoryModel.swift */,
 				45545BC02AB8175000749CFA /* GroupModel.swift */,
 			);
@@ -141,6 +144,7 @@
 		454AA8092AB584AE00D404EC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				45545BD22AB9A98B00749CFA /* User */,
 				45545BC22AB818E300749CFA /* Group */,
 				45545BB52AB77F5200749CFA /* Memory */,
 				45545BB42AB77F4100749CFA /* Task */,
@@ -195,6 +199,13 @@
 				45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */,
 			);
 			path = NetWork;
+			sourceTree = "<group>";
+		};
+		45545BD22AB9A98B00749CFA /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		6444B4C7F11244551C7FBB32 /* Pods */ = {
@@ -352,6 +363,7 @@
 				45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */,
 				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
+				45545BD12AB9A82700749CFA /* UserModel.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
 				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,

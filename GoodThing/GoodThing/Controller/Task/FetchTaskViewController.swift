@@ -113,5 +113,4 @@ extension FetchTaskViewController:UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-
 }
