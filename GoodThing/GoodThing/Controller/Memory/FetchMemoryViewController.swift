@@ -90,7 +90,7 @@ extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PrivateMemoryTableViewCell", for: indexPath) as? PrivateMemoryTableViewCell else { return UITableViewCell() }
             cell.privateMemoryTitleLabel.text = privateMemory[indexPath.row].memoryTitle
             cell.privateMemoryCreatedTimeLabel.text = privateMemory[indexPath.row].memoryCreatedTime
-            cell.privateMemoryTagLabel.text = privateMemory[indexPath.row].memoryTag
+            cell.privateMemoryTagLabel.text = privateMemory[indexPath.row].memoryTag[0]
             cell.privateMemoryContentLabel.text = privateMemory[indexPath.row].memoryContent
             let imageUrlString = privateMemory[indexPath.row].memoryImage
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
@@ -103,7 +103,6 @@ extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
         } else if tableView == publicMemoryTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PublicMemoryTableViewCell", for: indexPath) as? PublicMemoryTableViewCell  else { return UITableViewCell() }
             cell.publicMemoryTitleLabel.text = publicMemory[indexPath.row].memoryTitle
-            cell.publicMemoryTagLabel.text = publicMemory[indexPath.row].memoryTag
             cell.publicMemoryCreatedTimeLabel.text = publicMemory[indexPath.row].memoryCreatedTime
             cell.publicMemoryContentLabel.text = publicMemory[indexPath.row].memoryContent
             cell.publicMemoryAuthorLabel.text = publicMemory[indexPath.row].memoryCreatorID
