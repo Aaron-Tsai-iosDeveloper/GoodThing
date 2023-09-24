@@ -8,9 +8,9 @@
 import Foundation
 
 struct GoodThingComment: Codable {
-    var commentContent: String?
-    var commentCreatedTime: String?
-    var commentCreatorId: String?
-    var commentId: String?
-    var memoryId: String?
+    var commentContent: String
+    var commentCreatedTime: String
+    var commentCreatorId: String
+    var commentId: String
+    var memoryId: String
 }

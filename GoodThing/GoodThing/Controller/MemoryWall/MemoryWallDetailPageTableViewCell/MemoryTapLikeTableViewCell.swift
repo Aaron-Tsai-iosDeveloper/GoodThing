@@ -13,9 +13,10 @@ class MemoryTapLikeTableViewCell: UITableViewCell {
     @IBOutlet weak var memoryWallDetailPageShareButton: UIButton!
     @IBOutlet weak var memoryWallDetailPageTapLikeButton: UIButton!
     @IBOutlet weak var memoryWallDetailPageCollectionButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

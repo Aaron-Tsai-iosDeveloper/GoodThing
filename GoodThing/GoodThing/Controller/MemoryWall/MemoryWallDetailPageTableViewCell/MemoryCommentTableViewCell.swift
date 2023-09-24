@@ -11,11 +11,13 @@ class MemoryCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var memoryWallDetailPageCommenterButton: UIButton!
     @IBOutlet weak var memoryWallDetailPageCommentContentLabel: UILabel!
     @IBOutlet weak var memoryWallDetailPageRowNumberLabel: UILabel!
+    
+    @IBOutlet weak var memoryWallDetailPageCommentCreatedTimeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

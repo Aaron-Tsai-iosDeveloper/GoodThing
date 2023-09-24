@@ -101,7 +101,6 @@ extension CommentViewController {
             "commentCreatedTime": time,
             "commentCreatorId": "Aaron"
         ]
-        
         document.setData(data) { err in
             if let err = err {
                 print("Error adding document: \(err)")
