@@ -40,7 +40,7 @@ class PostMemoryViewController: UIViewController {
             "memoryID": id,
             "memoryTitle": title,
             "memoryContent": content,
-            "memoryTag": "感謝",
+            "memoryTag": ["感謝"],
             "memoryPrivacyStatus": privacyStatus,
             "memoryCreatedTime": time,
             "memoryCreatorID": "Aaron"

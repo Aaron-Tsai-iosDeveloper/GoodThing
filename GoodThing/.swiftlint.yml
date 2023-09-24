@@ -42,3 +42,7 @@ type_name:
     error: 35
   excluded: iPhone # excluded via string
 reporter: "xcode"
+
+line_length:
+  warning: 250
+  error: 300
