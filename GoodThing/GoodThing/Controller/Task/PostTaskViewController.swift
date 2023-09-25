@@ -8,39 +8,49 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
-import AVFoundation
+import AVFAudio
 
 class PostTaskViewController: UIViewController {
 
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskContentTextView: UITextView!
-    @IBOutlet weak var postPrivateTaskButton: UIButton!
     @IBOutlet weak var postPublicTaskButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet weak var imageNameLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
-    var recordURL: String?
+    var recordingURL: String?
+    var imageURL: String?
     private var timer: Timer?
     private var elapsedTimeInSecond: Int = 0
-    
+    let textViewPlaceHolderText = "請輸入好事任務內容:"
     override func viewDidLoad() {
         super.viewDidLoad()
-        postPrivateTaskButton.addTarget(self, action: #selector(postPrivateTask), for: .touchUpInside)
         postPublicTaskButton.addTarget(self, action: #selector(postPublicTask), for: .touchUpInside)
-        
         configure()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+       
+        taskContentTextView.text = textViewPlaceHolderText
+        taskContentTextView.textColor = .lightGray
+        taskContentTextView.delegate = self
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func postPrivateTask() {
-        postTask(privacy: false)
+        postTask(privacy: true)
     }
     @objc func postPublicTask() {
         postTask()
     }
-    func postTask(privacy privacyStatus: Bool = true) {
+    func postTask(privacy privacyStatus: Bool = false) {
         guard let title = taskTitleTextField.text, !title.isEmpty,
               let content = taskContentTextView.text, !content.isEmpty else { return }
         let db = Firestore.firestore()
@@ -51,15 +61,14 @@ class PostTaskViewController: UIViewController {
             "taskID": id,
             "taskTitle": title,
             "taskContent": content,
-            "taskImage": "",
+            "taskImage": imageURL ?? "",
             "taskCreatorID": "Aaron",
             "privacyStatus": privacyStatus,
             "taskCreatedTime": time
         ]
-        if let recordURL = recordURL {
+        if let recordURL = recordingURL {
             data["taskVoice"] = recordURL
         }
-        
         db.collection("GoodThingTasks").document(id).setData(data) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -68,17 +77,14 @@ class PostTaskViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func stop(sender: UIButton) {
+    @IBAction func storeRecord(sender: UIButton) {
         recordButton.setImage(UIImage(named: "Record"), for: UIControl.State.normal)
         recordButton.isEnabled = true
         stopButton.isEnabled = false
         playButton.isEnabled = true
         audioRecorder?.stop()
         resetTimer()
-        
         let audioSession = AVAudioSession.sharedInstance()
-        
         do {
             try audioSession.setActive(false)
         } catch {
@@ -87,7 +93,17 @@ class PostTaskViewController: UIViewController {
     }
 
     @IBAction func play(sender: UIButton) {
-        if !audioRecorder.isRecording {
+        if let player = audioPlayer {
+            if player.isPlaying {
+                player.pause()
+                sender.setTitle("播放", for: .normal)
+                pauseTimer()
+            } else {
+                player.play()
+                startTimer()
+                sender.setTitle("暫停", for: .normal)
+            }
+        } else {
             guard let player = try? AVAudioPlayer(contentsOf: audioRecorder.url) else {
                 print("Failed to initialize AVAudioPlayer")
                 return
@@ -96,18 +112,16 @@ class PostTaskViewController: UIViewController {
             audioPlayer?.delegate = self
             audioPlayer?.play()
             startTimer()
+            sender.setTitle("暫停", for: .normal)
         }
     }
 
     @IBAction func record(sender: UIButton) {
-        
         if let player = audioPlayer, player.isPlaying {
             player.stop()
         }
-        
         if !audioRecorder.isRecording {
             let audioSession = AVAudioSession.sharedInstance()
-            
             do {
                 try audioSession.setActive(true)
                 audioRecorder.record()
@@ -116,23 +130,18 @@ class PostTaskViewController: UIViewController {
             } catch {
                 print(error)
             }
-            
         } else {
             audioRecorder.pause()
             pauseTimer()
             recordButton.setImage(UIImage(named: "Record"), for: UIControl.State.normal)
         }
-        
         stopButton.isEnabled = true
         playButton.isEnabled = false
     }
-    
     private func configure() {
-        
         stopButton.isEnabled = false
         playButton.isEnabled = false
         guard let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else {
-            
             let alertMessage = UIAlertController(title: "Error", message: "Failed to get the document directory for recording the audio. Please try again later.", preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertMessage, animated: true, completion: nil)
@@ -157,23 +166,78 @@ class PostTaskViewController: UIViewController {
             print(error)
         }
     }
+    
+    @IBAction func addPubplicTaskImageButtonTapped(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func previewTaskButton(_ sender: UIButton) {
+        if self.imageNameLabel.text == "" {
+            performSegue(withIdentifier: "toPostPublicTasksTextPreviewVC", sender: sender)
+        } else {
+            
+            performSegue(withIdentifier: "toPostPublicTasksImagePreviewVC", sender: sender)
+        }
+    }
+}
+extension PostTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+
+            uploadImageToFirebase(selectedImage)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+extension PostTaskViewController {
+     func uploadImageToFirebase(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.6) else {
+            print("Could not convert image to data.")
+            return
+        }
+
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imageRef = storageRef.child("publicTaskImages/\(UUID().uuidString).jpg")
+
+        let uploadTask = imageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            if let error = error {
+                print("Failed to upload image: \(error)")
+            } else {
+                print("Successfully uploaded image.")
+                
+             
+                imageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        print("Failed to get download URL: \(error)")
+                    } else if let downloadURL = url {
+                        self.imageURL = downloadURL.absoluteString
+                        self.imageNameLabel.text = "已經成功添加照片！"
+                        self.imageNameLabel.textColor = .red
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension PostTaskViewController {
     func uploadAudioToFirebase() {
         //TODO: 建立登入系統後，調整userId
         guard let audioURL = audioRecorder?.url else { return }
-        
         let userId = "Aaron"
-        
         let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(audioURL.lastPathComponent)")
-        
         storageRef.putFile(from: audioURL, metadata: nil) { metadata, error in
             if let error = error {
                 print("Failed to upload audio: \(error)")
                 return
             }
-            
             storageRef.downloadURL { url, error in
                 if let error = error {
                     print("Failed to get download URL: \(error)")
@@ -181,7 +245,7 @@ extension PostTaskViewController {
                 }
                 guard let downloadURL = url else { return }
                 print("Audio file uploaded and available at: \(downloadURL)")
-                self.recordURL = downloadURL.absoluteString
+                self.recordingURL = downloadURL.absoluteString
             }
         }
     }
@@ -193,7 +257,6 @@ extension PostTaskViewController {
             self.elapsedTimeInSecond += 1
             self.updateTimeLabel()
         })
-        
     }
     func pauseTimer() {
         timer?.invalidate()
@@ -206,10 +269,8 @@ extension PostTaskViewController {
     }
 
     func updateTimeLabel() {
-        
         let seconds = elapsedTimeInSecond % 60
         let minutes = (elapsedTimeInSecond / 60) % 60
-        
         timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
 }
@@ -230,5 +291,57 @@ extension PostTaskViewController: AVAudioPlayerDelegate {
         let alertMessage = UIAlertController(title: "播放完成", message: "如果想重錄，再點一次錄音就好囉！", preferredStyle: .alert)
         alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertMessage, animated: true, completion: nil)
+    }
+}
+
+//TODO: 建立登入系統後，修改PosterLabel.text "Aaron"
+extension PostTaskViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPostPublicTasksImagePreviewVC",
+           let nextVC = segue.destination as? PostPublicImageTasksPreviewViewController,
+           let taskName = self.taskTitleTextField.text,
+           let taskContent = self.taskContentTextView.text,
+           let imageURL = self.imageURL,
+           let recordingURL = self.recordingURL {
+            nextVC.taskName = taskName
+            nextVC.taskContent = taskContent
+            nextVC.posterName = "Aaron"
+            nextVC.imageURL = imageURL
+            nextVC.recordingURL = recordingURL
+        } else if segue.identifier == "toPostPublicTasksTextPreviewVC",
+            let nextVC = segue.destination as? PostPublicTextTasksPreviewViewController,
+            let taskName = self.taskTitleTextField.text,
+            let taskContent = self.taskContentTextView.text {
+            nextVC.taskName = taskName
+            nextVC.taskContent = taskContent
+            nextVC.posterName = "Aaron"
+        }
+    }
+}
+
+extension PostTaskViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == textViewPlaceHolderText {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = textViewPlaceHolderText
+            textView.textColor = .lightGray
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text.isEmpty && range.length > 0 && textView.text == textViewPlaceHolderText {
+            textView.text = nil
+            textView.textColor = .black
+        } else if textView.text.isEmpty && text.isEmpty {
+            textView.text = textViewPlaceHolderText
+            textView.textColor = .lightGray
+        }
+        return true
     }
 }

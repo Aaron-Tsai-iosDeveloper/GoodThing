@@ -13,6 +13,8 @@
 		451098F72AB35CBD000B3BD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098F52AB35CBD000B3BD2 /* Main.storyboard */; };
 		451098F92AB35CBE000B3BD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451098F82AB35CBE000B3BD2 /* Assets.xcassets */; };
 		451098FC2AB35CBE000B3BD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098FA2AB35CBE000B3BD2 /* LaunchScreen.storyboard */; };
+		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
+		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
 		454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */; };
@@ -58,6 +60,8 @@
 		451098F82AB35CBE000B3BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		451098FB2AB35CBE000B3BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		451098FD2AB35CBE000B3BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
+		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTaskViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
+				4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */,
+				4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */,
 				454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */,
 				45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */,
 			);
@@ -436,11 +442,13 @@
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
 				45545BD12AB9A82700749CFA /* UserModel.swift in Sources */,
 				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
+				4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
 				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
 				45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */,
 				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
+				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,
