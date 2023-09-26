@@ -71,7 +71,7 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
             cell.memoryWallPosterNameLabel.text = "筆名：\(memory.memoryCreatorID)"
             cell.memoryWallArticleContentLabel.text = (memory.memoryContent)
             cell.memoryWallArticleCreatedTimeLabel.text = (memory.memoryCreatedTime)
-            let imageUrlString = memory.memoryImage
+            let imageUrlString = memory.memoryImage ?? ""
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                 cell.memoryWallArticleImageView.image = image
             }

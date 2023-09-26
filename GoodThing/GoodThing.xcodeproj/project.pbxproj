@@ -28,7 +28,6 @@
 		45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */; };
 		45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */; };
 		45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */; };
-		45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */; };
 		45545BC12AB8175000749CFA /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC02AB8175000749CFA /* GroupModel.swift */; };
 		45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC32AB8190400749CFA /* PostGroupViewController.swift */; };
 		45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */; };
@@ -80,7 +79,6 @@
 		45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemoryViewController.swift; sourceTree = "<group>"; };
 		45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMemoryViewController.swift; sourceTree = "<group>"; };
 		45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMemoryTableViewCell.swift; sourceTree = "<group>"; };
-		45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicMemoryTableViewCell.swift; sourceTree = "<group>"; };
 		45545BC02AB8175000749CFA /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		45545BC32AB8190400749CFA /* PostGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupViewController.swift; sourceTree = "<group>"; };
 		45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGroupViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */,
 				45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */,
 				45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */,
-				45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -436,7 +433,6 @@
 				457C4E722ABD68F300DAD357 /* CommentViewController.swift in Sources */,
 				457C4E792ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift in Sources */,
 				45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */,
-				45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */,
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
 				45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */,
 				457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */,

@@ -12,7 +12,7 @@ struct GoodThingMemory: Codable {
     var memoryTitle: String
     var memoryContent: String
     var memoryTag: [String]
-    var memoryImage: String
+    var memoryImage: String?
     var memoryPrivacyStatus: Bool
     var memoryCreatedTime: String
     var memoryCreatorID: String
