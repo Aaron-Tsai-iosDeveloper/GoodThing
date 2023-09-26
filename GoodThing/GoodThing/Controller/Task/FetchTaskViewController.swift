@@ -43,7 +43,7 @@ class FetchTaskViewController: UIViewController {
      func fetchTasks(byCreatorID creatorID: String? = nil, withPrivateStatus isPrivate: Bool? = nil, completion: @escaping () -> Void) {
          var query: Query = db.collection("GoodThingTasks").order(by: "taskCreatedTime", descending: true)
          if let creatorID = creatorID {
-             query = query.whereField("taskCreatorID", isEqualTo: creatorID)
+             query = query.whereField("taskCreatorId", isEqualTo: creatorID)
          }
          if let isPrivate = isPrivate {
              query = query.whereField("privacyStatus", isEqualTo: isPrivate)
@@ -71,7 +71,7 @@ class FetchTaskViewController: UIViewController {
     
     func updateTaskUI() {
         if let firstTask = tasks.first {
-            self.taskGiverLabel.text = " 來自 \(firstTask.taskCreatorID) 發佈的好事任務"
+            self.taskGiverLabel.text = " 來自 \(firstTask.taskCreatorId) 發佈的好事任務"
             self.taskTitleLabel.text = " 好事任務： \(firstTask.taskTitle)"
             self.taskContentLabel.text = firstTask.taskContent
         }
@@ -101,7 +101,7 @@ extension FetchTaskViewController:UITableViewDelegate,UITableViewDataSource {
     
     func deleteTask(at indexPath: IndexPath) {
         let task = tasks[indexPath.row]
-        let Id = task.taskID
+        let Id = task.taskId
         db.collection("GoodThingTasks").document(Id).delete() { [weak self] error in
             if let error = error {
                 print("Failed to delete task: \(error)")

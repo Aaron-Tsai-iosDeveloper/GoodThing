@@ -20,6 +20,8 @@ class FetchGroupViewController: UIViewController {
         groupsTableView.dataSource = self
         groupsTableView.delegate = self
         fetchGroups() { self.groupsTableView.reloadData() }
+        listenForGroupsUpdates()
+        
     }
     
     func fetchGroups(completion: @escaping () -> Void) {
@@ -45,6 +47,7 @@ class FetchGroupViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension FetchGroupViewController: UITableViewDataSource,UITableViewDelegate {
@@ -74,6 +77,43 @@ extension FetchGroupViewController: UITableViewDataSource,UITableViewDelegate {
         if let destinationVC = segue.destination as? DetailGroupViewController,
            let selectedGroup = sender as? GoodThingGroup {
             destinationVC.groupDetailInfo = selectedGroup
+        }
+    }
+}
+extension FetchGroupViewController {
+    func listenForGroupsUpdates() {
+        db.collection("GoodThingGroup").addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print("Error fetching updates: \(error)")
+                return
+            }
+            
+            var newGroups: [GoodThingGroup] = []
+            
+            for documentChange in snapshot!.documentChanges {
+                switch documentChange.type {
+                case .added:
+                    do {
+                        let newGroup = try Firestore.Decoder().decode(GoodThingGroup.self, from: documentChange.document.data())
+                        newGroups.append(newGroup)
+                    } catch let error {
+                        print("Decoding error: \(error)")
+                    }
+
+                default:
+                    break
+                }
+            }
+            
+            if !newGroups.isEmpty {
+                self.groups.append(contentsOf: newGroups)
+                
+                self.groups.sort(by: { $0.createdTime > $1.createdTime })
+                
+                DispatchQueue.main.async {
+                    self.groupsTableView.reloadData()
+                }
+            }
         }
     }
 }

@@ -13,6 +13,13 @@
 		451098F72AB35CBD000B3BD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098F52AB35CBD000B3BD2 /* Main.storyboard */; };
 		451098F92AB35CBE000B3BD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451098F82AB35CBE000B3BD2 /* Assets.xcassets */; };
 		451098FC2AB35CBE000B3BD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451098FA2AB35CBE000B3BD2 /* LaunchScreen.storyboard */; };
+		451F106B2AC20E5600FB610D /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106A2AC20E5600FB610D /* TasksViewController.swift */; };
+		451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */; };
+		451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */; };
+		451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */; };
+		451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */; };
+		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
+		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
 		454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */; };
@@ -21,7 +28,6 @@
 		45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */; };
 		45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */; };
 		45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */; };
-		45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */; };
 		45545BC12AB8175000749CFA /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC02AB8175000749CFA /* GroupModel.swift */; };
 		45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC32AB8190400749CFA /* PostGroupViewController.swift */; };
 		45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */; };
@@ -31,6 +37,20 @@
 		45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */; };
 		45545BD12AB9A82700749CFA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD02AB9A82700749CFA /* UserModel.swift */; };
 		45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */; };
+		45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */; };
+		45545BD92ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */; };
+		45545BDB2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */; };
+		45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BDC2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift */; };
+		45545BDF2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BDE2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift */; };
+		457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E6F2ABD650600DAD357 /* MemoryWallDetailPageViewController.swift */; };
+		457C4E722ABD68F300DAD357 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E712ABD68F300DAD357 /* CommentViewController.swift */; };
+		457C4E742ABD857500DAD357 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E732ABD857500DAD357 /* CustomPresentationController.swift */; };
+		457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E762ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift */; };
+		457C4E792ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E782ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift */; };
+		457C4E7D2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E7C2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift */; };
+		457C4E7F2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E7E2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift */; };
+		457C4E812ABD90B000DAD357 /* MemoryCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E802ABD90B000DAD357 /* MemoryCommentTableViewCell.swift */; };
+		457C4E832ABEAA5F00DAD357 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C4E822ABEAA5F00DAD357 /* CommentModel.swift */; };
 		459552212AB44E2900A002C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459552202AB44E2900A002C8 /* GoogleService-Info.plist */; };
 		663FC1D45246E13B52209590 /* Pods_GoodThing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +64,13 @@
 		451098F82AB35CBE000B3BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		451098FB2AB35CBE000B3BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		451098FD2AB35CBE000B3BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		451F106A2AC20E5600FB610D /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingTaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskTableViewCell.swift; sourceTree = "<group>"; };
+		451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTaskViewController.swift; sourceTree = "<group>"; };
+		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
+		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTaskViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +79,6 @@
 		45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemoryViewController.swift; sourceTree = "<group>"; };
 		45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMemoryViewController.swift; sourceTree = "<group>"; };
 		45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMemoryTableViewCell.swift; sourceTree = "<group>"; };
-		45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicMemoryTableViewCell.swift; sourceTree = "<group>"; };
 		45545BC02AB8175000749CFA /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		45545BC32AB8190400749CFA /* PostGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupViewController.swift; sourceTree = "<group>"; };
 		45545BC52AB8374F00749CFA /* FetchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGroupViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +88,20 @@
 		45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
 		45545BD02AB9A82700749CFA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodThingMemoryWallViewController.swift; sourceTree = "<group>"; };
+		45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryImageWallTableViewCell.swift; sourceTree = "<group>"; };
+		45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTextWallTableViewCell.swift; sourceTree = "<group>"; };
+		45545BDC2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTextWallCollectionViewCell.swift; sourceTree = "<group>"; };
+		45545BDE2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryImageWallCollectionViewCell.swift; sourceTree = "<group>"; };
+		457C4E6F2ABD650600DAD357 /* MemoryWallDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryWallDetailPageViewController.swift; sourceTree = "<group>"; };
+		457C4E712ABD68F300DAD357 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		457C4E732ABD857500DAD357 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		457C4E762ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryImageWallDetailTableViewCell.swift; sourceTree = "<group>"; };
+		457C4E782ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTextWallDetailTableViewCell.swift; sourceTree = "<group>"; };
+		457C4E7C2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTapLikeTableViewCell.swift; sourceTree = "<group>"; };
+		457C4E7E2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryWallDetailSortTableViewCell.swift; sourceTree = "<group>"; };
+		457C4E802ABD90B000DAD357 /* MemoryCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCommentTableViewCell.swift; sourceTree = "<group>"; };
+		457C4E822ABEAA5F00DAD357 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		459552202AB44E2900A002C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		826B7CA5B2E1C66A4E635160 /* Pods-GoodThing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodThing.release.xcconfig"; path = "Target Support Files/Pods-GoodThing/Pods-GoodThing.release.xcconfig"; sourceTree = "<group>"; };
 		A31360203529FBAE212A6E32 /* Pods_GoodThing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodThing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +170,7 @@
 				454AA8052AB5804400D404EC /* TaskModel.swift */,
 				45545BD02AB9A82700749CFA /* UserModel.swift */,
 				45545BB22AB77E1100749CFA /* MemoryModel.swift */,
+				457C4E822ABEAA5F00DAD357 /* CommentModel.swift */,
 				45545BC02AB8175000749CFA /* GroupModel.swift */,
 			);
 			path = Model;
@@ -146,6 +187,7 @@
 		454AA8092AB584AE00D404EC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				45545BD52ABBEBF900749CFA /* MemoryWall */,
 				45545BD22AB9A98B00749CFA /* User */,
 				45545BC22AB818E300749CFA /* Group */,
 				45545BB52AB77F5200749CFA /* Memory */,
@@ -166,7 +208,14 @@
 			isa = PBXGroup;
 			children = (
 				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
+				4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */,
+				4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */,
 				454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */,
+				451F106A2AC20E5600FB610D /* TasksViewController.swift */,
+				451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */,
+				451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */,
+				451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */,
+				451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */,
 				45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */,
 			);
 			path = Task;
@@ -178,7 +227,6 @@
 				45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */,
 				45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */,
 				45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */,
-				45545BBE2AB7F56800749CFA /* PublicMemoryTableViewCell.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -209,6 +257,34 @@
 				45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		45545BD52ABBEBF900749CFA /* MemoryWall */ = {
+			isa = PBXGroup;
+			children = (
+				45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */,
+				45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */,
+				45545BDE2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift */,
+				45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */,
+				45545BDC2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift */,
+				457C4E6F2ABD650600DAD357 /* MemoryWallDetailPageViewController.swift */,
+				457C4E732ABD857500DAD357 /* CustomPresentationController.swift */,
+				457C4E712ABD68F300DAD357 /* CommentViewController.swift */,
+				457C4E752ABD8C8F00DAD357 /* MemoryWallDetailPageTableViewCell */,
+			);
+			path = MemoryWall;
+			sourceTree = "<group>";
+		};
+		457C4E752ABD8C8F00DAD357 /* MemoryWallDetailPageTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				457C4E762ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift */,
+				457C4E782ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift */,
+				457C4E7C2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift */,
+				457C4E7E2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift */,
+				457C4E802ABD90B000DAD357 /* MemoryCommentTableViewCell.swift */,
+			);
+			path = MemoryWallDetailPageTableViewCell;
 			sourceTree = "<group>";
 		};
 		6444B4C7F11244551C7FBB32 /* Pods */ = {
@@ -354,27 +430,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457C4E722ABD68F300DAD357 /* CommentViewController.swift in Sources */,
+				457C4E792ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift in Sources */,
 				45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */,
-				45545BBF2AB7F56800749CFA /* PublicMemoryTableViewCell.swift in Sources */,
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
+				45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */,
+				457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */,
 				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
+				457C4E742ABD857500DAD357 /* CustomPresentationController.swift in Sources */,
+				457C4E812ABD90B000DAD357 /* MemoryCommentTableViewCell.swift in Sources */,
+				45545BDF2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift in Sources */,
 				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
+				451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */,
 				45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */,
 				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
+				451F106B2AC20E5600FB610D /* TasksViewController.swift in Sources */,
+				457C4E7D2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift in Sources */,
 				45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */,
+				457C4E7F2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift in Sources */,
 				45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */,
 				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
 				45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
 				45545BD12AB9A82700749CFA /* UserModel.swift in Sources */,
+				451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */,
+				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
+				4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
 				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
 				45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */,
+				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
+				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
+				451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,
+				457C4E832ABEAA5F00DAD357 /* CommentModel.swift in Sources */,
+				45545BD92ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift in Sources */,
+				451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */,
+				45545BDB2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -565,7 +661,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
