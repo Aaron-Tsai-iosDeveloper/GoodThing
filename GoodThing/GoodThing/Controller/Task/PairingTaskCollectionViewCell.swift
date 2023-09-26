@@ -100,17 +100,17 @@ class PairingTaskCollectionViewCell: UICollectionViewCell, AVAudioPlayerDelegate
         }
         
     private func setupUI() {
-        // 创建一个垂直方向的 UIStackView
+       
         let verticalStackView = UIStackView(arrangedSubviews: [usernameButton, taskImageView, taskTitleLabel, taskContentLabel])
         verticalStackView.axis = .vertical
-        verticalStackView.spacing = 10 // 根据需要调整
+        verticalStackView.spacing = 30
         
-        // 创建一个水平方向的 UIStackView
+        
         let horizontalStackView = UIStackView(arrangedSubviews: [encouragementLabel, playButton])
         horizontalStackView.axis = .horizontal
-        horizontalStackView.spacing = 10 // 根据需要调整
+        horizontalStackView.spacing = 10
         
-        // 将水平的 stackView 添加到垂直的 stackView
+        
         verticalStackView.addArrangedSubview(horizontalStackView)
         
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -121,7 +121,7 @@ class PairingTaskCollectionViewCell: UICollectionViewCell, AVAudioPlayerDelegate
         
         playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
         
-        // 为 stackView 添加约束
+        
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: topAnchor),
             verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -132,13 +132,16 @@ class PairingTaskCollectionViewCell: UICollectionViewCell, AVAudioPlayerDelegate
             postButton.widthAnchor.constraint(equalToConstant: 44),
             postButton.heightAnchor.constraint(equalToConstant: 44),
             
-            replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -300),
+            replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
             replyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -130),
             replyButton.widthAnchor.constraint(equalToConstant: 150),
-            replyButton.heightAnchor.constraint(equalToConstant: 90)
+            replyButton.heightAnchor.constraint(equalToConstant: 90),
+            taskContentLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
+            taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
+            encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
+            playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30)
         ])
-        
-        taskImageView.isHidden = true // 根据需要设置
+        taskImageView.isHidden = true
     }
 
 }

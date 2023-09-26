@@ -74,6 +74,7 @@ class PostTaskViewController: UIViewController {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(id)")
+                self.imageNameLabel.text = "好事任務已經成功發佈！"
             }
         }
     }

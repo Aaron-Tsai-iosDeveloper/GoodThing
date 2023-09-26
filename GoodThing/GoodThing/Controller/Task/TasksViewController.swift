@@ -147,9 +147,10 @@ extension TasksViewController {
         let yesterdayString = Date.dateFormatterWithDate.string(from: yesterday)
         let currentDate = Date.dateFormatterWithDate.string(from: Date())
         let randomValue = Double.random(in: 0..<1)
+        print(randomValue)
         
         let query: Query = db.collection("GoodThingTasks")
-            .whereField("lastFetchedTime", isEqualTo: yesterday)
+            .whereField("lastFetchedTime", isEqualTo: yesterdayString)
             .whereField("randomSelectionValue", isGreaterThan: randomValue)
             .order(by: "randomSelectionValue")
             .limit(to: 1)
@@ -158,9 +159,10 @@ extension TasksViewController {
                 print("Error fetching task: \(error)")
             } else if let document = querySnapshot?.documents.first {
                 do {
-                    let task = try document.data(as: GoodThingTasks.self, decoder: Firestore.Decoder())
-                    self.task = task
-    
+                    let fetchedTask = try document.data(as: GoodThingTasks.self, decoder: Firestore.Decoder())
+                    self.task = fetchedTask
+                    print("Task fetched successfully: \(fetchedTask)")
+                    
                     let docRef = db.collection("GoodThingTasks").document(document.documentID)
                     docRef.updateData(["lastFetchedTime": currentDate]) { err in
                         if let err = err {

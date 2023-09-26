@@ -13,19 +13,24 @@ class FetchMemoryViewController: UIViewController {
     
     @IBOutlet weak var privateMemoryTableView: UITableView!
    
+    @IBOutlet weak var privateMemoryDatePicker: UIDatePicker!
     lazy var db = Firestore.firestore()
     var privateMemory = [GoodThingMemory]()
+    var selectedMemory = [GoodThingMemory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchMemory(byCreatorID: "Aaron", withPrivateStatus: true){
-            self.privateMemoryTableView.reloadData()
-        }
+
         privateMemoryTableView.dataSource = self
         privateMemoryTableView.delegate = self
         listenForPrivateMemoryUpdates()
+        privateMemoryDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        fetchDataForSelectedDate()
     }
-
+    @objc func datePickerValueChanged() {
+        fetchDataForSelectedDate()
+    }
+    
     func fetchMemory(byCreatorID creatorID: String? = nil, withPrivateStatus isPrivate: Bool? = nil, completion: @escaping () -> Void) {
         var query: Query = db.collection("GoodThingMemory").order(by: "memoryCreatedTime", descending: true)
         if let creatorID = creatorID {
@@ -58,6 +63,35 @@ class FetchMemoryViewController: UIViewController {
            }
        }
    }
+    func fetchDataForSelectedDate() {
+        
+        let selectedDate = privateMemoryDatePicker.date
+        let selectedDateString = Date.dateFormatterWithDate.string(from: selectedDate)
+        
+        var query: Query = db.collection("GoodThingMemory")
+            .order(by: "memoryCreatedTime", descending: true)
+            .whereField("memoryCreatedTime", isEqualTo: selectedDateString)
+        
+        query.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("error about fetchmemory : \(error) ")
+            } else {
+                self.selectedMemory.removeAll()
+                for document in querySnapshot!.documents {
+                    do {
+                        let group = try document.data(as: GoodThingMemory.self, decoder: Firestore.Decoder())
+                        self.selectedMemory.append(group)
+                    } catch let error {
+                        print("fetchgroups decoding error: \(error)")
+                    }
+                }
+                print("successfully fetchmemory:\(self.selectedMemory)")
+                DispatchQueue.main.async {
+                    self.privateMemoryTableView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
@@ -101,7 +135,7 @@ extension FetchMemoryViewController {
     //TODO: 登錄系統建置後，調整CreatorID
     func listenForPrivateMemoryUpdates() {
         let query = db.collection("GoodThingMemory")
-            .whereField("memoryPrivacyStatus", isEqualTo: false)
+            .whereField("memoryPrivacyStatus", isEqualTo: true)
             .whereField("memoryCreatorID", isEqualTo: "Aaron")
             
         query.addSnapshotListener { (snapshot, error) in

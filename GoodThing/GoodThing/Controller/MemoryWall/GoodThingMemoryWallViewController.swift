@@ -75,7 +75,7 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                 cell.memoryWallArticleImageView.image = image
             }
-            cell.memoryTags = memory.memoryTag
+            cell.memoryTags = memory.memoryTag ?? []
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTextWallTableViewCell", for: indexPath) as? MemoryTextWallTableViewCell else { return UITableViewCell() }
