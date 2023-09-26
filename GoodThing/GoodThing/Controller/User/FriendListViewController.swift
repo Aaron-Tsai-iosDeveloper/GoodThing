@@ -20,7 +20,7 @@ class FriendListViewController: UIViewController {
         let db = Firestore.firestore()
         let document = db.collection("GoodThingUsers").document()
         let id = document.documentID
-        let time = Date.dateFormatter.string(from: Date())
+        let time = Date.dateFormatterWithTime.string(from: Date())
        
         var data: [String: Any] = [
             "userId": id,

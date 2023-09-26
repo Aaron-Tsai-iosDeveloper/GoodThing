@@ -14,9 +14,15 @@ extension Date {
     init(milliseconds: Int64) {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
     }
-    static var dateFormatter: DateFormatter {
+    static var dateFormatterWithTime: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd HH:mm"
+        return formatter
+    }
+    
+    static var dateFormatterWithDate: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
         return formatter
     }
 }

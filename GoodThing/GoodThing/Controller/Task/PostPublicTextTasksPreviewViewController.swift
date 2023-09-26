@@ -7,8 +7,7 @@
 
 import UIKit
 import AVFAudio
-class PostPublicTextTasksPreviewViewController: UIViewController {
-    
+class PostPublicTextTasksPreviewViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var previewPublicTextTaskPosterLabel: UILabel!
     @IBOutlet weak var previewPublicTextTaskNameLabel: UILabel!
     @IBOutlet weak var previewPublicTextTaskContentLabel: UILabel!
@@ -19,7 +18,6 @@ class PostPublicTextTasksPreviewViewController: UIViewController {
     var posterName: String?
     var recordingURL: String?
     var audioPlayer: AVAudioPlayer?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +46,7 @@ class PostPublicTextTasksPreviewViewController: UIViewController {
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        audioPlayer?.delegate = self
         audioPlayer?.play()
-        
     }
 }

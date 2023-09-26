@@ -1,25 +1,26 @@
 //
-//  ViewController.swift
+//  ReplyTaskViewController.swift
 //  GoodThing
 //
-//  Created by 蔡佳峪 on 2023/9/14.
+//  Created by 蔡佳峪 on 2023/9/26.
 //
 
 import UIKit
+import AVFAudio
 import FirebaseFirestore
 import FirebaseStorage
-import AVFAudio
 
-class PostTaskViewController: UIViewController {
-
-    @IBOutlet weak var taskTitleTextField: UITextField!
-    @IBOutlet weak var taskContentTextView: UITextView!
-    @IBOutlet weak var postPublicTaskButton: UIButton!
+class ReplyTaskViewController: UIViewController {
+    
+    @IBOutlet weak var replyTaskTitleTextField: UITextField!
+    @IBOutlet weak var replyTaskTextView: UITextView!
+    @IBOutlet weak var replyTaskAddImageButton: UIButton!
+    @IBOutlet weak var replyTaskPostButton: UIButton!
+    @IBOutlet weak var replyTaskImageMessageLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
     @IBOutlet private var timeLabel: UILabel!
-    @IBOutlet weak var imageNameLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
@@ -27,49 +28,45 @@ class PostTaskViewController: UIViewController {
     private var timer: Timer?
     private var elapsedTimeInSecond: Int = 0
     let textViewPlaceHolderText = "請輸入好事任務內容:"
+    var task: GoodThingTasks?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        postPublicTaskButton.addTarget(self, action: #selector(postPublicTask), for: .touchUpInside)
+        replyTaskPostButton.addTarget(self, action: #selector(replyTask), for: .touchUpInside)
         configure()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
-        taskContentTextView.text = textViewPlaceHolderText
-        taskContentTextView.textColor = .lightGray
-        taskContentTextView.delegate = self
+        replyTaskTextView.text = textViewPlaceHolderText
+        replyTaskTextView.textColor = .lightGray
+        replyTaskTextView.delegate = self
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    @objc func postPrivateTask() {
-        postTask(privacy: true)
-    }
-    @objc func postPublicTask() {
-        postTask()
-    }
-    func postTask(privacy privacyStatus: Bool = false) {
-        guard let title = taskTitleTextField.text, !title.isEmpty,
-              let content = taskContentTextView.text, !content.isEmpty else { return }
+
+    @objc func replyTask() {
+        guard let title = replyTaskTitleTextField.text, !title.isEmpty,
+              let content =  replyTaskTextView.text, !content.isEmpty else { return }
         let db = Firestore.firestore()
-        let document = db.collection("GoodThingTasks").document()
-        let id = document.documentID
+        let taskDocumentID = "要回复的任务文档的ID"
+        let taskDocumentRef = db.collection("GoodThingTasks").document(taskDocumentID)
+        let responsesCollectionRef = taskDocumentRef.collection("GoodThingTasksResponses")
+        let newResponseDocumentRef = responsesCollectionRef.document()
+        let id = newResponseDocumentRef.documentID
         let time = Date.dateFormatterWithTime.string(from: Date())
-        let date = Date.dateFormatterWithDate.string(from: Date())
-        let randomValue = Double.random(in: 0..<1)
+        
         var data: [String: Any] = [
-            "taskId": id,
-            "taskTitle": title,
-            "taskContent": content,
-            "taskImage": imageURL ?? "",
-            "taskCreatorId": "Peter",
-            "privacyStatus": privacyStatus,
-            "taskCreatedTime": time,
-            "randomSelectionValue": randomValue,
-            "lastFetchedTime": date
+            "taskPosterId": "Aaron", // 调整为实际的任务发布者ID
+            "completerId": "回复者的ID", // 调整为实际的回复者ID
+            "completionStatus": "完成状态", // 调整为实际的完成状态
+            "responseRecording": recordingURL ?? "",
+            "responseImage": imageURL ?? "",
+            "responseTitle": title,
+            "responseContent": content,
+            "responseTime": time
         ]
-        if let recordURL = recordingURL {
-            data["taskVoice"] = recordURL
-        }
-        db.collection("GoodThingTasks").document(id).setData(data) { err in
+        
+        newResponseDocumentRef.setData(data) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
@@ -167,23 +164,15 @@ class PostTaskViewController: UIViewController {
         }
     }
     
-    @IBAction func addPubplicTaskImageButtonTapped(_ sender: UIButton) {
+    @IBAction func addReplyTaskImageButtonTapped(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
-    
-    @IBAction func previewTaskButton(_ sender: UIButton) {
-        if self.imageNameLabel.text == "" {
-            performSegue(withIdentifier: "toPostPublicTasksTextPreviewVC", sender: sender)
-        } else {
-            
-            performSegue(withIdentifier: "toPostPublicTasksImagePreviewVC", sender: sender)
-        }
-    }
 }
-extension PostTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+
+extension ReplyTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
 
@@ -195,7 +184,7 @@ extension PostTaskViewController: UIImagePickerControllerDelegate,UINavigationCo
         dismiss(animated: true, completion: nil)
     }
 }
-extension PostTaskViewController {
+extension ReplyTaskViewController {
      func uploadImageToFirebase(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
             print("Could not convert image to data.")
@@ -204,7 +193,7 @@ extension PostTaskViewController {
 
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imageRef = storageRef.child("publicTaskImages/\(UUID().uuidString).jpg")
+        let imageRef = storageRef.child("taskResponseImages/\(UUID().uuidString).jpg")
 
         let uploadTask = imageRef.putData(imageData, metadata: nil) { (metadata, error) in
             if let error = error {
@@ -218,8 +207,8 @@ extension PostTaskViewController {
                         print("Failed to get download URL: \(error)")
                     } else if let downloadURL = url {
                         self.imageURL = downloadURL.absoluteString
-                        self.imageNameLabel.text = "已經成功添加照片！"
-                        self.imageNameLabel.textColor = .red
+                        self.replyTaskImageMessageLabel.text = "已經成功添加照片！"
+                        self.replyTaskImageMessageLabel.textColor = .red
                     }
                 }
             }
@@ -227,12 +216,12 @@ extension PostTaskViewController {
     }
 }
 
-extension PostTaskViewController {
+extension ReplyTaskViewController {
     func uploadAudioToFirebase() {
         //TODO: 建立登入系統後，調整userId
         guard let audioURL = audioRecorder?.url else { return }
         let userId = "Aaron"
-        let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(audioURL.lastPathComponent)")
+        let storageRef = Storage.storage().reference().child("taskResponseAudioFiles/\(userId)_\(audioURL.lastPathComponent)")
         storageRef.putFile(from: audioURL, metadata: nil) { metadata, error in
             if let error = error {
                 print("Failed to upload audio: \(error)")
@@ -251,7 +240,7 @@ extension PostTaskViewController {
     }
 }
 
-extension PostTaskViewController {
+extension ReplyTaskViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
             self.elapsedTimeInSecond += 1
@@ -274,17 +263,17 @@ extension PostTaskViewController {
         timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
 }
-extension PostTaskViewController: AVAudioRecorderDelegate {
+extension ReplyTaskViewController: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            let alertMessage = UIAlertController(title: "錄音完成", message: "加油語錄已經儲存!", preferredStyle: .alert)
+            let alertMessage = UIAlertController(title: "錄音完成", message: "任務語音回覆已經儲存!", preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertMessage, animated: true, completion: nil)
             uploadAudioToFirebase()
         }
     }
 }
-extension PostTaskViewController: AVAudioPlayerDelegate {
+extension ReplyTaskViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playButton.isSelected = false
         resetTimer()
@@ -293,33 +282,7 @@ extension PostTaskViewController: AVAudioPlayerDelegate {
         present(alertMessage, animated: true, completion: nil)
     }
 }
-
-//TODO: 建立登入系統後，修改PosterLabel.text "Aaron"
-extension PostTaskViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPostPublicTasksImagePreviewVC",
-           let nextVC = segue.destination as? PostPublicImageTasksPreviewViewController,
-           let taskName = self.taskTitleTextField.text,
-           let taskContent = self.taskContentTextView.text,
-           let imageURL = self.imageURL,
-           let recordingURL = self.recordingURL {
-            nextVC.taskName = taskName
-            nextVC.taskContent = taskContent
-            nextVC.posterName = "Aaron"
-            nextVC.imageURL = imageURL
-            nextVC.recordingURL = recordingURL
-        } else if segue.identifier == "toPostPublicTasksTextPreviewVC",
-            let nextVC = segue.destination as? PostPublicTextTasksPreviewViewController,
-            let taskName = self.taskTitleTextField.text,
-            let taskContent = self.taskContentTextView.text {
-            nextVC.taskName = taskName
-            nextVC.taskContent = taskContent
-            nextVC.posterName = "Aaron"
-        }
-    }
-}
-
-extension PostTaskViewController: UITextViewDelegate {
+extension ReplyTaskViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceHolderText {
             textView.text = nil

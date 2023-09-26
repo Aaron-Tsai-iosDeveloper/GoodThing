@@ -93,7 +93,7 @@ extension CommentViewController {
         let memoryCommentsCollection = db.collection("GoodThingMemory").document(memoryId).collection("MemoryComments")
         let document = memoryCommentsCollection.document()
         let id = document.documentID
-        let time = Date.dateFormatter.string(from: Date())
+        let time = Date.dateFormatterWithTime.string(from: Date())
         var data: [String: Any] = [
             "memoryId": memoryId,
             "commentId": id,

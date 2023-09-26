@@ -8,7 +8,7 @@
 import UIKit
 import AVFAudio
 
-class PostPublicImageTasksPreviewViewController: UIViewController {
+class PostPublicImageTasksPreviewViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var previewPublicImageTaskPosterLabel: UILabel!
     @IBOutlet weak var previewPublicImageTaskImageView: UIImageView!
     @IBOutlet weak var previewPublicImageTaskNameLabel: UILabel!
@@ -55,7 +55,7 @@ class PostPublicImageTasksPreviewViewController: UIViewController {
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        audioPlayer?.delegate = self
         audioPlayer?.play()
-       
     }
 }
