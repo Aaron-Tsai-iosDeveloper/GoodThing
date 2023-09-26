@@ -56,9 +56,9 @@ class ReplyTaskViewController: UIViewController {
         let time = Date.dateFormatterWithTime.string(from: Date())
         
         var data: [String: Any] = [
-            "taskPosterId": "Aaron", // 调整为实际的任务发布者ID
-            "completerId": "回复者的ID", // 调整为实际的回复者ID
-            "completionStatus": "完成状态", // 调整为实际的完成状态
+            "taskPosterId": "Aaron", 
+            "completerId": "回复者的ID",
+            "completionStatus": "完成状态",
             "responseRecording": recordingURL ?? "",
             "responseImage": imageURL ?? "",
             "responseTitle": title,
