@@ -14,22 +14,22 @@ class PostMemoryViewController: UIViewController {
     @IBOutlet weak var memoryTitleTextField: UITextField!
     @IBOutlet weak var memoryContentTextView: UITextView!
     @IBOutlet weak var postMemoryButton: UIButton!
-    @IBOutlet weak var postPublicMemoryButton: UIButton!
     @IBOutlet weak var privateMemoryImageView: UIImageView!
     @IBOutlet weak var addMemoryImageButton: UIButton!
     
+    @IBOutlet weak var addMemoryImageLabel: UILabel!
     var imageURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         postMemoryButton.addTarget(self, action: #selector(postMemory), for: .touchUpInside)
-        postPublicMemoryButton.addTarget(self, action: #selector(postPublicMemory), for: .touchUpInside)
+        memoryContentTextView.layer.borderWidth = 1.0
+        memoryContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6) 
+
     }
-    @objc func postPublicMemory() {
-        postMemory(privacy: false)
-    }
+  
     
-    @objc func postMemory(privacy privacyStatus: Bool = true) {
+    @objc func postMemory() {
         guard let title = memoryTitleTextField.text, !title.isEmpty,
               let content = memoryContentTextView.text, !content.isEmpty else { return }
         let db = Firestore.firestore()
@@ -41,7 +41,7 @@ class PostMemoryViewController: UIViewController {
             "memoryTitle": title,
             "memoryContent": content,
             "memoryTag": ["感謝"],
-            "memoryPrivacyStatus": privacyStatus,
+            "memoryPrivacyStatus": true,
             "memoryCreatedTime": time,
             "memoryCreatorID": "Aaron"
         ]
@@ -53,6 +53,8 @@ class PostMemoryViewController: UIViewController {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(id)")
+                self.addMemoryImageLabel.text = "心情轉換完畢！"
+                self.addMemoryImageLabel.textColor = .red
             }
         }
 

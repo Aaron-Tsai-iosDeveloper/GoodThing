@@ -11,7 +11,6 @@ class PrivateMemoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var privateMemoryTitleLabel: UILabel!
     @IBOutlet weak var privateMemoryCreatedTimeLabel: UILabel!
-    @IBOutlet weak var privateMemoryTagLabel: UILabel!
     @IBOutlet weak var privateMemoryContentLabel: UILabel!
     @IBOutlet weak var privateMemoryImage: UIImageView!
     var deletePrivateMemory: (() -> Void)?
