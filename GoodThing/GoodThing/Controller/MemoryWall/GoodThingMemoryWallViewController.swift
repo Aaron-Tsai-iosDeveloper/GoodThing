@@ -126,11 +126,9 @@ extension GoodThingMemoryWallViewController {
 }
 
 extension GoodThingMemoryWallViewController {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toMemoryWallDetailPage", sender: publicMemory[indexPath.row])
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMemoryWallDetailPage",
            let nextVC = segue.destination as? MemoryWallDetailPageViewController,

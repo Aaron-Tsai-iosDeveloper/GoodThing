@@ -35,9 +35,9 @@ class PostGroupViewController: UIViewController {
        let document = db.collection("GoodThingGroup").document()
        let id = document.documentID
        let participants = ["Aaron","Eric","Hank","Ella"]
-       let groupTime = Date.dateFormatter.string(from: groupTimeDatePicker.date)
-       let deadLine = Date.dateFormatter.string(from: deadLineDatePicker.date)
-       let createdTime = Date.dateFormatter.string(from: Date())
+       let groupTime = Date.dateFormatterWithTime.string(from: groupTimeDatePicker.date)
+       let deadLine = Date.dateFormatterWithTime.string(from: deadLineDatePicker.date)
+       let createdTime = Date.dateFormatterWithTime.string(from: Date())
        db.collection("GoodThingGroup").document(id).setData([
            "groupID": id,
            "groupTime": groupTime,

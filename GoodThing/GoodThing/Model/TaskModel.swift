@@ -8,21 +8,22 @@
 import Foundation
 
 struct GoodThingTasks: Codable {
-    var taskID: String
+    var taskId: String
     var taskTitle: String
     var taskContent: String
     var taskImage: String
     var taskVoice: String
-    var taskCreatorID: String
+    var taskCreatorId: String
     var taskCreatedTime: String
 }
 
 struct GoodThingTasksResponses: Codable {
-    var completerID: String
-    var completionTime: String
+    var taskPosterId: String
+    var completerId: String
     var completionStatus: String
-    var completionRecord: String
+    var responseRecording: String
+    var responseImage: String
     var responseTitle: String
     var responseContent: String
-    var privacyStatus: String
+    var responseTime: String
 }

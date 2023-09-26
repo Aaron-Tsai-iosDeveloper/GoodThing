@@ -20,12 +20,13 @@ class FetchMemoryViewController: UIViewController {
     var publicMemory = [GoodThingMemory]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPrivateMemoryButton.addTarget(self, action: #selector(fetchPrivateMemory), for: .touchUpInside)
-        fetchPublicMemoryButton.addTarget(self, action: #selector(fetchPublicMemory), for: .touchUpInside)
-        privateMemoryTableView.dataSource = self
-        privateMemoryTableView.delegate = self
-        publicMemoryTableView.dataSource = self
-        publicMemoryTableView.delegate = self
+//        fetchPrivateMemoryButton.addTarget(self, action: #selector(fetchPrivateMemory), for: .touchUpInside)
+//        fetchPublicMemoryButton.addTarget(self, action: #selector(fetchPublicMemory), for: .touchUpInside)
+//        privateMemoryTableView.dataSource = self
+//        privateMemoryTableView.delegate = self
+//        publicMemoryTableView.dataSource = self
+//        publicMemoryTableView.delegate = self
+        
     }
     @objc func fetchPrivateMemory() {
         fetchMemory(byCreatorID: "Aaron", withPrivateStatus: true){
