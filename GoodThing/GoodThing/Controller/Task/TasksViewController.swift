@@ -33,18 +33,20 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.collectionView.reloadData()
             }
         }
-
-
+    
+     
+    
         private func setupUI() {
             view.backgroundColor = .white
 
           
             pairingButton.setTitle("配對任務頁面", for: .normal)
             exclusiveButton.setTitle("專屬任務頁面", for: .normal)
-
+            
             pairingButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
             exclusiveButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
 
+            
             let stackView = UIStackView(arrangedSubviews: [pairingButton, exclusiveButton])
             stackView.axis = .horizontal
             stackView.distribution = .fillEqually

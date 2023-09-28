@@ -7,14 +7,17 @@
 
 import Foundation
 
-struct GoodThingUser {
+struct GoodThingUser: Codable {
     var userId: String
     var userName: String
     var birthday: String
     var registrationTime: String
     var introduction: String
+    var favoriteSentence: String
     var groupsList: [String]
     var goodSentences: [String]
     var friends: [String]
     var articlesCollection: [String]
+    var postedTasksList: [String]
+    var postedMemoryList: [String]
 }

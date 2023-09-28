@@ -18,6 +18,11 @@
 		451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */; };
 		451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */; };
 		451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */; };
+		451F10772AC51B8900FB610D /* FetchUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */; };
+		451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */; };
+		451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */; };
+		451F107D2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */; };
+		451F107F2AC5714100FB610D /* UserInfoEditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */; };
 		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
 		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
@@ -36,7 +41,6 @@
 		45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */; };
 		45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */; };
 		45545BD12AB9A82700749CFA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD02AB9A82700749CFA /* UserModel.swift */; };
-		45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */; };
 		45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */; };
 		45545BD92ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */; };
 		45545BDB2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */; };
@@ -69,6 +73,11 @@
 		451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskTableViewCell.swift; sourceTree = "<group>"; };
 		451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTaskViewController.swift; sourceTree = "<group>"; };
+		451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInfoViewController.swift; sourceTree = "<group>"; };
+		451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDetailTableViewCell.swift; sourceTree = "<group>"; };
+		451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedTaskListTableViewCell.swift; sourceTree = "<group>"; };
+		451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedMemoryListTableViewCell.swift; sourceTree = "<group>"; };
+		451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEditionViewController.swift; sourceTree = "<group>"; };
 		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -87,7 +96,6 @@
 		45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupTableViewCell.swift; sourceTree = "<group>"; };
 		45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
 		45545BD02AB9A82700749CFA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodThingMemoryWallViewController.swift; sourceTree = "<group>"; };
 		45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryImageWallTableViewCell.swift; sourceTree = "<group>"; };
 		45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTextWallTableViewCell.swift; sourceTree = "<group>"; };
@@ -254,7 +262,11 @@
 		45545BD22AB9A98B00749CFA /* User */ = {
 			isa = PBXGroup;
 			children = (
-				45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */,
+				451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */,
+				451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */,
+				451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */,
+				451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */,
+				451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -430,11 +442,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451F107F2AC5714100FB610D /* UserInfoEditionViewController.swift in Sources */,
 				457C4E722ABD68F300DAD357 /* CommentViewController.swift in Sources */,
 				457C4E792ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift in Sources */,
 				45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */,
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
 				45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */,
+				451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */,
 				457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */,
 				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
 				457C4E742ABD857500DAD357 /* CustomPresentationController.swift in Sources */,
@@ -447,14 +461,15 @@
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
 				451F106B2AC20E5600FB610D /* TasksViewController.swift in Sources */,
 				457C4E7D2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift in Sources */,
+				451F107D2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift in Sources */,
 				45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */,
 				457C4E7F2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift in Sources */,
 				45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */,
 				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
-				45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
 				45545BD12AB9A82700749CFA /* UserModel.swift in Sources */,
 				451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */,
+				451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */,
 				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
 				4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
@@ -464,6 +479,7 @@
 				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
 				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
+				451F10772AC51B8900FB610D /* FetchUserInfoViewController.swift in Sources */,
 				451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,
@@ -631,7 +647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -661,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -48,7 +48,7 @@ class ReplyTaskViewController: UIViewController {
         guard let title = replyTaskTitleTextField.text, !title.isEmpty,
               let content =  replyTaskTextView.text, !content.isEmpty else { return }
         let db = Firestore.firestore()
-        let taskDocumentID = "要回复的任务文档的ID"
+        let taskDocumentID = "要回覆的任務Id"
         let taskDocumentRef = db.collection("GoodThingTasks").document(taskDocumentID)
         let responsesCollectionRef = taskDocumentRef.collection("GoodThingTasksResponses")
         let newResponseDocumentRef = responsesCollectionRef.document()
@@ -57,8 +57,8 @@ class ReplyTaskViewController: UIViewController {
         
         var data: [String: Any] = [
             "taskPosterId": "Aaron", 
-            "completerId": "回复者的ID",
-            "completionStatus": "完成状态",
+            "completerId": "任務完成者Id",
+            "completionStatus": "完成狀態",
             "responseRecording": recordingURL ?? "",
             "responseImage": imageURL ?? "",
             "responseTitle": title,
