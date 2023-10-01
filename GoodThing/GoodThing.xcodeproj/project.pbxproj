@@ -18,16 +18,18 @@
 		451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */; };
 		451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */; };
 		451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */; };
-		451F10772AC51B8900FB610D /* FetchUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */; };
+		451F10772AC51B8900FB610D /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10762AC51B8900FB610D /* UserInfoViewController.swift */; };
 		451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */; };
 		451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */; };
 		451F107D2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */; };
 		451F107F2AC5714100FB610D /* UserInfoEditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */; };
+		451F10812AC5EA9800FB610D /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10802AC5EA9800FB610D /* UserLoginViewController.swift */; };
+		451F10832AC99BB300FB610D /* UserSingupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10822AC99BB300FB610D /* UserSingupViewController.swift */; };
+		451F10852AC9E55100FB610D /* TaskResponseReceptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */; };
 		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
 		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
-		454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */; };
 		45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */; };
 		45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB22AB77E1100749CFA /* MemoryModel.swift */; };
 		45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */; };
@@ -73,16 +75,18 @@
 		451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskTableViewCell.swift; sourceTree = "<group>"; };
 		451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTaskViewController.swift; sourceTree = "<group>"; };
-		451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInfoViewController.swift; sourceTree = "<group>"; };
+		451F10762AC51B8900FB610D /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDetailTableViewCell.swift; sourceTree = "<group>"; };
 		451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedMemoryListTableViewCell.swift; sourceTree = "<group>"; };
 		451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEditionViewController.swift; sourceTree = "<group>"; };
+		451F10802AC5EA9800FB610D /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		451F10822AC99BB300FB610D /* UserSingupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingupViewController.swift; sourceTree = "<group>"; };
+		451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskResponseReceptionViewController.swift; sourceTree = "<group>"; };
 		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTaskViewController.swift; sourceTree = "<group>"; };
 		45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
 		45545BB22AB77E1100749CFA /* MemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
 		45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemoryViewController.swift; sourceTree = "<group>"; };
@@ -218,13 +222,13 @@
 				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
 				4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */,
 				4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */,
-				454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */,
 				451F106A2AC20E5600FB610D /* TasksViewController.swift */,
+				451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */,
 				451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */,
-				451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */,
 				451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */,
 				451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */,
 				45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */,
+				451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -262,7 +266,9 @@
 		45545BD22AB9A98B00749CFA /* User */ = {
 			isa = PBXGroup;
 			children = (
-				451F10762AC51B8900FB610D /* FetchUserInfoViewController.swift */,
+				451F10762AC51B8900FB610D /* UserInfoViewController.swift */,
+				451F10802AC5EA9800FB610D /* UserLoginViewController.swift */,
+				451F10822AC99BB300FB610D /* UserSingupViewController.swift */,
 				451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */,
 				451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */,
 				451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */,
@@ -449,15 +455,16 @@
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
 				45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */,
 				451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */,
+				451F10812AC5EA9800FB610D /* UserLoginViewController.swift in Sources */,
 				457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */,
 				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
 				457C4E742ABD857500DAD357 /* CustomPresentationController.swift in Sources */,
 				457C4E812ABD90B000DAD357 /* MemoryCommentTableViewCell.swift in Sources */,
+				451F10852AC9E55100FB610D /* TaskResponseReceptionViewController.swift in Sources */,
 				45545BDF2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift in Sources */,
 				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
 				451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */,
 				45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */,
-				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
 				451F106B2AC20E5600FB610D /* TasksViewController.swift in Sources */,
 				457C4E7D2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift in Sources */,
@@ -479,7 +486,8 @@
 				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
 				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
-				451F10772AC51B8900FB610D /* FetchUserInfoViewController.swift in Sources */,
+				451F10832AC99BB300FB610D /* UserSingupViewController.swift in Sources */,
+				451F10772AC51B8900FB610D /* UserInfoViewController.swift in Sources */,
 				451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,

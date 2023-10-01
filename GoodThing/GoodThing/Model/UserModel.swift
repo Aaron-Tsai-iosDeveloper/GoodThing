@@ -14,6 +14,7 @@ struct GoodThingUser: Codable {
     var registrationTime: String
     var introduction: String
     var favoriteSentence: String
+    var latestPublishedTaskId: String
     var groupsList: [String]
     var goodSentences: [String]
     var friends: [String]

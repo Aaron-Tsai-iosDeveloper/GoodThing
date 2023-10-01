@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseFirestore
 
-class FetchUserInfoViewController: UIViewController {
+class UserInfoViewController: UIViewController {
 
     var userInfo: GoodThingUser?
     var userTaskList = [GoodThingTasks]()
@@ -104,7 +104,7 @@ class FetchUserInfoViewController: UIViewController {
     }
 }
 
-extension FetchUserInfoViewController: UITableViewDataSource, UITableViewDelegate {
+extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
