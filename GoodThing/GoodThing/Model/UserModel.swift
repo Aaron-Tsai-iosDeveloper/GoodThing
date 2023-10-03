@@ -22,3 +22,11 @@ struct GoodThingUser: Codable {
     var postedTasksList: [String]
     var postedMemoryList: [String]
 }
+
+struct GoodThingLetter: Codable {
+    var sender: String
+    var receiver: String
+    var title: String
+    var content: String
+    var CreatedTime: String
+}

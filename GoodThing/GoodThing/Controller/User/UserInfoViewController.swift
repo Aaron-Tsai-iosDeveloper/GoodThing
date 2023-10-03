@@ -14,7 +14,12 @@ class UserInfoViewController: UIViewController {
     var userTaskList = [GoodThingTasks]()
     var userMemoryList = [GoodThingMemory]()
     let db = Firestore.firestore()
-    let userId = "Aaron"
+    //TODO: 要注意是顯示“用戶個人”的資訊還是“用戶好友”資訊，要依據不同segue變化
+    var user: GoodThingUser?
+    var userId: String? {
+        return user?.userId
+    }
+    
     
     @IBOutlet weak var userInfoTableView: UITableView!
     
@@ -26,7 +31,6 @@ class UserInfoViewController: UIViewController {
        fetchUserPostedTasks()
        fetchUserPostedMemory()
     }
-    //TODO: 登入系統建置後，修改userId
     func fetchUserInfo() {
         var query: Query = db.collection("GoodThingUser").whereField("userId", isEqualTo: userId)
         

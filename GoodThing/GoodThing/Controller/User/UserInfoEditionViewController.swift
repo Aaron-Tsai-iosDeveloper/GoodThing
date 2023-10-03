@@ -13,11 +13,9 @@ class UserInfoEditionViewController: UIViewController {
     @IBOutlet weak var penNameTextField: UITextField!
     @IBOutlet weak var introductionTextView: UITextView!
     @IBOutlet weak var favoriteSentenceTextView: UITextView!
-    
     @IBOutlet weak var userInfoUpdateButton: UIButton!
     
     let db = Firestore.firestore()
-    let userId = "prmOkMJcKIJUN0wUHpQX"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,20 +25,21 @@ class UserInfoEditionViewController: UIViewController {
     @objc func updateUserInfo() {
         guard let penName = penNameTextField.text, !penName.isEmpty,
               let introduction = introductionTextView.text, !introduction.isEmpty,
-              let favoriteSentence = favoriteSentenceTextView.text, !favoriteSentence.isEmpty else { return }
+              let favoriteSentence = favoriteSentenceTextView.text, !favoriteSentence.isEmpty,
+              let userId = UserDefaults.standard.string(forKey: "userId") else { return }
         
-        let document = db.collection("GoodThingUser").document()
+        let document = db.collection("GoodThingUsers").document()
         var data: [String: Any] = [
             "userName": penName,
             "introduction": introduction,
             "favoriteSentence": favoriteSentence
         ]
         
-        db.collection("GoodThingUser").document(userId).updateData(data) { err in
+        db.collection("GoodThingUsers").document(userId).updateData(data) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Document added with ID: \(self.userId)")
+                print("Document added with ID: \(userId)")
                 print("已經更新:用戶資訊頁面")
             }
         }

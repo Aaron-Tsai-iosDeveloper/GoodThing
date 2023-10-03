@@ -25,10 +25,8 @@ class TaskResponseReceptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
         latestTaskId = UserDefaults.standard.string(forKey: "latestPostedTaskId")
 
-       
         if latestTaskId == nil {
             fetchLatestTaskIDFromFirebase()
         } else {
@@ -67,7 +65,6 @@ class TaskResponseReceptionViewController: UIViewController {
                         MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                             self.taskResponseImageView.image = image
                         }
-                        
                     } catch let error {
                         print("Error decoding response: \(error)")
                     }
@@ -79,7 +76,7 @@ class TaskResponseReceptionViewController: UIViewController {
     }
     @IBAction func agreeButtonTapped(_ sender: UIButton) {
         guard let taskPosterId = Auth.auth().currentUser?.uid,
-              let completerId = self.completerId /* 注意：這裡需要確保你已經獲取了 completerId */ else {
+              let completerId = self.completerId  else {
             print("Error: Invalid user IDs.")
             return
         }
@@ -133,4 +130,3 @@ class TaskResponseReceptionViewController: UIViewController {
         }
     }
 }
-
