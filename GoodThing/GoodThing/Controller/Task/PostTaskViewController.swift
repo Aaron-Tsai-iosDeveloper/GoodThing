@@ -48,7 +48,8 @@ class PostTaskViewController: UIViewController {
     }
     func postTask(privacy privacyStatus: Bool = false) {
         guard let title = taskTitleTextField.text, !title.isEmpty,
-              let content = taskContentTextView.text, !content.isEmpty else { return }
+              let content = taskContentTextView.text, !content.isEmpty,
+              let userId = UserDefaults.standard.string(forKey: "userId") else { return }
         let db = Firestore.firestore()
         let document = db.collection("GoodThingTasks").document()
         let id = document.documentID
@@ -60,7 +61,7 @@ class PostTaskViewController: UIViewController {
             "taskTitle": title,
             "taskContent": content,
             "taskImage": imageURL ?? "",
-            "taskCreatorId": "Peter",
+            "taskCreatorId": userId,
             "privacyStatus": privacyStatus,
             "taskCreatedTime": time,
             "randomSelectionValue": randomValue,
@@ -75,6 +76,16 @@ class PostTaskViewController: UIViewController {
             } else {
                 print("Document added with ID: \(id)")
                 self.imageNameLabel.text = "好事任務已經成功發佈！"
+                UserDefaults.standard.set(id, forKey: "latestPostedTaskId")
+                db.collection("GoodThingUsers").document(userId).updateData([
+                    "latestPostedTaskId": id
+                ]) { updateUserErr in
+                    if let updateUserErr = updateUserErr {
+                        print("Error updating user's latest task ID: \(updateUserErr)")
+                    } else {
+                        print("User's latest task ID successfully updated!")
+                    }
+                }
             }
         }
     }
@@ -230,9 +241,10 @@ extension PostTaskViewController {
 
 extension PostTaskViewController {
     func uploadAudioToFirebase() {
-        //TODO: 建立登入系統後，調整userId
-        guard let audioURL = audioRecorder?.url else { return }
-        let userId = "Aaron"
+        
+        guard let audioURL = audioRecorder?.url,
+              let userId = UserDefaults.standard.string(forKey: "userId") else { return }
+
         let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(audioURL.lastPathComponent)")
         storageRef.putFile(from: audioURL, metadata: nil) { metadata, error in
             if let error = error {

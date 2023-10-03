@@ -9,7 +9,9 @@ import UIKit
 
 class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
 
-        var tasks = ["任務 1", "任務 2", "任務 3"]
+        var tasks = ["捐款家扶中心", "微笑", "說聲早安"]
+        var selectedTasks: [Bool] = [false, false, false]
+
     
         let exclusiveTaskTableView: UITableView = {
             let tableView = UITableView()
@@ -48,6 +50,7 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
         @objc private func didTapPostButton() {
             if let newTask = taskTextField.text, !newTask.isEmpty {
                 tasks.append(newTask)
+                selectedTasks.append(false)
                 exclusiveTaskTableView.reloadData()
                 taskTextField.text = ""
             }
@@ -57,7 +60,9 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
             addSubview(exclusiveTaskPostButton)
             addSubview(taskTextField)
             
-            // Setup layout constraints
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//            self.addGestureRecognizer(tapGesture)
+
             NSLayoutConstraint.activate([
                 exclusiveTaskTableView.topAnchor.constraint(equalTo: topAnchor),
                 exclusiveTaskTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -75,6 +80,10 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
             ])
         }
         
+        @objc func dismissKeyboard() {
+            self.endEditing(true)
+        }
+        
 }
 
 extension ExclusiveTaskCollectionViewCell: UITableViewDataSource,UITableViewDelegate {
@@ -85,17 +94,12 @@ extension ExclusiveTaskCollectionViewCell: UITableViewDataSource,UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExclusiveTaskTableViewCell", for: indexPath) as! ExclusiveTaskTableViewCell
-        cell.taskNameLabel.text = "任務 \(indexPath.row + 1)"
+        cell.taskNameLabel.text = tasks[indexPath.row]
+        cell.checkmarkButton.isSelected = selectedTasks[indexPath.row]
         return cell
     }
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        if let cell = tableView.cellForRow(at: indexPath) as? ExclusiveTaskTableViewCell {
-            
-            cell.checkmarkButton.isSelected.toggle()
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
+        selectedTasks[indexPath.row].toggle()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

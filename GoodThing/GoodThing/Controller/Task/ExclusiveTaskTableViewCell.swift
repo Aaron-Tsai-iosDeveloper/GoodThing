@@ -13,6 +13,7 @@ class ExclusiveTaskTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "任務名稱"
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -38,15 +39,15 @@ class ExclusiveTaskTableViewCell: UITableViewCell {
         addSubview(taskNameLabel)
         addSubview(checkmarkButton)
         
-        // Setup layout constraints
+        
         NSLayoutConstraint.activate([
             taskNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             taskNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             
             checkmarkButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             checkmarkButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            checkmarkButton.widthAnchor.constraint(equalToConstant: 44),
-            checkmarkButton.heightAnchor.constraint(equalToConstant: 44)
+            checkmarkButton.widthAnchor.constraint(equalToConstant: 120),
+            checkmarkButton.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         checkmarkButton.addTarget(self, action: #selector(didTapCheckmarkButton), for: .touchUpInside)
