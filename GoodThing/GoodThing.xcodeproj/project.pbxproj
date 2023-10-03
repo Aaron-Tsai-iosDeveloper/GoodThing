@@ -18,11 +18,31 @@
 		451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */; };
 		451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */; };
 		451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */; };
+		451F10772AC51B8900FB610D /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10762AC51B8900FB610D /* UserInfoViewController.swift */; };
+		451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */; };
+		451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */; };
+		451F107D2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */; };
+		451F107F2AC5714100FB610D /* UserInfoEditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */; };
+		451F10812AC5EA9800FB610D /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10802AC5EA9800FB610D /* UserLoginViewController.swift */; };
+		451F10832AC99BB300FB610D /* UserSingupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10822AC99BB300FB610D /* UserSingupViewController.swift */; };
+		451F10852AC9E55100FB610D /* TaskResponseReceptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */; };
+		451F10882ACA9C4300FB610D /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10872ACA9C4300FB610D /* UserProfileViewController.swift */; };
+		451F108A2ACAB2B500FB610D /* UserFriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10892ACAB2B500FB610D /* UserFriendListViewController.swift */; };
+		451F108C2ACAB53500FB610D /* UserFriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F108B2ACAB53500FB610D /* UserFriendListTableViewCell.swift */; };
+		451F108F2ACABA8600FB610D /* UserFriendLetterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F108E2ACABA8600FB610D /* UserFriendLetterListViewController.swift */; };
+		451F10912ACAC2B600FB610D /* UserFriendLetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10902ACAC2B600FB610D /* UserFriendLetterDetailViewController.swift */; };
+		451F10932ACAC2DA00FB610D /* UserLetterWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10922ACAC2DA00FB610D /* UserLetterWritingViewController.swift */; };
+		451F10952ACAC65E00FB610D /* UserFriendLetterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10942ACAC65E00FB610D /* UserFriendLetterListTableViewCell.swift */; };
+		451F10972ACBE43F00FB610D /* UserProfileLeftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10962ACBE43F00FB610D /* UserProfileLeftCollectionViewCell.swift */; };
+		451F10992ACBE46900FB610D /* UserProfileRightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10982ACBE46900FB610D /* UserProfileRightCollectionViewCell.swift */; };
+		451F109B2ACBE83200FB610D /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F109A2ACBE83200FB610D /* CustomCollectionView.swift */; };
+		451F109D2ACBF3C400FB610D /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F109C2ACBF3C400FB610D /* ButtonModel.swift */; };
+		451F10A02ACC3A3400FB610D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F109F2ACC3A3400FB610D /* MainTabBarController.swift */; };
+		451F10A32ACC7DDE00FB610D /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */; };
 		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
 		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
-		454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */; };
 		45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */; };
 		45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB22AB77E1100749CFA /* MemoryModel.swift */; };
 		45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */; };
@@ -36,7 +56,6 @@
 		45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */; };
 		45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */; };
 		45545BD12AB9A82700749CFA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD02AB9A82700749CFA /* UserModel.swift */; };
-		45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */; };
 		45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */; };
 		45545BD92ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */; };
 		45545BDB2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */; };
@@ -69,11 +88,33 @@
 		451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusiveTaskTableViewCell.swift; sourceTree = "<group>"; };
 		451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTaskViewController.swift; sourceTree = "<group>"; };
+		451F10762AC51B8900FB610D /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDetailTableViewCell.swift; sourceTree = "<group>"; };
+		451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedTaskListTableViewCell.swift; sourceTree = "<group>"; };
+		451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostedMemoryListTableViewCell.swift; sourceTree = "<group>"; };
+		451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEditionViewController.swift; sourceTree = "<group>"; };
+		451F10802AC5EA9800FB610D /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		451F10822AC99BB300FB610D /* UserSingupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingupViewController.swift; sourceTree = "<group>"; };
+		451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskResponseReceptionViewController.swift; sourceTree = "<group>"; };
+		451F10862AC9FB1900FB610D /* GoodThingRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodThingRelease.entitlements; sourceTree = "<group>"; };
+		451F10872ACA9C4300FB610D /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		451F10892ACAB2B500FB610D /* UserFriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendListViewController.swift; sourceTree = "<group>"; };
+		451F108B2ACAB53500FB610D /* UserFriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendListTableViewCell.swift; sourceTree = "<group>"; };
+		451F108D2ACAB65C00FB610D /* GoodThingDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodThingDebug.entitlements; sourceTree = "<group>"; };
+		451F108E2ACABA8600FB610D /* UserFriendLetterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendLetterListViewController.swift; sourceTree = "<group>"; };
+		451F10902ACAC2B600FB610D /* UserFriendLetterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendLetterDetailViewController.swift; sourceTree = "<group>"; };
+		451F10922ACAC2DA00FB610D /* UserLetterWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLetterWritingViewController.swift; sourceTree = "<group>"; };
+		451F10942ACAC65E00FB610D /* UserFriendLetterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendLetterListTableViewCell.swift; sourceTree = "<group>"; };
+		451F10962ACBE43F00FB610D /* UserProfileLeftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileLeftCollectionViewCell.swift; sourceTree = "<group>"; };
+		451F10982ACBE46900FB610D /* UserProfileRightCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRightCollectionViewCell.swift; sourceTree = "<group>"; };
+		451F109A2ACBE83200FB610D /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
+		451F109C2ACBF3C400FB610D /* ButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
+		451F109F2ACC3A3400FB610D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTaskViewController.swift; sourceTree = "<group>"; };
 		45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
 		45545BB22AB77E1100749CFA /* MemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
 		45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMemoryViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +128,6 @@
 		45545BCB2AB84F8F00749CFA /* DetailGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupTableViewCell.swift; sourceTree = "<group>"; };
 		45545BCE2AB97FEE00749CFA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
 		45545BD02AB9A82700749CFA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		45545BD62ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodThingMemoryWallViewController.swift; sourceTree = "<group>"; };
 		45545BD82ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryImageWallTableViewCell.swift; sourceTree = "<group>"; };
 		45545BDA2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryTextWallTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,11 +189,14 @@
 		451098EE2AB35CBD000B3BD2 /* GoodThing */ = {
 			isa = PBXGroup;
 			children = (
+				451F108D2ACAB65C00FB610D /* GoodThingDebug.entitlements */,
+				451F10862AC9FB1900FB610D /* GoodThingRelease.entitlements */,
 				45545BCD2AB97E8900749CFA /* NetWork */,
 				454AA8072AB5848300D404EC /* Model */,
 				454AA8082AB5849700D404EC /* View */,
 				454AA8092AB584AE00D404EC /* Controller */,
 				454AA80A2AB72DFB00D404EC /* Helper */,
+				451F10A12ACC7DDE00FB610D /* Animation */,
 				451098F82AB35CBE000B3BD2 /* Assets.xcassets */,
 				451098FA2AB35CBE000B3BD2 /* LaunchScreen.storyboard */,
 				451098FD2AB35CBE000B3BD2 /* Info.plist */,
@@ -164,6 +207,22 @@
 			path = GoodThing;
 			sourceTree = "<group>";
 		};
+		451F109E2ACC3A1000FB610D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				451F109F2ACC3A3400FB610D /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		451F10A12ACC7DDE00FB610D /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		454AA8072AB5848300D404EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +231,7 @@
 				45545BB22AB77E1100749CFA /* MemoryModel.swift */,
 				457C4E822ABEAA5F00DAD357 /* CommentModel.swift */,
 				45545BC02AB8175000749CFA /* GroupModel.swift */,
+				451F109C2ACBF3C400FB610D /* ButtonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +247,7 @@
 		454AA8092AB584AE00D404EC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				451F109E2ACC3A1000FB610D /* TabBar */,
 				45545BD52ABBEBF900749CFA /* MemoryWall */,
 				45545BD22AB9A98B00749CFA /* User */,
 				45545BC22AB818E300749CFA /* Group */,
@@ -210,13 +271,13 @@
 				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
 				4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */,
 				4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */,
-				454AA80D2AB7457B00D404EC /* FetchTaskViewController.swift */,
 				451F106A2AC20E5600FB610D /* TasksViewController.swift */,
+				451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */,
 				451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */,
-				451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */,
 				451F106E2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift */,
 				451F10702AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift */,
 				45545BB02AB77A9A00749CFA /* TaskListTableViewCell.swift */,
+				451F10722AC21CA500FB610D /* ReplyTaskViewController.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -254,7 +315,23 @@
 		45545BD22AB9A98B00749CFA /* User */ = {
 			isa = PBXGroup;
 			children = (
-				45545BD32AB9BF9A00749CFA /* FriendListViewController.swift */,
+				451F10762AC51B8900FB610D /* UserInfoViewController.swift */,
+				451F10802AC5EA9800FB610D /* UserLoginViewController.swift */,
+				451F10872ACA9C4300FB610D /* UserProfileViewController.swift */,
+				451F10962ACBE43F00FB610D /* UserProfileLeftCollectionViewCell.swift */,
+				451F10982ACBE46900FB610D /* UserProfileRightCollectionViewCell.swift */,
+				451F109A2ACBE83200FB610D /* CustomCollectionView.swift */,
+				451F10822AC99BB300FB610D /* UserSingupViewController.swift */,
+				451F10782AC526BE00FB610D /* UserInfoDetailTableViewCell.swift */,
+				451F107A2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift */,
+				451F107C2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift */,
+				451F107E2AC5714100FB610D /* UserInfoEditionViewController.swift */,
+				451F10892ACAB2B500FB610D /* UserFriendListViewController.swift */,
+				451F108B2ACAB53500FB610D /* UserFriendListTableViewCell.swift */,
+				451F108E2ACABA8600FB610D /* UserFriendLetterListViewController.swift */,
+				451F10942ACAC65E00FB610D /* UserFriendLetterListTableViewCell.swift */,
+				451F10902ACAC2B600FB610D /* UserFriendLetterDetailViewController.swift */,
+				451F10922ACAC2DA00FB610D /* UserLetterWritingViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -430,33 +507,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451F107F2AC5714100FB610D /* UserInfoEditionViewController.swift in Sources */,
 				457C4E722ABD68F300DAD357 /* CommentViewController.swift in Sources */,
 				457C4E792ABD8D1100DAD357 /* MemoryTextWallDetailTableViewCell.swift in Sources */,
 				45545BBB2AB7856600749CFA /* FetchMemoryViewController.swift in Sources */,
+				451F10952ACAC65E00FB610D /* UserFriendLetterListTableViewCell.swift in Sources */,
 				454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */,
 				45545BD72ABC1C2E00749CFA /* GoodThingMemoryWallViewController.swift in Sources */,
+				451F10912ACAC2B600FB610D /* UserFriendLetterDetailViewController.swift in Sources */,
+				451F10992ACBE46900FB610D /* UserProfileRightCollectionViewCell.swift in Sources */,
+				451F107B2AC526FA00FB610D /* UserPostedTaskListTableViewCell.swift in Sources */,
+				451F10812AC5EA9800FB610D /* UserLoginViewController.swift in Sources */,
 				457C4E702ABD650600DAD357 /* MemoryWallDetailPageViewController.swift in Sources */,
 				451098F42AB35CBD000B3BD2 /* PostTaskViewController.swift in Sources */,
 				457C4E742ABD857500DAD357 /* CustomPresentationController.swift in Sources */,
 				457C4E812ABD90B000DAD357 /* MemoryCommentTableViewCell.swift in Sources */,
+				451F10852AC9E55100FB610D /* TaskResponseReceptionViewController.swift in Sources */,
+				451F108A2ACAB2B500FB610D /* UserFriendListViewController.swift in Sources */,
 				45545BDF2ABC46BD00749CFA /* MemoryImageWallCollectionViewCell.swift in Sources */,
 				45545BB92AB77FC400749CFA /* PostMemoryViewController.swift in Sources */,
 				451F10732AC21CA500FB610D /* ReplyTaskViewController.swift in Sources */,
 				45545BCF2AB97FEE00749CFA /* MediaDownloader.swift in Sources */,
-				454AA80E2AB7457B00D404EC /* FetchTaskViewController.swift in Sources */,
+				451F109B2ACBE83200FB610D /* CustomCollectionView.swift in Sources */,
 				451098F02AB35CBD000B3BD2 /* AppDelegate.swift in Sources */,
 				451F106B2AC20E5600FB610D /* TasksViewController.swift in Sources */,
+				451F108C2ACAB53500FB610D /* UserFriendListTableViewCell.swift in Sources */,
 				457C4E7D2ABD908500DAD357 /* MemoryTapLikeTableViewCell.swift in Sources */,
+				451F107D2AC55C8300FB610D /* UserPostedMemoryListTableViewCell.swift in Sources */,
+				451F10A32ACC7DDE00FB610D /* AnimationViewController.swift in Sources */,
 				45545BC82AB839C000749CFA /* GroupsTableViewCell.swift in Sources */,
 				457C4E7F2ABD909D00DAD357 /* MemoryWallDetailSortTableViewCell.swift in Sources */,
+				451F10972ACBE43F00FB610D /* UserProfileLeftCollectionViewCell.swift in Sources */,
 				45545BCC2AB84F8F00749CFA /* DetailGroupTableViewCell.swift in Sources */,
 				454AA8062AB5804400D404EC /* TaskModel.swift in Sources */,
-				45545BD42AB9BF9A00749CFA /* FriendListViewController.swift in Sources */,
+				451F10882ACA9C4300FB610D /* UserProfileViewController.swift in Sources */,
 				451098F22AB35CBD000B3BD2 /* SceneDelegate.swift in Sources */,
 				45545BD12AB9A82700749CFA /* UserModel.swift in Sources */,
 				451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */,
+				451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */,
 				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
 				4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */,
+				451F108F2ACABA8600FB610D /* UserFriendLetterListViewController.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
 				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
@@ -464,12 +555,17 @@
 				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
 				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
+				451F10832AC99BB300FB610D /* UserSingupViewController.swift in Sources */,
+				451F10772AC51B8900FB610D /* UserInfoViewController.swift in Sources */,
+				451F109D2ACBF3C400FB610D /* ButtonModel.swift in Sources */,
 				451F106F2AC20F7400FB610D /* ExclusiveTaskCollectionViewCell.swift in Sources */,
+				451F10932ACAC2DA00FB610D /* UserLetterWritingViewController.swift in Sources */,
 				45545BB12AB77A9A00749CFA /* TaskListTableViewCell.swift in Sources */,
 				45545BCA2AB84B8B00749CFA /* DetailGroupViewController.swift in Sources */,
 				457C4E832ABEAA5F00DAD357 /* CommentModel.swift in Sources */,
 				45545BD92ABC1D3D00749CFA /* MemoryImageWallTableViewCell.swift in Sources */,
 				451F10712AC20FC000FB610D /* ExclusiveTaskTableViewCell.swift in Sources */,
+				451F10A02ACC3A3400FB610D /* MainTabBarController.swift in Sources */,
 				45545BDB2ABC1D9600749CFA /* MemoryTextWallTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodThing/GoodThingDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AVYQMB3ZB3;
@@ -631,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -646,6 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodThing/GoodThingRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AVYQMB3ZB3;
@@ -661,7 +759,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AaronTsai.GoodThing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

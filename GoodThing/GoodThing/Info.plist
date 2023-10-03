@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>使用 Apple 登入以提供快速和安全的身份驗證方法</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>我們需要訪問您的麥克風，因為app有加油語錄的錄音功能。</string>
 	<key>UIApplicationSceneManifest</key>

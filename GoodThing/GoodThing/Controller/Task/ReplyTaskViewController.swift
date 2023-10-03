@@ -9,7 +9,7 @@ import UIKit
 import AVFAudio
 import FirebaseFirestore
 import FirebaseStorage
-
+//TODO: 設置任務是否完成的狀態選項功能
 class ReplyTaskViewController: UIViewController {
     
     @IBOutlet weak var replyTaskTitleTextField: UITextField!
@@ -47,8 +47,13 @@ class ReplyTaskViewController: UIViewController {
     @objc func replyTask() {
         guard let title = replyTaskTitleTextField.text, !title.isEmpty,
               let content =  replyTaskTextView.text, !content.isEmpty else { return }
+        guard let taskDocumentID = task?.taskId, !taskDocumentID.isEmpty else {
+            print("Error: Task ID is missing!")
+            return
+        }
+
         let db = Firestore.firestore()
-        let taskDocumentID = "要回复的任务文档的ID"
+        let userId = UserDefaults.standard.string(forKey: "userId")
         let taskDocumentRef = db.collection("GoodThingTasks").document(taskDocumentID)
         let responsesCollectionRef = taskDocumentRef.collection("GoodThingTasksResponses")
         let newResponseDocumentRef = responsesCollectionRef.document()
@@ -56,9 +61,9 @@ class ReplyTaskViewController: UIViewController {
         let time = Date.dateFormatterWithTime.string(from: Date())
         
         var data: [String: Any] = [
-            "taskPosterId": "Aaron", 
-            "completerId": "回复者的ID",
-            "completionStatus": "完成状态",
+            "taskPosterId": task?.taskCreatorId,
+            "completerId": userId,
+            "completionStatus": "",
             "responseRecording": recordingURL ?? "",
             "responseImage": imageURL ?? "",
             "responseTitle": title,
