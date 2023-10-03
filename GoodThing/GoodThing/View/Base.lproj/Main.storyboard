@@ -418,7 +418,7 @@
                                 <rect key="frame" x="16" y="154" width="361" height="615"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoryImageWallTableViewCell" rowHeight="385" id="NHr-I9-yFa" customClass="MemoryImageWallTableViewCell" customModule="GoodThing" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoryImageWallTableViewCell" rowHeight="385" id="NHr-I9-yFa" customClass="MemoryImageWallTableViewCell" customModule="GoodThing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="385"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHr-I9-yFa" id="4NQ-Bq-U9U">
@@ -555,7 +555,7 @@
                                             <outlet property="memoryWallPosterNameLabel" destination="9iF-iO-VQE" id="X2g-1X-Rfc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoryTextWallTableViewCell" rowHeight="180" id="U8Z-UW-AbN" customClass="MemoryTextWallTableViewCell" customModule="GoodThing" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemoryTextWallTableViewCell" rowHeight="180" id="U8Z-UW-AbN" customClass="MemoryTextWallTableViewCell" customModule="GoodThing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="435" width="361" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U8Z-UW-AbN" id="Hvt-kG-ncd">
@@ -864,7 +864,7 @@
                                                         <constraint firstAttribute="height" constant="35" id="pQG-Nk-khs"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="分享"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="share"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwo-vA-J4M">
                                                     <rect key="frame" x="251" y="6" width="59" height="35"/>
@@ -873,7 +873,7 @@
                                                         <constraint firstAttribute="height" constant="35" id="F5V-iB-yaQ"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="按讚"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="good"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOA-6i-CGx">
                                                     <rect key="frame" x="318" y="6" width="59" height="35"/>
@@ -882,7 +882,7 @@
                                                         <constraint firstAttribute="width" constant="59" id="8Pb-sR-mQb"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="收藏"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="bookmark"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2686,7 +2686,7 @@
                                                         <segue destination="zyh-YK-dHY" kind="show" identifier="ToUserInfoVC" id="AEs-SL-thH"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有新信件！" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acM-wM-4hI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acM-wM-4hI">
                                                     <rect key="frame" x="255" y="32" width="118" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="9Cw-c0-jD2"/>
@@ -2702,6 +2702,7 @@
                                                 <constraint firstItem="DMb-a9-Asj" firstAttribute="top" secondItem="Edw-oH-rOv" secondAttribute="top" constant="25" id="a81-w8-1PI"/>
                                                 <constraint firstItem="acM-wM-4hI" firstAttribute="top" secondItem="Edw-oH-rOv" secondAttribute="top" constant="32" id="gcY-E9-SxL"/>
                                                 <constraint firstItem="DMb-a9-Asj" firstAttribute="leading" secondItem="Edw-oH-rOv" secondAttribute="leading" constant="20" id="onU-lF-sub"/>
+                                                <constraint firstAttribute="bottom" secondItem="DMb-a9-Asj" secondAttribute="bottom" constant="24" id="qgK-To-EOo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -3006,7 +3007,7 @@
         <!--Task Response Reception View Controller-->
         <scene sceneID="TsZ-fc-LyA">
             <objects>
-                <viewController id="Fa7-Ig-Mom" customClass="TaskResponseReceptionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskResponseReceptionViewController" id="Fa7-Ig-Mom" customClass="TaskResponseReceptionViewController" customModule="GoodThing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IuP-cT-ibT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3238,8 +3239,6 @@
                                             <outlet property="letterCreatedTimeLabel" destination="nXl-qS-eEJ" id="s0Z-dL-DB1"/>
                                             <outlet property="letterListPenNameButton" destination="04b-bC-18e" id="yI2-EE-Hax"/>
                                             <outlet property="letterTitleLabel" destination="z2v-LG-gQD" id="MJQ-4X-fFn"/>
-                                            <outlet property="userProfileFriendListNotificationLabel" destination="nXl-qS-eEJ" id="8lM-br-Dld"/>
-                                            <outlet property="userProfileFriendNameButton" destination="04b-bC-18e" id="RGN-5h-Uby"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3262,13 +3261,12 @@
                     <connections>
                         <outlet property="userFriendLetterListTableView" destination="nrW-hg-L0b" id="k3B-fO-QDj"/>
                         <outlet property="userFriendLetterListWriteButton" destination="MPI-kV-dbe" id="vjd-Q5-6Rd"/>
-                        <outlet property="userProfileFriendListTableView" destination="nrW-hg-L0b" id="vg5-4v-EeH"/>
                         <segue destination="PLh-L4-ijv" kind="show" identifier="ToLetterDetailVC" id="uSw-xx-EEJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ng-mb-q5l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4352" y="4335"/>
+            <point key="canvasLocation" x="4355" y="4433"/>
         </scene>
         <!--User Friend Letter Detail View Controller-->
         <scene sceneID="eBK-1M-Yc0">
@@ -3343,13 +3341,13 @@
         <!--User Letter Writing View Controller-->
         <scene sceneID="phD-m8-q1E">
             <objects>
-                <viewController id="dzG-eO-Reo" customClass="UserLetterWritingViewController" sceneMemberID="viewController">
+                <viewController id="dzG-eO-Reo" customClass="UserLetterWritingViewController" customModule="GoodThing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ns-6T-bRU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="收件人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFh-OD-BI5">
-                                <rect key="frame" x="20" y="149" width="99" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收件人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFh-OD-BI5">
+                                <rect key="frame" x="20" y="149" width="118" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="118" id="Gs9-XO-Jy8"/>
                                     <constraint firstAttribute="height" constant="21" id="qD4-9b-hhf"/>
@@ -3358,7 +3356,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-pl-xDn">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-pl-xDn">
                                 <rect key="frame" x="20" y="285" width="353" height="246"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3393,6 +3391,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vxt-3x-Umm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jFh-OD-BI5" firstAttribute="leading" secondItem="Vxt-3x-Umm" secondAttribute="leading" constant="20" id="emj-RO-Gnk"/>
+                            <constraint firstItem="jFh-OD-BI5" firstAttribute="top" secondItem="Vxt-3x-Umm" secondAttribute="top" constant="46" id="g1N-Sd-44J"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uDG-yI-FTZ"/>
                     <connections>
@@ -3408,14 +3410,17 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s8e-ra-OTH"/>
+        <segue reference="kfr-fx-ENF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="278" height="272.66665649414062"/>
+        <image name="bookmark" width="35.333332061767578" height="35.333332061767578"/>
         <image name="gallery" width="25.333333969116211" height="25.333333969116211"/>
         <image name="game" width="29" height="29"/>
+        <image name="good" width="42.666667938232422" height="42.666667938232422"/>
         <image name="goodMood" width="23.666666030883789" height="23.666666030883789"/>
         <image name="group" width="25.333333969116211" height="25.333333969116211"/>
+        <image name="share" width="42.666667938232422" height="42.666667938232422"/>
         <image name="thumbs-up-2" width="170.66667175292969" height="170.66667175292969"/>
         <image name="user" width="30.333333969116211" height="30.333333969116211"/>
         <systemColor name="labelColor">

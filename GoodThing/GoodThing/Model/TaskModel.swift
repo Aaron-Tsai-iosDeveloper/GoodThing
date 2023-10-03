@@ -11,8 +11,8 @@ struct GoodThingTasks: Codable {
     var taskId: String
     var taskTitle: String
     var taskContent: String
-    var taskImage: String
-    var taskVoice: String
+    var taskImage: String?
+    var taskVoice: String?
     var taskCreatorId: String
     var taskCreatedTime: String
 }

@@ -28,5 +28,11 @@ struct GoodThingLetter: Codable {
     var receiver: String
     var title: String
     var content: String
-    var CreatedTime: String
+    var createdTime: String
+    
+    enum CodingKeys: String, CodingKey {
+        case sender = "user1"
+        case receiver = "user2"
+        case title, content, createdTime
+    }
 }

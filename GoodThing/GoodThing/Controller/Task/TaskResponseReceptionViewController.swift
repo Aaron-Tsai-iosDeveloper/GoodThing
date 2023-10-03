@@ -11,7 +11,7 @@ import Firebase
 //TODO: 只有大概的code，還沒完整檢查
 //TODO: 想一下不同意按了之後，畫面要顯示或變化什麼？
 class TaskResponseReceptionViewController: UIViewController {
-
+      
     var latestTaskId: String?
     var completerId: String?
     

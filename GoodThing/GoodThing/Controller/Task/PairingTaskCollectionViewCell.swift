@@ -71,6 +71,7 @@
         
             var onPostButtonTapped: (() -> Void)?
             var onReplyButtonTapped: (() -> Void)?
+            var onReceiveButtonTapped: (() -> Void)?
             var audioPlayer: AVAudioPlayer?
 
             override init(frame: CGRect) {
@@ -78,6 +79,7 @@
                 setupUI()
                postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
                replyButton.addTarget(self, action: #selector(didTapReplyButton), for: .touchUpInside)
+               recieveButton.addTarget(self, action: #selector(didTapReceiveButton), for: .touchUpInside)
             }
         
             func setupAudioPlayer(with url: URL) {
@@ -103,6 +105,9 @@
             }
             @objc private func didTapReplyButton() {
                 onReplyButtonTapped?()
+            }
+            @objc private func didTapReceiveButton() {
+                onReceiveButtonTapped?()
             }
             
         private func setupUI() {
@@ -134,8 +139,8 @@
                 verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 
-                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
-                postButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
+                postButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -66),
                 postButton.widthAnchor.constraint(equalToConstant: 44),
                 postButton.heightAnchor.constraint(equalToConstant: 44),
                 
@@ -143,6 +148,7 @@
                 replyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -130),
                 replyButton.widthAnchor.constraint(equalToConstant: 150),
                 replyButton.heightAnchor.constraint(equalToConstant: 90),
+                recieveButton.topAnchor.constraint(equalTo: replyButton.bottomAnchor, constant: 30),
                 recieveButton.centerYAnchor.constraint(equalTo: postButton.centerYAnchor),
                 recieveButton.trailingAnchor.constraint(equalTo: postButton.leadingAnchor, constant: -100),
                 recieveButton.widthAnchor.constraint(equalToConstant: 150),
@@ -150,7 +156,8 @@
                 taskContentLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
-                playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30)
+                playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
+                usernameButton.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30)
             ])
             taskImageView.isHidden = true
         }

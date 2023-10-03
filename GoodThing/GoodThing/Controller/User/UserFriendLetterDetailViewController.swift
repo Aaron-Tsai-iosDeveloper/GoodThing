@@ -31,7 +31,7 @@ class UserFriendLetterDetailViewController: UIViewController {
     func setupLetterDetails() {
         guard let letter = selectedLetter else { return }
             letterTitleLabel.text = letter.title
-            letterCreatedTimeLabel.text = letter.CreatedTime
+            letterCreatedTimeLabel.text = letter.createdTime
             letterContentLabel.text = letter.content
             letterDetailPenNameButton.setTitle(friend?.userName, for: .normal)
     }

@@ -25,7 +25,10 @@ class GoodThingMemoryWallViewController: UIViewController {
             self.memoryWallTableView.reloadData()
         }
         listenForMemoryWallUpdates()
+        memoryWallTableView.decelerationRate = .fast
+        addFooterViewWithText()
     }
+    
     
     func fetchMemory(byCreatorID creatorID: String? = nil, withPrivateStatus isPrivate: Bool? = nil, completion: @escaping () -> Void) {
         var query: Query = db.collection("GoodThingMemory").order(by: "memoryCreatedTime", descending: true)
@@ -76,6 +79,7 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
                 cell.memoryWallArticleImageView.image = image
             }
             cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTextWallTableViewCell", for: indexPath) as? MemoryTextWallTableViewCell else { return UITableViewCell() }
@@ -83,6 +87,7 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
             cell.memoryWallArticleNameLabel.text = "文章：\(publicMemory[indexPath.row].memoryTitle)"
             cell.memoryWallArticleCreatedTimeLabel.text = publicMemory[indexPath.row].memoryCreatedTime
             cell.memoryWallArticleContentLabel.text = publicMemory[indexPath.row].memoryContent
+            
             return cell
         }
     }
@@ -135,5 +140,85 @@ extension GoodThingMemoryWallViewController {
            let selectedMemory = sender as? GoodThingMemory {
             nextVC.selectedMemory = selectedMemory
         }
+    }
+}
+
+extension GoodThingMemoryWallViewController {
+    func adjustOpacityForCell(_ cell: UITableViewCell) {
+            let cellTopInWindow = memoryWallTableView.convert(cell.frame.origin, to: nil).y
+            let cellBottomInWindow = memoryWallTableView.convert(CGPoint(x: cell.frame.origin.x, y: cell.frame.maxY), to: nil).y
+            let screenCenter = UIScreen.main.bounds.height / 2
+            
+            if cellTopInWindow < screenCenter && cellBottomInWindow > screenCenter {
+                UIView.animate(withDuration: 0.5) {
+                    cell.contentView.alpha = 1.0
+                    cell.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+                }
+            } else {
+                UIView.animate(withDuration: 0.5) {
+                    cell.contentView.alpha = 0.3
+                    cell.transform = CGAffineTransform.identity
+                }
+            }
+        }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let cellHeight: CGFloat = 385
+        let screenCenter = UIScreen.main.bounds.height / 2
+        
+        let currentOffset = scrollView.contentOffset.y
+        let targetOffset = targetContentOffset.pointee.y
+        let movingDownward = targetOffset > currentOffset
+
+        var index: CGFloat = 0
+        
+        if movingDownward {
+            index = ceil((targetOffset + screenCenter) / cellHeight)
+        } else {
+            index = floor((targetOffset + screenCenter) / cellHeight)
+        }
+        
+        targetContentOffset.pointee.y = index * cellHeight - screenCenter
+    }
+
+
+
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleCells = memoryWallTableView.visibleCells
+        for cell in visibleCells {
+            adjustOpacityForCell(cell)
+        }
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        adjustOpacityForCell(cell)
+    }
+
+}
+extension UITableView {
+    var indexPathForLastRow: IndexPath? {
+        return indexPathForLastRow(inSection: numberOfSections - 1)
+    }
+
+    func indexPathForLastRow(inSection section: Int) -> IndexPath? {
+        guard section < numberOfSections else { return nil }
+        guard numberOfRows(inSection: section) > 0 else { return nil }
+        return IndexPath(row: numberOfRows(inSection: section) - 1, section: section)
+    }
+}
+extension GoodThingMemoryWallViewController {
+    func addFooterViewWithText() {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: memoryWallTableView.bounds.width, height: UIScreen.main.bounds.height/4))
+        footerView.backgroundColor = .clear
+        
+        let label = UILabel()
+        label.text = "讓我們期待明天有更多好心情！"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.frame = footerView.bounds
+        
+        footerView.addSubview(label)
+        
+        memoryWallTableView.tableFooterView = footerView
     }
 }
