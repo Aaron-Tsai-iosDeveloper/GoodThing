@@ -193,25 +193,61 @@ extension UserLoginViewController: ASAuthorizationControllerPresentationContextP
 
 extension UserLoginViewController {
     func saveUserInfoToFirestore(userId: String, appleId: String, fullName: String, email: String) {
-        
         let db = Firestore.firestore()
-        let usersCollection = db.collection("UserAccountInfo")
+        let usersAccountInfoCollection = db.collection("UserAccountInfo")
+        let goodThingUsersCollection = db.collection("GoodThingUsers")
         
-        let userData: [String: Any] = [
-            "fullName": fullName,
-            "email": email,
-            "appleId": appleId,
-            "userId": userId
-        ]
         
-        usersCollection.document(userId).setData(userData) { error in
-            if let error = error {
-                print("Error adding user: \(error)")
+        usersAccountInfoCollection.document(userId).getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                print("User already exists. No data updated.")
             } else {
-                print("User successfully added!")
+                
+                let userData: [String: Any] = [
+                    "fullName": fullName,
+                    "email": email,
+                    "appleId": appleId,
+                    "userId": userId
+                ]
+                
+                usersAccountInfoCollection.document(userId).setData(userData) { error in
+                    if let error = error {
+                        print("Error adding user to UserAccountInfo: \(error)")
+                    } else {
+                        print("User successfully added to UserAccountInfo!")
+                    }
+                }
+                
+                let registrationTime = Date.dateFormatterWithTime.string(from: Date())
+                var data: [String: Any] = [
+                    "userId": userId,
+                    "userName": "",
+                    "birthday": "",
+                    "registrationTime": registrationTime,
+                    "introduction": "",
+                    "favoriteSentence": "",
+                    "latestPublishedTaskId": "",
+                    "groupsList": [""],
+                    "goodSentences": [""],
+                    "friends": [""],
+                    "articlesCollection": [""],
+                    "postedTasksList": [""],
+                    "postedMemoryList": [""]
+                ]
+                
+                goodThingUsersCollection.document(userId).setData(data) { err in
+                    if let err = err {
+                        print("Error registering user to GoodThingUsers: \(err)")
+                    } else {
+                        print("Register user with Document ID: \(userId) to GoodThingUsers")
+                    }
+                }
             }
         }
     }
+
+
 }
 
 extension UserLoginViewController {

@@ -32,8 +32,8 @@ class UserLetterWritingViewController: UIViewController {
             print("Error: Unable to retrieve userId from UserDefaults")
             return
         }
-        
-        guard let receiverId = friend?.userId else {
+        //TODO: 記得把receiverId改回來！
+        guard let receiverId = UserDefaults.standard.string(forKey: "userId") else {
             print("Error: No friend selected to send letter")
             return
         }
@@ -62,11 +62,30 @@ class UserLetterWritingViewController: UIViewController {
             "user2": receiver,
             "title": title,
             "content": content,
-            "CreatedTime": time
+            "createdTime": time
         ]
         
-        db.collection("Inbox").document(conversationId).collection("Letters").addDocument(data: letterData) { error in
-            completion(error)
+        // Ensure the conversation document exists in the Inbox collection
+        let conversationDocRef = db.collection("Inbox").document(conversationId)
+        conversationDocRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error getting document: \(error)")
+                completion(error)
+            } else if !document!.exists {
+                // If the document does not exist, set a dummy data or actual meta-data if you have
+                conversationDocRef.setData(["metadata": "dummyData"]) { error in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        // After ensuring the conversation document exists, add the letter to the Letters sub-collection
+                        conversationDocRef.collection("Letters").addDocument(data: letterData, completion: completion)
+                    }
+                }
+            } else {
+                // If the document already exists, simply add the letter to the Letters sub-collection
+                conversationDocRef.collection("Letters").addDocument(data: letterData, completion: completion)
+            }
         }
     }
+
 }

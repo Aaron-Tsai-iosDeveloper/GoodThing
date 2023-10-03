@@ -47,8 +47,13 @@ class ReplyTaskViewController: UIViewController {
     @objc func replyTask() {
         guard let title = replyTaskTitleTextField.text, !title.isEmpty,
               let content =  replyTaskTextView.text, !content.isEmpty else { return }
+        guard let taskDocumentID = task?.taskId, !taskDocumentID.isEmpty else {
+            print("Error: Task ID is missing!")
+            return
+        }
+
         let db = Firestore.firestore()
-        let taskDocumentID = "要回覆的任務Id"
+        let userId = UserDefaults.standard.string(forKey: "userId")
         let taskDocumentRef = db.collection("GoodThingTasks").document(taskDocumentID)
         let responsesCollectionRef = taskDocumentRef.collection("GoodThingTasksResponses")
         let newResponseDocumentRef = responsesCollectionRef.document()
@@ -56,9 +61,9 @@ class ReplyTaskViewController: UIViewController {
         let time = Date.dateFormatterWithTime.string(from: Date())
         
         var data: [String: Any] = [
-            "taskPosterId": "Aaron", 
-            "completerId": "任務完成者Id",
-            "completionStatus": "完成狀態",
+            "taskPosterId": task?.taskCreatorId,
+            "completerId": userId,
+            "completionStatus": "",
             "responseRecording": recordingURL ?? "",
             "responseImage": imageURL ?? "",
             "responseTitle": title,

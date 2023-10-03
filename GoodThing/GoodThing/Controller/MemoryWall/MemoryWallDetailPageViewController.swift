@@ -106,9 +106,9 @@ extension MemoryWallDetailPageViewController: UITableViewDataSource, UITableView
             }
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTapLikeTableViewCell", for: indexPath) as?  MemoryTapLikeTableViewCell else { return UITableViewCell() }
-            cell.memoryWallDetailPageCollectionButton.layer.borderWidth = 1.0
-            cell.memoryWallDetailPageShareButton.layer.borderWidth = 1.0
-            cell.memoryWallDetailPageTapLikeButton.layer.borderWidth = 1.0
+            cell.memoryWallDetailPageCollectionButton.setTitle("", for: .normal)
+            cell.memoryWallDetailPageShareButton.setTitle("", for: .normal)
+            cell.memoryWallDetailPageTapLikeButton.setTitle("", for: .normal)
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryWallDetailSortTableViewCell", for: indexPath) as? MemoryWallDetailSortTableViewCell else { return UITableViewCell() }

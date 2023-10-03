@@ -22,6 +22,7 @@ class UserFriendListViewController: UIViewController {
     
     func fetchFriendDetails() {
         guard let userId = UserDefaults.standard.string(forKey: "userId") else { return }
+        print(userId)
         let db = Firestore.firestore()
 
         db.collection("GoodThingUsers").document(userId).getDocument { (document, error) in
@@ -43,17 +44,15 @@ class UserFriendListViewController: UIViewController {
         let db = Firestore.firestore()
         db.collection("GoodThingUsers").document(userId).getDocument { (document, error) in
             if let document = document, document.exists {
-                let friendData = try? document.data(as: GoodThingUser.self)
-                if let friend = friendData {
+                do {
+                    let friendData = try document.data(as: GoodThingUser.self)
                     DispatchQueue.main.async {
-                        self.friendDetails.append(friend)
+                        self.friendDetails.append(friendData)
                         self.userProfileFriendListTableView.reloadData()
                     }
-                } else {
-                    print("Error decoding friend data.")
+                } catch let decodingError {
+                    print("Decoding error: \(decodingError)")
                 }
-            } else {
-                print("Error fetching friend details: \(error?.localizedDescription ?? "unknown error")")
             }
         }
     }

@@ -15,7 +15,10 @@ class CommentViewController: UIViewController {
     var dismissClosure: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        let paleCyanBlue = UIColor(red: 0.7, green: 0.9, blue: 1.0, alpha: 1.0)
+        view.backgroundColor = paleCyanBlue
+
+
         setupLabels()
         setupTextView()
         setupButton()
@@ -25,7 +28,7 @@ class CommentViewController: UIViewController {
         nameLabel.text = "留言者姓名"
         view.addSubview(nameLabel)
         let floorLabel = UILabel(frame: CGRect(x: 20, y: nameLabel.frame.maxY + 10, width: 130, height: 20))
-        floorLabel.text = "B1"
+        floorLabel.text = ""
         view.addSubview(floorLabel)
         let timeLabel = UILabel(frame: CGRect(x: floorLabel.frame.maxX + 10, y: nameLabel.frame.maxY + 10, width: 130, height: 20))
         timeLabel.text = "留言時間"

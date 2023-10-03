@@ -12,77 +12,89 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     var task: GoodThingTasks?
     
-    private let collectionView: UICollectionView
-    private let pairingButton = UIButton(type: .system)
-    private let exclusiveButton = UIButton(type: .system)
 
-   
-    required init?(coder: NSCoder) {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        super.init(coder: coder)
-    }
+        private let collectionView: UICollectionView
+        private let pairingButton = UIButton(type: .system)
+        private let exclusiveButton = UIButton(type: .system)
 
-  
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        
-        if let savedDate = fetchDateFromUserDefaults(), Calendar.current.isDateInToday(savedDate),
-           let savedTask = fetchTaskFromUserDefaults() {
-            self.task = savedTask
-            self.collectionView.reloadData()
-        } else {
-            fetchTask {
-                self.collectionView.reloadData()
-            }
+        required init?(coder: NSCoder) {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 16 // Increase spacing between cells
+            collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            super.init(coder: coder)
         }
-    }
-    private func setupUI() {
-        view.backgroundColor = .white
-        
-        
-        pairingButton.setTitle("配對任務頁面", for: .normal)
-        exclusiveButton.setTitle("專屬任務頁面", for: .normal)
-        
-        pairingButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
-        exclusiveButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
-        
-        
-        let stackView = UIStackView(arrangedSubviews: [pairingButton, exclusiveButton])
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(stackView)
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.isPagingEnabled = true
-        collectionView.register(PairingTaskCollectionViewCell.self, forCellWithReuseIdentifier: "PairingTaskCollectionViewCell")
-        collectionView.register(ExclusiveTaskCollectionViewCell.self, forCellWithReuseIdentifier: "ExclusiveTaskCollectionViewCell")
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(collectionView)
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+       
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setupUI()
+
+            if let savedDate = fetchDateFromUserDefaults(), Calendar.current.isDateInToday(savedDate),
+                let savedTask = fetchTaskFromUserDefaults() {
+                self.task = savedTask
+                self.collectionView.reloadData()
+            } else {
+                fetchTask {
+                    self.collectionView.reloadData()
+                }
+            }
+           
+        }
+
+        private func setupUI() {
+            view.backgroundColor = .white
             
-            collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
+            pairingButton.setTitle("配對任務頁面", for: .normal)
+            pairingButton.backgroundColor = .blue // Set button background color
+            pairingButton.setTitleColor(.white, for: .normal) // Set text color
+            pairingButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16) // Set font
+            pairingButton.layer.cornerRadius = 8 // Add button corner radius
+            pairingButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+
+            exclusiveButton.setTitle("專屬任務頁面", for: .normal)
+            exclusiveButton.backgroundColor = .green // Set button background color
+            exclusiveButton.setTitleColor(.white, for: .normal) // Set text color
+            exclusiveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16) // Set font
+            exclusiveButton.layer.cornerRadius = 8 // Add button corner radius
+            exclusiveButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+
+            let stackView = UIStackView(arrangedSubviews: [pairingButton, exclusiveButton])
+            stackView.axis = .horizontal
+            stackView.spacing = 16 // Increase spacing between buttons
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+
+            view.addSubview(stackView)
+
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            collectionView.isPagingEnabled = true
+            collectionView.register(PairingTaskCollectionViewCell.self, forCellWithReuseIdentifier: "PairingTaskCollectionViewCell")
+            collectionView.register(ExclusiveTaskCollectionViewCell.self, forCellWithReuseIdentifier: "ExclusiveTaskCollectionViewCell")
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+            
+            view.addSubview(collectionView)
+          
+            NSLayoutConstraint.activate([
+                stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16), // Add top spacing
+                stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), // Add leading spacing
+                stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), // Add trailing spacing
+
+                collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16), // Add top spacing
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ])
+           
+
+        }
     
     @objc private func didTapButton(_ sender: UIButton) {
         let index = sender == pairingButton ? 0 : 1
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
     }
+
+
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -116,6 +128,13 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
                     }
                     cell.onReplyButtonTapped = { [weak self] in
                         self?.performSegue(withIdentifier: "toReplyTaskVCSegue", sender: self)
+                    }
+                    cell.onReceiveButtonTapped = { [weak self] in
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        if let viewController = storyboard.instantiateViewController(withIdentifier: "TaskResponseReceptionViewController") as? TaskResponseReceptionViewController {
+                            self?.navigationController?.pushViewController(viewController, animated: true)
+                        }
+
                     }
                     return cell
                 }
