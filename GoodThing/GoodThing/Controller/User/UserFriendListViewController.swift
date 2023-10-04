@@ -83,7 +83,6 @@ extension UserFriendListViewController {
     
     @objc func friendNameButtonTapped(_ sender: UIButton) {
         let friend = friendDetails[sender.tag]
-        performSegue(withIdentifier: "ToUserInfoVC", sender: friend)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
