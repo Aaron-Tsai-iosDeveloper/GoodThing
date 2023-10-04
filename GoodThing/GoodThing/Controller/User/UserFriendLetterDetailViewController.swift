@@ -25,7 +25,7 @@ class UserFriendLetterDetailViewController: UIViewController {
     }
     
     @IBAction func letterDetailSendButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "FromLetterDetailVCToWriteVC", sender: friend)
+        
     }
     
     func setupLetterDetails() {

@@ -35,7 +35,7 @@ class UserFriendLetterListViewController: UIViewController {
         }
 
         @IBAction func LetterListWriteButtonTapped(_ sender: UIButton) {
-            performSegue(withIdentifier: "FromLetterListVCToWriteVC", sender: friend)
+          
         }
     }
 
@@ -53,7 +53,7 @@ class UserFriendLetterListViewController: UIViewController {
             print("user1: \(user1)")
             let conversationId = getConversationId(for: user1, and: user2)
             
-            db.collection("Inbox").document(conversationId).collection("Letters").order(by: "CreatedTime").getDocuments { (snapshot, error) in
+            db.collection("Inbox").document(conversationId).collection("Letters").order(by: "createdTime", descending: true).getDocuments { (snapshot, error) in
                 if let error = error {
                     print("Error fetching letters: \(error)")
                     completion(nil, error)

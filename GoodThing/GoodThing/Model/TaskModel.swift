@@ -21,7 +21,7 @@ struct GoodThingTasksResponses: Codable {
     var taskPosterId: String
     var completerId: String
     var completionStatus: String
-    var responseRecording: String
+    var responseRecording: String?
     var responseImage: String
     var responseTitle: String
     var responseContent: String

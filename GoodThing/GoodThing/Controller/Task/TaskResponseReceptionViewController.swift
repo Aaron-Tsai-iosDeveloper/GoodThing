@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseFirestore
 import Firebase
-//TODO: 只有大概的code，還沒完整檢查
-//TODO: 想一下不同意按了之後，畫面要顯示或變化什麼？
+import AVFoundation
+
 class TaskResponseReceptionViewController: UIViewController {
       
     var latestTaskId: String?
     var completerId: String?
+    var audioPlayer: AVPlayer?
     
     @IBOutlet weak var taskCompleterLabel: UILabel!
     @IBOutlet weak var taskResponseLabel: UITextView!
@@ -65,6 +66,12 @@ class TaskResponseReceptionViewController: UIViewController {
                         MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                             self.taskResponseImageView.image = image
                         }
+                        if let recordingUrlString = response.responseRecording, let url = URL(string: recordingUrlString) {
+                            self.audioPlayer = AVPlayer(url: url)
+                            self.taskResponsePlayButton.isHidden = false
+                        } else {
+                            self.taskResponsePlayButton.isHidden = true
+                        }
                     } catch let error {
                         print("Error decoding response: \(error)")
                     }
@@ -82,12 +89,25 @@ class TaskResponseReceptionViewController: UIViewController {
         }
         addFriend(taskPosterId: taskPosterId, completerId: completerId)
     }
+    
+    @IBAction func disagreeButtonTapped(_ sender: UIButton) {
+        self.taskCompleterLabel.text = ""
+        self.taskResponseImageView.image = nil
+        self.taskResponseLabel.text = ""
+        self.audioPlayer = nil
+        self.taskResponsePlayButton.isHidden = true
+    }
+    
+    @IBAction func playAudioTapped(_ sender: UIButton) {
+        self.audioPlayer?.play()
+    }
+    
     //TODO: 檢查一下func addFriend內容
     func addFriend(taskPosterId: String, completerId: String) {
+        print("taskPosterId: \(taskPosterId), completerId: \(completerId)")
         let db = Firestore.firestore()
         let taskPosterRef = db.collection("GoodThingUsers").document(taskPosterId)
         let completerRef = db.collection("GoodThingUsers").document(completerId)
-        
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             let taskPosterDocument: DocumentSnapshot
             do {
@@ -96,7 +116,6 @@ class TaskResponseReceptionViewController: UIViewController {
                 errorPointer?.pointee = fetchError
                 return nil
             }
-            
             let completerDocument: DocumentSnapshot
             do {
                 try completerDocument = transaction.getDocument(completerRef)
@@ -104,7 +123,6 @@ class TaskResponseReceptionViewController: UIViewController {
                 errorPointer?.pointee = fetchError
                 return nil
             }
-            
             if var taskPosterFriends = taskPosterDocument.data()?["friends"] as? [String],
                var completerFriends = completerDocument.data()?["friends"] as? [String] {
                 
