@@ -26,7 +26,8 @@ class PostGroupViewController: UIViewController {
         postGroupButton.addTarget(self, action: #selector(postGroup), for: .touchUpInside)
         groupContentTextView.layer.borderWidth = 1.0
         groupContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6)
-
+        
+        setupKeyboardClosed()
     }
     
     @objc func postGroup() {
@@ -70,4 +71,13 @@ class PostGroupViewController: UIViewController {
         }
     }
 
+}
+extension PostGroupViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 }

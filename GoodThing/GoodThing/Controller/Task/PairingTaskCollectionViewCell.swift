@@ -80,6 +80,7 @@
                postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
                replyButton.addTarget(self, action: #selector(didTapReplyButton), for: .touchUpInside)
                recieveButton.addTarget(self, action: #selector(didTapReceiveButton), for: .touchUpInside)
+               playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
             }
         
             func setupAudioPlayer(with url: URL) {
@@ -131,7 +132,6 @@
             addSubview(replyButton)
             addSubview(recieveButton)
             
-            playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
             
             
             NSLayoutConstraint.activate([
@@ -157,7 +157,7 @@
                 taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
-                usernameButton.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30)
+                usernameButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor)
             ])
             taskImageView.isHidden = true
         }

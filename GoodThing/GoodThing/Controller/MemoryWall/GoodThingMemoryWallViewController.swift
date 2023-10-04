@@ -27,6 +27,7 @@ class GoodThingMemoryWallViewController: UIViewController {
         listenForMemoryWallUpdates()
         memoryWallTableView.decelerationRate = .fast
         addFooterViewWithText()
+        setupKeyboardClosed()
     }
     
     
@@ -220,5 +221,16 @@ extension GoodThingMemoryWallViewController {
         footerView.addSubview(label)
         
         memoryWallTableView.tableFooterView = footerView
+    }
+}
+
+extension GoodThingMemoryWallViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }

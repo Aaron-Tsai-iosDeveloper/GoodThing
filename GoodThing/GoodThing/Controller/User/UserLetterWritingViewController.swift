@@ -20,6 +20,7 @@ class UserLetterWritingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         letterSendButton.addTarget(self, action: #selector(sendLetterButtonTapped), for: .touchUpInside)
+        setupKeyboardClosed()
     }
     
     func getConversationId(for user1: String, and user2: String) -> String {
@@ -86,5 +87,13 @@ class UserLetterWritingViewController: UIViewController {
             }
         }
     }
-
+}
+extension UserLetterWritingViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 }

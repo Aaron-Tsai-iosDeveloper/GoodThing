@@ -34,15 +34,14 @@ class ReplyTaskViewController: UIViewController {
         super.viewDidLoad()
         replyTaskPostButton.addTarget(self, action: #selector(replyTask), for: .touchUpInside)
         configure()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        
         replyTaskTextView.text = textViewPlaceHolderText
         replyTaskTextView.textColor = .lightGray
         replyTaskTextView.delegate = self
+        
+        setupKeyboardClosed()
     }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+   
 
     @objc func replyTask() {
         guard let title = replyTaskTitleTextField.text, !title.isEmpty,
@@ -311,5 +310,14 @@ extension ReplyTaskViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
         return true
+    }
+}
+extension ReplyTaskViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }

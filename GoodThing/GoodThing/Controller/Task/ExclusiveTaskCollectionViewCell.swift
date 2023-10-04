@@ -60,8 +60,8 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
             addSubview(exclusiveTaskPostButton)
             addSubview(taskTextField)
             
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//            self.addGestureRecognizer(tapGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            self.addGestureRecognizer(tapGesture)
 
             NSLayoutConstraint.activate([
                 exclusiveTaskTableView.topAnchor.constraint(equalTo: topAnchor),

@@ -31,15 +31,14 @@ class PostTaskViewController: UIViewController {
         super.viewDidLoad()
         postPublicTaskButton.addTarget(self, action: #selector(postPublicTask), for: .touchUpInside)
         configure()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        
         taskContentTextView.text = textViewPlaceHolderText
         taskContentTextView.textColor = .lightGray
         taskContentTextView.delegate = self
+        
+        setupKeyboardClosed()
     }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+   
     @objc func postPrivateTask() {
         postTask(privacy: true)
     }
@@ -356,5 +355,15 @@ extension PostTaskViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
         return true
+    }
+}
+
+extension PostTaskViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
