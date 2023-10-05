@@ -35,6 +35,8 @@ class PostTaskViewController: UIViewController {
         taskContentTextView.text = textViewPlaceHolderText
         taskContentTextView.textColor = .lightGray
         taskContentTextView.delegate = self
+        taskContentTextView.layer.borderWidth = 1.0
+        taskContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6)
         
         setupKeyboardClosed()
     }

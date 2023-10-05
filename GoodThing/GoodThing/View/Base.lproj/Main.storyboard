@@ -795,7 +795,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="請輸入好事任務內容：" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GEw-kg-r29">
-                                <rect key="frame" x="16" y="173" width="361" height="127"/>
+                                <rect key="frame" x="16" y="169" width="361" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -803,7 +803,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1w-Hs-jqD">
-                                <rect key="frame" x="164" y="487" width="59" height="35"/>
+                                <rect key="frame" x="167" y="452" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="儲存"/>
@@ -812,7 +812,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKn-EC-DbP">
-                                <rect key="frame" x="274" y="487" width="59" height="35"/>
+                                <rect key="frame" x="291" y="452" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="播放"/>
@@ -821,28 +821,28 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="每日加油語錄" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZs-a3-ud2">
-                                <rect key="frame" x="16" y="370" width="361" height="25"/>
+                                <rect key="frame" x="16" y="358" width="361" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHT-F0-EnM">
-                                <rect key="frame" x="118" y="315" width="259" height="19"/>
+                                <rect key="frame" x="67" y="689" width="259" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yac-5q-ywh">
-                                <rect key="frame" x="81" y="406" width="230" height="48"/>
+                                <rect key="frame" x="81" y="391" width="230" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKp-6j-EHa">
-                                <rect key="frame" x="52" y="487" width="59" height="35"/>
+                                <rect key="frame" x="45" y="453" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="錄音"/>
@@ -851,7 +851,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c22-k5-ziP">
-                                <rect key="frame" x="16" y="307" width="94" height="35"/>
+                                <rect key="frame" x="16" y="561" width="94" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="添加圖片"/>
@@ -859,22 +859,17 @@
                                     <action selector="addPubplicTaskImageButtonTapped:" destination="A6G-9l-bcW" eventType="touchUpInside" id="kGR-PE-QSm"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kai-lY-PCK">
+                                <rect key="frame" x="134" y="505" width="223" height="164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGt-Eh-zZ1">
-                                <rect key="frame" x="127" y="630" width="138" height="48"/>
+                                <rect key="frame" x="127" y="721" width="138" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="確認發布">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
                                 </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vta-yL-5f6">
-                                <rect key="frame" x="167" y="584" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="預覽"/>
-                                <connections>
-                                    <action selector="previewTaskButton:" destination="A6G-9l-bcW" eventType="touchUpInside" id="Ujo-Qk-FF5"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="teZ-X2-Ogv"/>
@@ -884,7 +879,7 @@
                     <connections>
                         <outlet property="imageNameLabel" destination="fHT-F0-EnM" id="t3o-6g-0Sr"/>
                         <outlet property="playButton" destination="jKn-EC-DbP" id="dUb-Wc-paU"/>
-                        <outlet property="postPublicTaskButton" destination="zGt-Eh-zZ1" id="tTX-Hm-F93"/>
+                        <outlet property="postPublicTaskButton" destination="zGt-Eh-zZ1" id="epo-jU-njV"/>
                         <outlet property="recordButton" destination="JKp-6j-EHa" id="I5u-0c-DXa"/>
                         <outlet property="storeButton" destination="k1w-Hs-jqD" id="CWf-gz-eK3"/>
                         <outlet property="taskContentTextView" destination="GEw-kg-r29" id="50Q-60-s2W"/>
@@ -896,7 +891,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mms-FE-PCQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4778" y="2218"/>
+            <point key="canvasLocation" x="4777.8625954198469" y="2217.605633802817"/>
         </scene>
         <!--Post Public Image Tasks Preview View Controller-->
         <scene sceneID="e5H-4n-GLg">
@@ -2820,7 +2815,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ng-mb-q5l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4354.9618320610689" y="4432.3943661971834"/>
+            <point key="canvasLocation" x="4355" y="4334"/>
         </scene>
         <!--User Friend Letter Detail View Controller-->
         <scene sceneID="eBK-1M-Yc0">

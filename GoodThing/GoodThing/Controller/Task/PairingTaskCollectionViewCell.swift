@@ -52,19 +52,19 @@
             }()
             let postButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("+", for: .normal)
+            button.setTitle("添加好事任務", for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
             }()
             let replyButton: UIButton = {
                 let button = UIButton(type: .system)
-                button.setTitle("任務回覆", for: .normal)
+                button.setTitle("回覆今日好事任務", for: .normal)
                 button.translatesAutoresizingMaskIntoConstraints = false
                 return button
             }()
             let recieveButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("收到的任務回覆", for: .normal)
+            button.setTitle("接收任務回覆", for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
             }()
@@ -96,11 +96,9 @@
             @objc func didTapPlayButton() {
                 audioPlayer?.play()
             }
-        
             required init?(coder: NSCoder) {
                 fatalError("init(coder:) has not been implemented")
             }
-            
             @objc private func didTapPostButton() {
                 onPostButtonTapped?()
             }
@@ -110,54 +108,40 @@
             @objc private func didTapReceiveButton() {
                 onReceiveButtonTapped?()
             }
-            
         private func setupUI() {
-           
             let verticalStackView = UIStackView(arrangedSubviews: [usernameButton, taskImageView, taskTitleLabel, taskContentLabel])
             verticalStackView.axis = .vertical
-            verticalStackView.spacing = 30
-            
-            
+            verticalStackView.alignment = .leading
+            verticalStackView.spacing = 10
             let horizontalStackView = UIStackView(arrangedSubviews: [encouragementLabel, playButton])
             horizontalStackView.axis = .horizontal
             horizontalStackView.spacing = 10
-            
-            
             verticalStackView.addArrangedSubview(horizontalStackView)
-            
             verticalStackView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(verticalStackView)
-            
             addSubview(postButton)
             addSubview(replyButton)
             addSubview(recieveButton)
-            
-            
-            
             NSLayoutConstraint.activate([
                 verticalStackView.topAnchor.constraint(equalTo: topAnchor),
                 verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                
-                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
-                postButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -66),
-                postButton.widthAnchor.constraint(equalToConstant: 44),
-                postButton.heightAnchor.constraint(equalToConstant: 44),
-                
-                replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200),
-                replyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -130),
+                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70),
+                postButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
+                postButton.widthAnchor.constraint(equalToConstant: 100),
+                postButton.heightAnchor.constraint(equalToConstant: 100),
+                replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140),
+                replyButton.centerXAnchor.constraint(equalTo: centerXAnchor),
                 replyButton.widthAnchor.constraint(equalToConstant: 150),
                 replyButton.heightAnchor.constraint(equalToConstant: 90),
-                recieveButton.topAnchor.constraint(equalTo: replyButton.bottomAnchor, constant: 30),
                 recieveButton.centerYAnchor.constraint(equalTo: postButton.centerYAnchor),
-                recieveButton.trailingAnchor.constraint(equalTo: postButton.leadingAnchor, constant: -100),
+                recieveButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
                 recieveButton.widthAnchor.constraint(equalToConstant: 150),
                 recieveButton.heightAnchor.constraint(equalToConstant: 50),
                 taskContentLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
-                usernameButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor)
             ])
             taskImageView.isHidden = true
         }

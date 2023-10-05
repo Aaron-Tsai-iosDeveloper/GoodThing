@@ -26,4 +26,15 @@ struct GoodThingTasksResponses: Codable {
     var responseTitle: String
     var responseContent: String
     var responseTime: String
+    var checkedStatus: Bool
+    var responseId: String
+}
+
+struct GoodThingExclusiveTasks: Codable {
+    var exclusiveTaskId: String
+    var exclusiveTaskTitle: String
+    var exclusiveTaskContent: String
+    var createdTime: String
+    var completedTime: String
+    var completedStatus: Bool
 }

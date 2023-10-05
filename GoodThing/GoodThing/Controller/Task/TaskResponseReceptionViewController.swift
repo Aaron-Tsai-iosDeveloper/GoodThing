@@ -15,6 +15,8 @@ class TaskResponseReceptionViewController: UIViewController {
     var latestTaskId: String?
     var completerId: String?
     var audioPlayer: AVPlayer?
+    var responseId:String?
+    var exclusiveTasks: [GoodThingExclusiveTasks] = []
     
     @IBOutlet weak var taskCompleterLabel: UILabel!
     @IBOutlet weak var taskResponseLabel: UITextView!
@@ -53,15 +55,20 @@ class TaskResponseReceptionViewController: UIViewController {
 
     func fetchResponsesForTask(withId taskId: String) {
         let db = Firestore.firestore()
-        db.collection("GoodThingTasks").document(taskId).collection("GoodThingTasksResponses").getDocuments { (querySnapshot, error) in
+        db.collection("GoodThingTasks").document(taskId).collection("GoodThingTasksResponses")
+            .whereField("checkedStatus", isEqualTo: false)
+            .order(by: "responseTime", descending: true)
+            .limit(to: 1)
+            .getDocuments { (querySnapshot, error) in
             if let documents = querySnapshot?.documents {
                 for document in documents {
                     do {
                         let response = try document.data(as: GoodThingTasksResponses.self, decoder: Firestore.Decoder())
                             print(response)
                         self.taskCompleterLabel.text = response.completerId
-                        self.completerId = response.completerId
+                        self.completerId = document.documentID
                         self.taskResponseLabel.text = response.responseContent
+                        self.responseId = response.responseId
                         let imageUrlString = response.responseImage
                         MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                             self.taskResponseImageView.image = image
@@ -81,12 +88,29 @@ class TaskResponseReceptionViewController: UIViewController {
             }
         }
     }
+    
+    func updateCheckedStatusForResponse(withId docId: String) {
+        let db = Firestore.firestore()
+        let responseDocumentRef = db.collection("GoodThingTasks").document(latestTaskId ?? "").collection("GoodThingTasksResponses").document(responseId ?? "")
+        
+        responseDocumentRef.updateData([
+            "checkedStatus": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
     @IBAction func agreeButtonTapped(_ sender: UIButton) {
         guard let taskPosterId = Auth.auth().currentUser?.uid,
-              let completerId = self.completerId  else {
-            print("Error: Invalid user IDs.")
+              let completerId = self.completerId else {
+            print("Error: Invalid user IDs or document ID.")
             return
         }
+        
+        updateCheckedStatusForResponse(withId: latestTaskId ?? "")
         addFriend(taskPosterId: taskPosterId, completerId: completerId)
     }
     

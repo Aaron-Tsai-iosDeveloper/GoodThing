@@ -67,7 +67,9 @@ class ReplyTaskViewController: UIViewController {
             "responseImage": imageURL ?? "",
             "responseTitle": title,
             "responseContent": content,
-            "responseTime": time
+            "checkedStatus": false,
+            "responseTime": time,
+            "responseId": id
         ]
         
         newResponseDocumentRef.setData(data) { err in
