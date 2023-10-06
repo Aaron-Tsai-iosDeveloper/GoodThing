@@ -13,6 +13,7 @@
             let usernameButton: UIButton = {
                 let button = UIButton(type: .system)
                 button.setTitle("用戶名稱", for: .normal)
+                button.tintColor = .systemBrown
                 button.translatesAutoresizingMaskIntoConstraints = false
                 return button
             }()
@@ -27,6 +28,7 @@
             let taskTitleLabel: UILabel = {
                 let label = UILabel()
                 label.text = "任務標題"
+                label.textColor = .systemBrown
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
@@ -34,6 +36,7 @@
             let taskContentLabel: UILabel = {
                 let label = UILabel()
                 label.text = "任務內容"
+                label.textColor = .systemBrown
                 label.numberOfLines = 0
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
@@ -41,30 +44,43 @@
             let encouragementLabel: UILabel = {
                 let label = UILabel()
                 label.text = "任務加油金句"
+                label.textColor = .systemBrown
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
             let playButton: UIButton = {
                 let button = UIButton(type: .system)
-                button.setTitle("播放", for: .normal)
+                button.tintColor = .systemBrown
                 button.translatesAutoresizingMaskIntoConstraints = false
                 return button
             }()
             let postButton: UIButton = {
             let button = UIButton(type: .system)
             button.setTitle("添加好事任務", for: .normal)
+            button.layer.borderWidth = 0.4
+            button.backgroundColor = .systemBrown
+            button.layer.cornerRadius = 10
+            button.tintColor = .white
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
             }()
             let replyButton: UIButton = {
                 let button = UIButton(type: .system)
                 button.setTitle("回覆今日好事任務", for: .normal)
+                button.layer.borderWidth = 0.4
+                button.layer.cornerRadius = 10
+                button.backgroundColor = .systemBrown
+                button.tintColor = .white
                 button.translatesAutoresizingMaskIntoConstraints = false
                 return button
             }()
             let recieveButton: UIButton = {
             let button = UIButton(type: .system)
             button.setTitle("接收任務回覆", for: .normal)
+                button.layer.borderWidth = 0.4
+                button.layer.cornerRadius = 10
+                button.backgroundColor = .systemBrown
+                button.tintColor = .white
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
             }()
@@ -81,6 +97,7 @@
                replyButton.addTarget(self, action: #selector(didTapReplyButton), for: .touchUpInside)
                recieveButton.addTarget(self, action: #selector(didTapReceiveButton), for: .touchUpInside)
                playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+               playButton.setImage(UIImage(named: "play"), for: .normal)
             }
         
             func setupAudioPlayer(with url: URL) {
@@ -126,18 +143,18 @@
                 verticalStackView.topAnchor.constraint(equalTo: topAnchor),
                 verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70),
+                postButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
                 postButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
-                postButton.widthAnchor.constraint(equalToConstant: 100),
-                postButton.heightAnchor.constraint(equalToConstant: 100),
-                replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140),
+                postButton.widthAnchor.constraint(equalToConstant: 120),
+                postButton.heightAnchor.constraint(equalToConstant: 40),
+                replyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
                 replyButton.centerXAnchor.constraint(equalTo: centerXAnchor),
                 replyButton.widthAnchor.constraint(equalToConstant: 150),
-                replyButton.heightAnchor.constraint(equalToConstant: 90),
+                replyButton.heightAnchor.constraint(equalToConstant: 40),
                 recieveButton.centerYAnchor.constraint(equalTo: postButton.centerYAnchor),
                 recieveButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-                recieveButton.widthAnchor.constraint(equalToConstant: 150),
-                recieveButton.heightAnchor.constraint(equalToConstant: 50),
+                recieveButton.widthAnchor.constraint(equalToConstant: 120),
+                recieveButton.heightAnchor.constraint(equalToConstant: 40),
                 taskContentLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
                 encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),

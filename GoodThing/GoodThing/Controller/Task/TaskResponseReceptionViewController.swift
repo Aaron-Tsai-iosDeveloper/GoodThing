@@ -24,12 +24,17 @@ class TaskResponseReceptionViewController: UIViewController {
     @IBOutlet weak var taskResponseImageView: UIImageView!
     @IBOutlet weak var agreeAddFriendButton: UIButton!
     @IBOutlet weak var disagreeAddFriendButton: UIButton!
+    @IBOutlet weak var responseRecordingLabel: UILabel!
+    @IBOutlet weak var responseAddFriendLabel: UILabel!
+    @IBOutlet weak var taskResponseTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         latestTaskId = UserDefaults.standard.string(forKey: "latestPostedTaskId")
-
+        
+        setUI()
+        
         if latestTaskId == nil {
             fetchLatestTaskIDFromFirebase()
         } else {
@@ -170,5 +175,22 @@ class TaskResponseReceptionViewController: UIViewController {
                 print("Transaction successfully committed!")
             }
         }
+    }
+}
+
+extension TaskResponseReceptionViewController {
+    func setUI() {
+        taskCompleterLabel.layer.cornerRadius = 10
+        taskCompleterLabel.layer.borderWidth = 0.4
+        responseRecordingLabel.layer.cornerRadius = 10
+        responseRecordingLabel.layer.borderWidth = 0.4
+        responseAddFriendLabel.layer.cornerRadius = 10
+        responseAddFriendLabel.layer.borderWidth = 0.4
+        taskResponseImageView.layer.cornerRadius = 10
+        taskResponseTextView.layer.cornerRadius = 10
+        taskResponseTextView.layer.borderWidth = 0.4
+        taskResponsePlayButton.setTitle("", for: .normal)
+        agreeAddFriendButton.setTitle("", for: .normal)
+        disagreeAddFriendButton.setTitle("", for: .normal)
     }
 }

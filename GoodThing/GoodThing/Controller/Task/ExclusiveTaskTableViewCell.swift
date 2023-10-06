@@ -15,6 +15,7 @@ class ExclusiveTaskTableViewCell: UITableViewCell {
     let taskNameLabel: UILabel = {
         let label = UILabel()
         label.text = "任務名稱"
+        label.textColor = .systemBrown
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

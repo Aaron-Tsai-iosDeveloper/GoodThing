@@ -28,6 +28,10 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
     let exclusiveTaskPostButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("發佈專屬任務", for: .normal)
+        button.tintColor = .lightGray
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor.brown.cgColor
+        button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -81,8 +85,10 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
             taskTextField.heightAnchor.constraint(equalToConstant: 44),
             
             exclusiveTaskPostButton.topAnchor.constraint(equalTo: taskTextField.bottomAnchor, constant: 10),
-            exclusiveTaskPostButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            exclusiveTaskPostButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200)
+            exclusiveTaskPostButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -20),
+            exclusiveTaskPostButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200),
+            exclusiveTaskPostButton.widthAnchor.constraint(equalToConstant: 120),
+            exclusiveTaskPostButton.heightAnchor.constraint(equalToConstant: 40)
         ])
 
     }

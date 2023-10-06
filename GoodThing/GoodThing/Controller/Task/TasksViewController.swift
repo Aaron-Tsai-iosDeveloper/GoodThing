@@ -68,7 +68,7 @@ class TasksViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         
         indicatorView.backgroundColor = .brown
-        indicatorView.frame = CGRect(x: 25, y: 150, width: 140, height: 2)
+        indicatorView.frame = CGRect(x: 25, y: 150, width: 140, height: 1)
         view.addSubview(indicatorView)
         
         collectionView.delegate = self

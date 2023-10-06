@@ -20,7 +20,9 @@ class ReplyTaskViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
-    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var replyTaskImageView: UIImageView!
+    @IBOutlet weak var dailyEncouragementVoiceLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
@@ -40,6 +42,7 @@ class ReplyTaskViewController: UIViewController {
         replyTaskTextView.delegate = self
         
         setupKeyboardClosed()
+        setUI()
     }
    
 
@@ -181,7 +184,7 @@ class ReplyTaskViewController: UIViewController {
 extension ReplyTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
-
+            replyTaskImageView.image = selectedImage
             uploadImageToFirebase(selectedImage)
         }
         dismiss(animated: true, completion: nil)
@@ -321,5 +324,23 @@ extension ReplyTaskViewController {
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+}
+extension ReplyTaskViewController {
+    
+    func setUI() {
+        playButton.setTitle("", for: .normal)
+        recordButton.setTitle("", for: .normal)
+        storeButton.setTitle("", for: .normal)
+        replyTaskAddImageButton.setTitle("", for: .normal)
+        timeLabel.layer.cornerRadius = 10
+        timeLabel.layer.borderWidth = 0.4
+        replyTaskImageView.layer.cornerRadius = 20
+        replyTaskPostButton.layer.borderWidth = 0.6
+        replyTaskPostButton.layer.borderColor = UIColor.systemBrown.cgColor
+        replyTaskPostButton.layer.cornerRadius = 10
+        replyTaskTextView.layer.cornerRadius = 10
+        replyTaskTextView.layer.borderWidth = 0.4
+        dailyEncouragementVoiceLabel.layer.cornerRadius = 10
     }
 }

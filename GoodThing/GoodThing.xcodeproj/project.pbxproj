@@ -40,8 +40,7 @@
 		451F10A02ACC3A3400FB610D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F109F2ACC3A3400FB610D /* MainTabBarController.swift */; };
 		451F10A32ACC7DDE00FB610D /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */; };
 		452854742ACEAABE0047FAE4 /* LetterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452854732ACEAABE0047FAE4 /* LetterModel.swift */; };
-		4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */; };
-		4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */; };
+		452854762ACFFE640047FAE4 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452854752ACFFE640047FAE4 /* ColorHelper.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
 		45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB22AB77E1100749CFA /* MemoryModel.swift */; };
@@ -112,8 +111,7 @@
 		451F109F2ACC3A3400FB610D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		452854732ACEAABE0047FAE4 /* LetterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterModel.swift; sourceTree = "<group>"; };
-		4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicImageTasksPreviewViewController.swift; sourceTree = "<group>"; };
-		4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicTextTasksPreviewViewController.swift; sourceTree = "<group>"; };
+		452854752ACFFE640047FAE4 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		45545BB22AB77E1100749CFA /* MemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
@@ -262,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				454AA80B2AB72E2C00D404EC /* DateHelper.swift */,
+				452854752ACFFE640047FAE4 /* ColorHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -270,8 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				451098F32AB35CBD000B3BD2 /* PostTaskViewController.swift */,
-				4529A2702AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift */,
-				4529A2722AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift */,
 				451F106A2AC20E5600FB610D /* TasksViewController.swift */,
 				451F10842AC9E55100FB610D /* TaskResponseReceptionViewController.swift */,
 				451F106C2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift */,
@@ -547,14 +544,13 @@
 				451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */,
 				451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */,
 				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
-				4529A2732AC16BAC00B75409 /* PostPublicTextTasksPreviewViewController.swift in Sources */,
 				451F108F2ACABA8600FB610D /* UserFriendLetterListViewController.swift in Sources */,
+				452854762ACFFE640047FAE4 /* ColorHelper.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
 				45545BC42AB8190400749CFA /* PostGroupViewController.swift in Sources */,
 				45545BBD2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift in Sources */,
 				45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */,
 				45545BDD2ABC469D00749CFA /* MemoryTextWallCollectionViewCell.swift in Sources */,
-				4529A2712AC16B8D00B75409 /* PostPublicImageTasksPreviewViewController.swift in Sources */,
 				45545BC62AB8374F00749CFA /* FetchGroupViewController.swift in Sources */,
 				451F10832AC99BB300FB610D /* UserSingupViewController.swift in Sources */,
 				451F10772AC51B8900FB610D /* UserInfoViewController.swift in Sources */,

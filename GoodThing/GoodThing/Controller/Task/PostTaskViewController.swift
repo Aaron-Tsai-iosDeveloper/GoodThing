@@ -14,12 +14,15 @@ class PostTaskViewController: UIViewController {
 
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskContentTextView: UITextView!
+    @IBOutlet weak var addPictureButton: UIButton!
     @IBOutlet weak var postPublicTaskButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
     @IBOutlet private var timeLabel: UILabel!
     @IBOutlet weak var imageNameLabel: UILabel!
+    @IBOutlet weak var postTaskImageView: UIImageView!
+    @IBOutlet weak var dailyEncouragementVoiceLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
@@ -39,6 +42,7 @@ class PostTaskViewController: UIViewController {
         taskContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6)
         
         setupKeyboardClosed()
+        setUI()
     }
    
     @objc func postPrivateTask() {
@@ -109,12 +113,12 @@ class PostTaskViewController: UIViewController {
         if let player = audioPlayer {
             if player.isPlaying {
                 player.pause()
-                sender.setTitle("播放", for: .normal)
+                sender.setTitle("", for: .normal)
                 pauseTimer()
             } else {
                 player.play()
                 startTimer()
-                sender.setTitle("暫停", for: .normal)
+                sender.setTitle("", for: .normal)
             }
         } else {
             guard let player = try? AVAudioPlayer(contentsOf: audioRecorder.url) else {
@@ -125,7 +129,7 @@ class PostTaskViewController: UIViewController {
             audioPlayer?.delegate = self
             audioPlayer?.play()
             startTimer()
-            sender.setTitle("暫停", for: .normal)
+            sender.setTitle("", for: .normal)
         }
     }
 
@@ -187,19 +191,17 @@ class PostTaskViewController: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func previewTaskButton(_ sender: UIButton) {
-        if self.imageNameLabel.text == "" {
-            performSegue(withIdentifier: "toPostPublicTasksTextPreviewVC", sender: sender)
-        } else {
-            
-            performSegue(withIdentifier: "toPostPublicTasksImagePreviewVC", sender: sender)
-        }
+    @IBAction func addPictureButtonTapped(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
 }
 extension PostTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
-
+            postTaskImageView.image = selectedImage
             uploadImageToFirebase(selectedImage)
         }
         dismiss(animated: true, completion: nil)
@@ -308,31 +310,6 @@ extension PostTaskViewController: AVAudioPlayerDelegate {
     }
 }
 
-//TODO: 建立登入系統後，修改PosterLabel.text "Aaron"
-extension PostTaskViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPostPublicTasksImagePreviewVC",
-           let nextVC = segue.destination as? PostPublicImageTasksPreviewViewController,
-           let taskName = self.taskTitleTextField.text,
-           let taskContent = self.taskContentTextView.text,
-           let imageURL = self.imageURL,
-           let recordingURL = self.recordingURL {
-            nextVC.taskName = taskName
-            nextVC.taskContent = taskContent
-            nextVC.posterName = "Aaron"
-            nextVC.imageURL = imageURL
-            nextVC.recordingURL = recordingURL
-        } else if segue.identifier == "toPostPublicTasksTextPreviewVC",
-            let nextVC = segue.destination as? PostPublicTextTasksPreviewViewController,
-            let taskName = self.taskTitleTextField.text,
-            let taskContent = self.taskContentTextView.text {
-            nextVC.taskName = taskName
-            nextVC.taskContent = taskContent
-            nextVC.posterName = "Aaron"
-        }
-    }
-}
-
 extension PostTaskViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceHolderText {
@@ -367,5 +344,24 @@ extension PostTaskViewController {
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+}
+
+extension PostTaskViewController {
+    
+    func setUI() {
+        playButton.setTitle("", for: .normal)
+        recordButton.setTitle("", for: .normal)
+        storeButton.setTitle("", for: .normal)
+        addPictureButton.setTitle("", for: .normal)
+        timeLabel.layer.cornerRadius = 10
+        timeLabel.layer.borderWidth = 0.4
+        postTaskImageView.layer.cornerRadius = 20
+        postPublicTaskButton.layer.borderWidth = 0.6
+        postPublicTaskButton.layer.borderColor = UIColor.systemBrown.cgColor
+        postPublicTaskButton.layer.cornerRadius = 10
+        taskContentTextView.layer.cornerRadius = 10
+        dailyEncouragementVoiceLabel.layer.cornerRadius = 10
+        
     }
 }
