@@ -21,13 +21,12 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var userProfileRightCollectionView: UICollectionView!
     let leftButtonAttributes: [ButtonAttributes] = [
         ButtonAttributes(title: "筆友收信匣", titleColor: UIColor.black),
-        ButtonAttributes(title: "好心情收藏", titleColor: UIColor.black),
         ButtonAttributes(title: "好事揪團歷程", titleColor: UIColor.black)
     ]
 
     let rightButtonAttributes: [ButtonAttributes] = [
         ButtonAttributes(title: "更好的自己", titleColor: UIColor.black),
-        ButtonAttributes(title: "療癒筆記本", titleColor: UIColor.black)
+        ButtonAttributes(title: "好心情收藏", titleColor: UIColor.black)
     ]
 
     

@@ -20,7 +20,9 @@ class ReplyTaskViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
-    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var replyTaskImageView: UIImageView!
+    @IBOutlet weak var dailyEncouragementVoiceLabel: UILabel!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
@@ -34,15 +36,15 @@ class ReplyTaskViewController: UIViewController {
         super.viewDidLoad()
         replyTaskPostButton.addTarget(self, action: #selector(replyTask), for: .touchUpInside)
         configure()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        
         replyTaskTextView.text = textViewPlaceHolderText
         replyTaskTextView.textColor = .lightGray
         replyTaskTextView.delegate = self
+        
+        setupKeyboardClosed()
+        setUI()
     }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+   
 
     @objc func replyTask() {
         guard let title = replyTaskTitleTextField.text, !title.isEmpty,
@@ -68,7 +70,9 @@ class ReplyTaskViewController: UIViewController {
             "responseImage": imageURL ?? "",
             "responseTitle": title,
             "responseContent": content,
-            "responseTime": time
+            "checkedStatus": false,
+            "responseTime": time,
+            "responseId": id
         ]
         
         newResponseDocumentRef.setData(data) { err in
@@ -180,7 +184,7 @@ class ReplyTaskViewController: UIViewController {
 extension ReplyTaskViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
-
+            replyTaskImageView.image = selectedImage
             uploadImageToFirebase(selectedImage)
         }
         dismiss(animated: true, completion: nil)
@@ -311,5 +315,32 @@ extension ReplyTaskViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
         return true
+    }
+}
+extension ReplyTaskViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+}
+extension ReplyTaskViewController {
+    
+    func setUI() {
+        playButton.setTitle("", for: .normal)
+        recordButton.setTitle("", for: .normal)
+        storeButton.setTitle("", for: .normal)
+        replyTaskAddImageButton.setTitle("", for: .normal)
+        timeLabel.layer.cornerRadius = 10
+        timeLabel.layer.borderWidth = 0.4
+        replyTaskImageView.layer.cornerRadius = 20
+        replyTaskPostButton.layer.borderWidth = 0.6
+        replyTaskPostButton.layer.borderColor = UIColor.systemBrown.cgColor
+        replyTaskPostButton.layer.cornerRadius = 10
+        replyTaskTextView.layer.cornerRadius = 10
+        replyTaskTextView.layer.borderWidth = 0.4
+        dailyEncouragementVoiceLabel.layer.cornerRadius = 10
     }
 }

@@ -25,7 +25,7 @@ class PostMemoryViewController: UIViewController {
         postMemoryButton.addTarget(self, action: #selector(postMemory), for: .touchUpInside)
         memoryContentTextView.layer.borderWidth = 1.0
         memoryContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6) 
-
+        setupKeyboardClosed()
     }
   
     
@@ -109,5 +109,14 @@ extension PostMemoryViewController {
                 }
             }
         }
+    }
+}
+extension PostMemoryViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }

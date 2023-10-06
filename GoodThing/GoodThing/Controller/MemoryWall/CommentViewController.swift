@@ -22,6 +22,8 @@ class CommentViewController: UIViewController {
         setupLabels()
         setupTextView()
         setupButton()
+        setupKeyboardClosed()
+    
     }
     private func setupLabels() {
         let nameLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 260, height: 20))
@@ -52,6 +54,11 @@ class CommentViewController: UIViewController {
         confirmButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
         view.addSubview(confirmButton)
     }
+    private func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
     @objc func didTapSubmit() {
         if commentTextView.text.isEmpty || commentTextView.text == "請輸入留言" {
             dismiss(animated: true, completion: nil)
@@ -70,6 +77,10 @@ class CommentViewController: UIViewController {
             commentTextView.textColor = .black
         }
         confirmButton.setTitle(commentTextView.text.isEmpty || commentTextView.text == "請輸入留言" ? "取消" : "提交", for: .normal)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
 

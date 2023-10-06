@@ -8,10 +8,14 @@
 import UIKit
 
 class ExclusiveTaskTableViewCell: UITableViewCell {
-
+    
+    var onCheckmarkTapped: ((IndexPath) -> Void)?
+    var indexPath: IndexPath?
+    
     let taskNameLabel: UILabel = {
         let label = UILabel()
         label.text = "任務名稱"
+        label.textColor = .systemBrown
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -38,7 +42,7 @@ class ExclusiveTaskTableViewCell: UITableViewCell {
     private func setupUI() {
         addSubview(taskNameLabel)
         addSubview(checkmarkButton)
-        
+        bringSubviewToFront(checkmarkButton)
         
         NSLayoutConstraint.activate([
             taskNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -51,11 +55,23 @@ class ExclusiveTaskTableViewCell: UITableViewCell {
         ])
         
         checkmarkButton.addTarget(self, action: #selector(didTapCheckmarkButton), for: .touchUpInside)
+      
     }
     
-    @objc private func didTapCheckmarkButton() {
+    @objc func didTapCheckmarkButton() {
+        print("Checkmark button was tapped!")
         checkmarkButton.isSelected.toggle()
+        if let currentIndexPath = self.indexPath {
+            print("About to call the onCheckmarkTapped closure")
+            onCheckmarkTapped?(currentIndexPath)
+        }
         print("Button is now: \(checkmarkButton.isSelected ? "Selected" : "Not Selected")")
     }
-
+    // TODO: 之後回頭確認這部分的原理，為什麼這樣才能點擊到按鈕
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if checkmarkButton.frame.contains(point) {
+            return checkmarkButton
+        }
+        return super.hitTest(point, with: event)
+    }
 }

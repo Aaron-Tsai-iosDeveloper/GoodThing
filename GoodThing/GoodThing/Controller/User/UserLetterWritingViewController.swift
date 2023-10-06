@@ -9,17 +9,16 @@ import UIKit
 import FirebaseFirestore
 
 class UserLetterWritingViewController: UIViewController {
-    
     @IBOutlet weak var letterTitleTextField: UITextField!
     @IBOutlet weak var letterContentTextView: UITextView!
     @IBOutlet weak var letterSendButton: UIButton!
     @IBOutlet weak var letterReceiverPenNameButton: UIButton!
     var friend: GoodThingUser?
     let db = Firestore.firestore()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         letterSendButton.addTarget(self, action: #selector(sendLetterButtonTapped), for: .touchUpInside)
+        setupKeyboardClosed()
     }
     
     func getConversationId(for user1: String, and user2: String) -> String {
@@ -64,7 +63,6 @@ class UserLetterWritingViewController: UIViewController {
             "createdTime": time
         ]
         
-        // Ensure the conversation document exists in the Inbox collection
         let conversationDocRef = db.collection("Inbox").document(conversationId)
         conversationDocRef.getDocument { (document, error) in
             if let error = error {
@@ -86,5 +84,13 @@ class UserLetterWritingViewController: UIViewController {
             }
         }
     }
-
+}
+extension UserLetterWritingViewController {
+    func setupKeyboardClosed() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 }
