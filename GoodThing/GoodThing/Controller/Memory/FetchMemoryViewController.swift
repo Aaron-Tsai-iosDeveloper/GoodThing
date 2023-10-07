@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import AVFAudio
 
 class FetchMemoryViewController: UIViewController {
     
     @IBOutlet weak var privateMemoryTableView: UITableView!
-   
     @IBOutlet weak var privateMemoryDatePicker: UIDatePicker!
+    
     lazy var db = Firestore.firestore()
     var privateMemory = [GoodThingMemory]()
     var selectedMemory = [GoodThingMemory]()
@@ -26,7 +27,9 @@ class FetchMemoryViewController: UIViewController {
         listenForPrivateMemoryUpdates()
         privateMemoryDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         fetchDataForSelectedDate()
+        
     }
+    
     @objc func datePickerValueChanged() {
         fetchDataForSelectedDate()
     }
@@ -105,10 +108,19 @@ extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
             cell.privateMemoryTitleLabel.text = privateMemory[indexPath.row].memoryTitle
             cell.privateMemoryCreatedTimeLabel.text = privateMemory[indexPath.row].memoryCreatedTime
             cell.privateMemoryContentLabel.text = privateMemory[indexPath.row].memoryContent
+        
         let imageUrlString = privateMemory[indexPath.row].memoryImage ?? ""
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                 cell.privateMemoryImage.image = image
             }
+        
+        if let audioURL = privateMemory[indexPath.row].memoryVoice {
+            MediaDownloader.shared.downloadAudio(from: audioURL) { url in
+                if let url = url {
+                    cell.setupAudioPlayer(with: url)
+                }
+            }
+        }
 //            cell.deletePrivateMemory = { [weak self] in
 //                self?.deletePrivateMemory(at: indexPath)
 //            }

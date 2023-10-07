@@ -21,6 +21,7 @@ class GoodThingMemoryWallViewController: UIViewController {
     var lastFeedbackTime: Date? = nil
     let feedbackInterval: TimeInterval = 0.5
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,11 @@ class GoodThingMemoryWallViewController: UIViewController {
             }
         }
     }
+    @IBAction func toPostPublicMemoryButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toPostPublicMemoryVC", sender: nil)
+
+    }
+    
 }
 
 extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDataSource {
@@ -84,6 +90,15 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
                 cell.memoryWallArticleImageView.image = image
             }
+            
+            if let audioURL = memory.memoryVoice {
+                MediaDownloader.shared.downloadAudio(from: audioURL) { url in
+                    if let url = url {
+                        cell.setupAudioPlayer(with: url)
+                    }
+                }
+            }
+            
             cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
             
             return cell
@@ -145,6 +160,8 @@ extension GoodThingMemoryWallViewController {
            let nextVC = segue.destination as? MemoryWallDetailPageViewController,
            let selectedMemory = sender as? GoodThingMemory {
             nextVC.selectedMemory = selectedMemory
+        } else if segue.identifier == "toPostPublicMemoryVC",
+                  let nextVC = segue.destination as? PostPublicMemoryViewController {
         }
     }
 }

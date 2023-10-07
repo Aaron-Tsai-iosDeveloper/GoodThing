@@ -41,6 +41,7 @@
 		451F10A32ACC7DDE00FB610D /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */; };
 		452854742ACEAABE0047FAE4 /* LetterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452854732ACEAABE0047FAE4 /* LetterModel.swift */; };
 		452854762ACFFE640047FAE4 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452854752ACFFE640047FAE4 /* ColorHelper.swift */; };
+		4528549A2AD15A790047FAE4 /* PostPublicMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452854992AD15A790047FAE4 /* PostPublicMemoryViewController.swift */; };
 		454AA8062AB5804400D404EC /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA8052AB5804400D404EC /* TaskModel.swift */; };
 		454AA80C2AB72E2C00D404EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454AA80B2AB72E2C00D404EC /* DateHelper.swift */; };
 		45545BB32AB77E1100749CFA /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45545BB22AB77E1100749CFA /* MemoryModel.swift */; };
@@ -112,6 +113,7 @@
 		451F10A22ACC7DDE00FB610D /* AnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		452854732ACEAABE0047FAE4 /* LetterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterModel.swift; sourceTree = "<group>"; };
 		452854752ACFFE640047FAE4 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		452854992AD15A790047FAE4 /* PostPublicMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPublicMemoryViewController.swift; sourceTree = "<group>"; };
 		454AA8052AB5804400D404EC /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		454AA80B2AB72E2C00D404EC /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		45545BB22AB77E1100749CFA /* MemoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				45545BB82AB77FC400749CFA /* PostMemoryViewController.swift */,
+				452854992AD15A790047FAE4 /* PostPublicMemoryViewController.swift */,
 				45545BBA2AB7856600749CFA /* FetchMemoryViewController.swift */,
 				45545BBC2AB7F4F100749CFA /* PrivateMemoryTableViewCell.swift */,
 			);
@@ -544,6 +547,7 @@
 				451F106D2AC20ED100FB610D /* PairingTaskCollectionViewCell.swift in Sources */,
 				451F10792AC526BE00FB610D /* UserInfoDetailTableViewCell.swift in Sources */,
 				457C4E772ABD8CB500DAD357 /* MemoryImageWallDetailTableViewCell.swift in Sources */,
+				4528549A2AD15A790047FAE4 /* PostPublicMemoryViewController.swift in Sources */,
 				451F108F2ACABA8600FB610D /* UserFriendLetterListViewController.swift in Sources */,
 				452854762ACFFE640047FAE4 /* ColorHelper.swift in Sources */,
 				45545BC12AB8175000749CFA /* GroupModel.swift in Sources */,
