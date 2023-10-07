@@ -17,6 +17,11 @@ class GoodThingMemoryWallViewController: UIViewController {
     var db = Firestore.firestore()
     var publicMemory = [GoodThingMemory]()
     
+    
+    var lastFeedbackTime: Date? = nil
+    let feedbackInterval: TimeInterval = 0.5
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         memoryWallTableView.dataSource = self
@@ -190,7 +195,17 @@ extension GoodThingMemoryWallViewController {
         for cell in visibleCells {
             adjustOpacityForCell(cell)
         }
+
+        let currentTime = Date()
+        if lastFeedbackTime == nil || currentTime.timeIntervalSince(lastFeedbackTime!) > feedbackInterval {
+            feedbackGenerator.impactOccurred()
+            feedbackGenerator.prepare()
+            lastFeedbackTime = currentTime
+        }
     }
+
+
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         adjustOpacityForCell(cell)
     }

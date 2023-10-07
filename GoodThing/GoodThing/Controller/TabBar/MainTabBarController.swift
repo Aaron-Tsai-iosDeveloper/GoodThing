@@ -10,16 +10,18 @@ import UIKit
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.tabBar.tintColor = .systemBrown
+        feedbackGenerator.prepare()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         print("tabBarController(_:shouldSelect:) called")
-        
-        
+        feedbackGenerator.impactOccurred()
         var targetVC: UIViewController?
         if let navController = viewController as? UINavigationController {
             targetVC = navController.topViewController
@@ -57,5 +59,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             }
         }
         return true
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        feedbackGenerator.impactOccurred()
     }
 }
