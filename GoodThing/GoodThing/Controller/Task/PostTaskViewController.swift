@@ -28,12 +28,15 @@ class PostTaskViewController: UIViewController {
     var recordingURL: String?
     var imageURL: String?
     private var timer: Timer?
-    private var elapsedTimeInSecond: Int = 0
+    private var elapsedTimeInSecond: Int = 30
+    let maxRecordingTime = 30
+    
     let textViewPlaceHolderText = "請輸入好事任務內容:"
     override func viewDidLoad() {
         super.viewDidLoad()
         postPublicTaskButton.addTarget(self, action: #selector(postPublicTask), for: .touchUpInside)
         configure()
+        updateTimeLabel()
         
         taskContentTextView.text = textViewPlaceHolderText
         taskContentTextView.textColor = .lightGray
@@ -270,9 +273,20 @@ extension PostTaskViewController {
 extension PostTaskViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
-            self.elapsedTimeInSecond += 1
+            self.elapsedTimeInSecond -= 1
             self.updateTimeLabel()
+            if self.elapsedTimeInSecond <= 0 {
+                self.stopRecordingAndSave()
+            }
         })
+    }
+    func stopRecordingAndSave() {
+        audioRecorder?.stop()
+        resetTimer()
+        
+        let alertMessage = UIAlertController(title: "錄音完成", message: "錄音已達到30秒，已自動儲存！", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertMessage, animated: true, completion: nil)
     }
     func pauseTimer() {
         timer?.invalidate()
@@ -280,7 +294,7 @@ extension PostTaskViewController {
 
     func resetTimer() {
         timer?.invalidate()
-        elapsedTimeInSecond = 0
+        elapsedTimeInSecond = maxRecordingTime
         updateTimeLabel()
     }
 

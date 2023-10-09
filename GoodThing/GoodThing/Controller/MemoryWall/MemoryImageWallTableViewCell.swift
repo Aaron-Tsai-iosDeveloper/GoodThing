@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFAudio
 
 class MemoryImageWallTableViewCell: UITableViewCell {
     
@@ -17,9 +16,6 @@ class MemoryImageWallTableViewCell: UITableViewCell {
     @IBOutlet weak var memoryWallArticleCreatedTimeLabel: UILabel!
     @IBOutlet weak var memoryImageWallArticleTagsCollectionView: UICollectionView!
     
-    @IBOutlet weak var playButton: UIButton!
-    var audioPlayer: AVAudioPlayer?
-    
     var memoryTags: [String] = [] {
         didSet {
             memoryImageWallArticleTagsCollectionView.reloadData()
@@ -29,14 +25,10 @@ class MemoryImageWallTableViewCell: UITableViewCell {
         super.awakeFromNib()
         memoryImageWallArticleTagsCollectionView.dataSource = self
         memoryImageWallArticleTagsCollectionView.delegate = self
-        
-        playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-       
     }
     
 }
@@ -70,21 +62,5 @@ extension MemoryImageWallTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-}
-
-extension MemoryImageWallTableViewCell: AVAudioPlayerDelegate {
-    func setupAudioPlayer(with url: URL) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-        } catch {
-            print("Audio Player Error: \(error.localizedDescription)")
-        }
-    }
-
-    @objc func didTapPlayButton() {
-        audioPlayer?.play()
     }
 }

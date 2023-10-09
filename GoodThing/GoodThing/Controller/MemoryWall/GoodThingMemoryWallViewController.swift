@@ -91,14 +91,6 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
                 cell.memoryWallArticleImageView.image = image
             }
             
-            if let audioURL = memory.memoryVoice {
-                MediaDownloader.shared.downloadAudio(from: audioURL) { url in
-                    if let url = url {
-                        cell.setupAudioPlayer(with: url)
-                    }
-                }
-            }
-            
             cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
             
             return cell

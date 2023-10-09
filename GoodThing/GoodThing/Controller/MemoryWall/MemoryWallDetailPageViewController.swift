@@ -90,10 +90,17 @@ extension MemoryWallDetailPageViewController: UITableViewDataSource, UITableView
                 cell.memoryImageWallDetailPageArticleCreatedTimeLabel.text = selectedMemory?.memoryCreatedTime
                 cell.memoryImageWallDetailPageArticleNameLabel.text = selectedMemory?.memoryTitle
                 cell.memoryImageWallDetailPagePosterNameButton.setTitle(selectedMemory?.memoryCreatorID, for: .normal)
-                
-                let imageUrlString = selectedMemory?.memoryImage ?? ""
-                MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
-                    cell.memoryImageWallDetailPageArticleImageView.image = image
+                if let imageUrlString = selectedMemory?.memoryImage {
+                    MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
+                        cell.memoryImageWallDetailPageArticleImageView.image = image
+                    }
+                }
+                if let audioURL = selectedMemory?.memoryVoice {
+                    MediaDownloader.shared.downloadAudio(from: audioURL) { url in
+                        if let url = url {
+                            cell.setupAudioPlayer(with: url)
+                        }
+                    }
                 }
                 return cell
             } else {

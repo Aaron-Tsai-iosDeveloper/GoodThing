@@ -18,7 +18,7 @@ class PostPublicMemoryViewController: UIViewController {
     @IBOutlet private weak var privateMemoryImageView: UIImageView!
     @IBOutlet private weak var addMemoryImageButton: UIButton!
     @IBOutlet private weak var addMemoryImageLabel: UILabel!
-    
+    @IBOutlet weak var dailyEncouragementVoiceLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
@@ -28,7 +28,8 @@ class PostPublicMemoryViewController: UIViewController {
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
     private var timer: Timer?
-    private var elapsedTimeInSecond: Int = 0
+    private var elapsedTimeInSecond: Int = 30
+    let maxRecordingTime = 30
     
     var uploadGroup: DispatchGroup = DispatchGroup()
 
@@ -54,6 +55,8 @@ class PostPublicMemoryViewController: UIViewController {
         ])
         
         configure()
+        updateTimeLabel()
+        setUI()
     }
   
     
@@ -291,9 +294,20 @@ extension PostPublicMemoryViewController {
 extension PostPublicMemoryViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
-            self.elapsedTimeInSecond += 1
+            self.elapsedTimeInSecond -= 1
             self.updateTimeLabel()
+            if self.elapsedTimeInSecond <= 0 {
+                self.stopRecordingAndSave()
+            }
         })
+    }
+    func stopRecordingAndSave() {
+        audioRecorder?.stop()
+        resetTimer()
+        
+        let alertMessage = UIAlertController(title: "錄音完成", message: "錄音已達到30秒，已自動儲存！", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertMessage, animated: true, completion: nil)
     }
     func pauseTimer() {
         timer?.invalidate()
@@ -301,7 +315,7 @@ extension PostPublicMemoryViewController {
 
     func resetTimer() {
         timer?.invalidate()
-        elapsedTimeInSecond = 0
+        elapsedTimeInSecond = maxRecordingTime
         updateTimeLabel()
     }
 
@@ -328,5 +342,23 @@ extension PostPublicMemoryViewController: AVAudioPlayerDelegate {
         let alertMessage = UIAlertController(title: "播放完成", message: "如果想重錄，再點一次錄音就好囉！", preferredStyle: .alert)
         alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertMessage, animated: true, completion: nil)
+    }
+}
+extension PostPublicMemoryViewController {
+    
+    func setUI() {
+        playButton.setTitle("", for: .normal)
+        recordButton.setTitle("", for: .normal)
+        storeButton.setTitle("", for: .normal)
+        addMemoryImageButton.setTitle("", for: .normal)
+        timeLabel.layer.cornerRadius = 10
+        timeLabel.layer.borderWidth = 0.4
+        privateMemoryImageView.layer.cornerRadius = 10
+        postMemoryButton.layer.borderWidth = 0.6
+        postMemoryButton.layer.borderColor = UIColor.systemBrown.cgColor
+        postMemoryButton.layer.cornerRadius = 10
+        memoryContentTextView.layer.cornerRadius = 10
+        dailyEncouragementVoiceLabel.layer.cornerRadius = 10
+        
     }
 }

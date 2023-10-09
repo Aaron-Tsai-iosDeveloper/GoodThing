@@ -30,8 +30,8 @@ class PostMemoryViewController: UIViewController {
     var audioPlayer: AVAudioPlayer?
     var recordingURL: String?
     private var timer: Timer?
-    private var elapsedTimeInSecond: Int = 0
-    
+    private var elapsedTimeInSecond: Int = 30
+    let maxRecordingTime = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,8 @@ class PostMemoryViewController: UIViewController {
         setupKeyboardClosed()
         
         configure()
+        setUI()
+        updateTimeLabel()
     }
   
     
@@ -203,7 +205,7 @@ extension PostMemoryViewController {
     }
 }
 
-extension PostPublicMemoryViewController {
+extension PostMemoryViewController {
     private func configure() {
         storeButton.isEnabled = false
         playButton.isEnabled = false
@@ -234,7 +236,7 @@ extension PostPublicMemoryViewController {
     }
 }
 
-extension PostPublicMemoryViewController {
+extension PostMemoryViewController {
     func uploadAudioToFirebase() {
         
         guard let audioURL = audioRecorder?.url,
@@ -259,20 +261,32 @@ extension PostPublicMemoryViewController {
     }
 }
 
-extension PostPublicMemoryViewController {
+extension PostMemoryViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
-            self.elapsedTimeInSecond += 1
+            self.elapsedTimeInSecond -= 1
             self.updateTimeLabel()
+            if self.elapsedTimeInSecond <= 0 {
+                self.stopRecordingAndSave()
+            }
         })
     }
+    func stopRecordingAndSave() {
+        audioRecorder?.stop()
+        resetTimer()
+        
+        let alertMessage = UIAlertController(title: "錄音時間已達30秒", message: "已經完成儲存！如果需要重錄，請點擊錄音！", preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertMessage, animated: true, completion: nil)
+    }
+
     func pauseTimer() {
         timer?.invalidate()
     }
 
     func resetTimer() {
         timer?.invalidate()
-        elapsedTimeInSecond = 0
+        elapsedTimeInSecond = maxRecordingTime
         updateTimeLabel()
     }
 
@@ -282,7 +296,7 @@ extension PostPublicMemoryViewController {
         timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
 }
-extension PostPublicMemoryViewController: AVAudioRecorderDelegate {
+extension PostMemoryViewController: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             let alertMessage = UIAlertController(title: "錄音完成", message: "加油語錄已經儲存!", preferredStyle: .alert)
@@ -292,12 +306,29 @@ extension PostPublicMemoryViewController: AVAudioRecorderDelegate {
         }
     }
 }
-extension PostPublicMemoryViewController: AVAudioPlayerDelegate {
+extension PostMemoryViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playButton.isSelected = false
         resetTimer()
         let alertMessage = UIAlertController(title: "播放完成", message: "如果想重錄，再點一次錄音就好囉！", preferredStyle: .alert)
         alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertMessage, animated: true, completion: nil)
+    }
+}
+extension PostMemoryViewController {
+    
+    func setUI() {
+        playButton.setTitle("", for: .normal)
+        recordButton.setTitle("", for: .normal)
+        storeButton.setTitle("", for: .normal)
+        addMemoryImageButton.setTitle("", for: .normal)
+        timeLabel.layer.cornerRadius = 10
+        timeLabel.layer.borderWidth = 0.4
+        privateMemoryImageView.layer.cornerRadius = 10
+        postMemoryButton.layer.borderWidth = 0.6
+        postMemoryButton.layer.borderColor = UIColor.systemBrown.cgColor
+        postMemoryButton.layer.cornerRadius = 10
+        memoryContentTextView.layer.cornerRadius = 10
+        recordingLabel.layer.cornerRadius = 10
     }
 }

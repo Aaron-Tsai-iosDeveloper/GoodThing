@@ -15,7 +15,7 @@ class PrivateMemoryTableViewCell: UITableViewCell {
     @IBOutlet weak var privateMemoryContentLabel: UILabel!
     @IBOutlet weak var privateMemoryImage: UIImageView!
     
-    //TODO: fetchMemoryRecoding
+    @IBOutlet weak var privateMemoryRecordingLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     var audioPlayer: AVAudioPlayer?
     
@@ -29,9 +29,7 @@ class PrivateMemoryTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    @IBAction func privateDeleteButtonTapped(_ sender: UIButton) {
-        deletePrivateMemory?()
-    }
+
 }
 extension PrivateMemoryTableViewCell: AVAudioPlayerDelegate {
     func setupAudioPlayer(with url: URL) {
@@ -45,6 +43,7 @@ extension PrivateMemoryTableViewCell: AVAudioPlayerDelegate {
     }
 
     @objc func didTapPlayButton() {
+        print("privateMmoery playButtonTapped")
         audioPlayer?.play()
     }
 }
