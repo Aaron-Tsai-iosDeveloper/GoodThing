@@ -17,6 +17,8 @@ class MemoryImageWallDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var memoryImageWallDetailPageArticleContentLabel: UILabel!
     @IBOutlet weak var memoryWallDetailPagePlayLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    
     var audioPlayer: AVAudioPlayer?
     
     override func awakeFromNib() {

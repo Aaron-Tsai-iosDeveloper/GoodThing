@@ -15,6 +15,7 @@ struct GoodThingMemory: Codable {
     var memoryImage: String?
     var memoryPrivacyStatus: Bool
     var memoryCreatedTime: String
+    var memoryCreatedDate: String
     var memoryCreatorID: String
     var memoryVoice: String?
 }

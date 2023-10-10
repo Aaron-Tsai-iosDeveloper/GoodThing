@@ -96,7 +96,7 @@ class UserSingupViewController: UIViewController, UITextFieldDelegate {
         let registrationTime = Date.dateFormatterWithTime.string(from: Date())
         var data: [String: Any] = [
             "userId": uid,
-            "userName": "",
+            "userName": "匿名好夥伴",
             "birthday": birthday,
             "registrationTime": registrationTime,
             "introduction": "",

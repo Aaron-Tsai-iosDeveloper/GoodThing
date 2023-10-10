@@ -56,6 +56,7 @@ class PostMemoryViewController: UIViewController {
         let document = db.collection("GoodThingMemory").document()
         let id = document.documentID
         let time = Date.dateFormatterWithTime.string(from: Date())
+        let date = Date.dateFormatterWithDate.string(from: Date())
         var data: [String: Any] = [
             "memoryID": id,
             "memoryTitle": title,
@@ -63,6 +64,7 @@ class PostMemoryViewController: UIViewController {
             "memoryTag": ["感謝"],
             "memoryPrivacyStatus": true,
             "memoryCreatedTime": time,
+            "memoryCreatedDate": date,
             "memoryCreatorID": userId
         ]
         if let imageURL = imageURL {

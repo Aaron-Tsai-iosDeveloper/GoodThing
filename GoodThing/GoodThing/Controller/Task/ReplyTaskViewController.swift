@@ -32,7 +32,7 @@ class ReplyTaskViewController: UIViewController {
     let maxRecordingTime = 30
     let textViewPlaceHolderText = "請輸入好事任務內容:"
     var task: GoodThingTasks?
-    
+    var taskCreatorName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         replyTaskPostButton.addTarget(self, action: #selector(replyTask), for: .touchUpInside)
@@ -355,5 +355,7 @@ extension ReplyTaskViewController {
         replyTaskTextView.layer.cornerRadius = 10
         replyTaskTextView.layer.borderWidth = 0.4
         dailyEncouragementVoiceLabel.layer.cornerRadius = 10
+        replyTaskTitleTextField.text = "To \(taskCreatorName ?? "匿名好夥伴") 任務回覆"
+
     }
 }

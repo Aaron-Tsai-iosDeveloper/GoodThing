@@ -29,6 +29,7 @@
                 let label = UILabel()
                 label.text = "任務標題"
                 label.textColor = .systemBrown
+                label.numberOfLines = 0
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
@@ -43,7 +44,7 @@
             }()
             let encouragementLabel: UILabel = {
                 let label = UILabel()
-                label.text = "任務加油金句"
+                label.text = "好事任務語音留言："
                 label.textColor = .systemBrown
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
@@ -56,7 +57,7 @@
             }()
             let postButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("添加好事任務", for: .normal)
+            button.setTitle("發佈新任務", for: .normal)
             button.layer.borderWidth = 0.4
             button.backgroundColor = .systemBrown
             button.layer.cornerRadius = 10
@@ -66,7 +67,7 @@
             }()
             let replyButton: UIButton = {
                 let button = UIButton(type: .system)
-                button.setTitle("回覆今日好事任務", for: .normal)
+                button.setTitle("回覆任務", for: .normal)
                 button.layer.borderWidth = 0.4
                 button.layer.cornerRadius = 10
                 button.backgroundColor = .systemBrown
@@ -76,7 +77,7 @@
             }()
             let recieveButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("接收任務回覆", for: .normal)
+            button.setTitle("任務新回覆", for: .normal)
                 button.layer.borderWidth = 0.4
                 button.layer.cornerRadius = 10
                 button.backgroundColor = .systemBrown
@@ -156,9 +157,13 @@
                 recieveButton.widthAnchor.constraint(equalToConstant: 120),
                 recieveButton.heightAnchor.constraint(equalToConstant: 40),
                 taskContentLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
+                taskContentLabel.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
                 taskTitleLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
+                taskTitleLabel.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
                 encouragementLabel.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor, constant: 30),
-                playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -30),
+                playButton.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: -140),
+                playButton.widthAnchor.constraint(equalToConstant: 33),
+                playButton.heightAnchor.constraint(equalToConstant: 33)
             ])
             taskImageView.isHidden = true
         }

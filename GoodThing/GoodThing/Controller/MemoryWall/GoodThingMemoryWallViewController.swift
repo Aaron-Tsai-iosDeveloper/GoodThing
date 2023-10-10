@@ -16,7 +16,7 @@ class GoodThingMemoryWallViewController: UIViewController {
     @IBOutlet weak var memoryWallTableView: UITableView!
     var db = Firestore.firestore()
     var publicMemory = [GoodThingMemory]()
-    
+    var posterNames: [String: String] = [:]
     
     var lastFeedbackTime: Date? = nil
     let feedbackInterval: TimeInterval = 0.5
@@ -45,26 +45,42 @@ class GoodThingMemoryWallViewController: UIViewController {
         if let isPrivate = isPrivate {
             query = query.whereField("memoryPrivacyStatus", isEqualTo: isPrivate)
         }
+        
+     
+        let group = DispatchGroup()
+
         query.getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("error about fetchmemory : \(error) ")
+                completion()
             } else {
                 self.publicMemory.removeAll()
                 for document in querySnapshot!.documents {
-                    print("Document data:\(document.data())")
                     do {
                         let newMemory = try document.data(as: GoodThingMemory.self, decoder: Firestore.Decoder())
+                        
+                       
+                        group.enter()
+                        self.fetchPosterName(byCreatorID: newMemory.memoryCreatorID) { (posterName) in
+                            self.posterNames[newMemory.memoryCreatorID] = posterName ?? "匿名好夥伴"
                             self.publicMemory.append(newMemory)
+                            
+                           
+                            group.leave()
+                        }
                     } catch let error {
                         print("fetchmemory decoding error: \(error)")
                     }
                 }
-                DispatchQueue.main.async {
+                
+               
+                group.notify(queue: .main) {
                     completion()
                 }
             }
         }
     }
+
     @IBAction func toPostPublicMemoryButtonTapped(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toPostPublicMemoryVC", sender: nil)
 
@@ -73,38 +89,51 @@ class GoodThingMemoryWallViewController: UIViewController {
 }
 
 extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         publicMemory.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if publicMemory[indexPath.row].memoryImage != "" {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryImageWallTableViewCell", for: indexPath) as? MemoryImageWallTableViewCell else { return UITableViewCell() }
-            let memory = publicMemory[indexPath.row]
-            cell.memoryWallArticleNameLabel.text = "文章：\(memory.memoryTitle)"
-            cell.memoryWallPosterNameLabel.text = "筆名：\(memory.memoryCreatorID)"
-            cell.memoryWallArticleContentLabel.text = (memory.memoryContent)
-            cell.memoryWallArticleCreatedTimeLabel.text = (memory.memoryCreatedTime)
-            let imageUrlString = memory.memoryImage ?? ""
-            MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
-                cell.memoryWallArticleImageView.image = image
-            }
-            
-            cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
-            
-            return cell
+        let memory = publicMemory[indexPath.row]
+
+        if let memoryImage = memory.memoryImage, !memoryImage.isEmpty {
+            return configureImageCell(for: memory, in: tableView, at: indexPath)
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTextWallTableViewCell", for: indexPath) as? MemoryTextWallTableViewCell else { return UITableViewCell() }
-            cell.memoryWallPosterNameLabel.text = "筆名：\(publicMemory[indexPath.row].memoryID)"
-            cell.memoryWallArticleNameLabel.text = "文章：\(publicMemory[indexPath.row].memoryTitle)"
-            cell.memoryWallArticleCreatedTimeLabel.text = publicMemory[indexPath.row].memoryCreatedTime
-            cell.memoryWallArticleContentLabel.text = publicMemory[indexPath.row].memoryContent
-            
-            return cell
+            return configureTextCell(for: memory, in: tableView, at: indexPath)
         }
+
+    }
+
+    private func configureImageCell(for memory: GoodThingMemory, in tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryImageWallTableViewCell", for: indexPath) as? MemoryImageWallTableViewCell else { return UITableViewCell() }
+        let posterName = self.posterNames[memory.memoryCreatorID] ?? "匿名好夥伴"
+        print("Setting poster name for cell: \(posterName)")
+        cell.memoryWallPosterNameLabel.text = "筆名：\(posterName)"
+        cell.memoryWallArticleNameLabel.text = "文章：\(memory.memoryTitle)"
+        cell.memoryWallArticleContentLabel.text = memory.memoryContent
+        cell.memoryWallArticleCreatedTimeLabel.text = memory.memoryCreatedTime
+        let imageUrlString = memory.memoryImage
+        MediaDownloader.shared.downloadImage(from: imageUrlString ?? "") { (image) in
+            cell.memoryWallArticleImageView.image = image
+        }
+        cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
+        return cell
+    }
+
+    private func configureTextCell(for memory: GoodThingMemory, in tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTextWallTableViewCell", for: indexPath) as? MemoryTextWallTableViewCell else { return UITableViewCell() }
+        let posterName = self.posterNames[memory.memoryCreatorID] ?? "匿名好夥伴"
+        print("Setting poster name for cell: \(posterName)")
+        cell.memoryWallPosterNameLabel.text = "筆名：\(posterName)"
+        cell.memoryWallArticleNameLabel.text = "文章：\(memory.memoryTitle)"
+        cell.memoryWallArticleCreatedTimeLabel.text = memory.memoryCreatedTime
+        cell.memoryWallArticleContentLabel.text = memory.memoryContent
+        
+        return cell
     }
 }
+
 extension GoodThingMemoryWallViewController {
     func listenForMemoryWallUpdates() {
         db.collection("GoodThingMemory").addSnapshotListener { (snapshot, error) in
@@ -144,6 +173,28 @@ extension GoodThingMemoryWallViewController {
 }
 
 extension GoodThingMemoryWallViewController {
+    func fetchPosterName(byCreatorID creatorID: String, completion: @escaping (String?) -> Void) {
+        db.collection("GoodThingUsers").whereField("userId", isEqualTo: creatorID).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching poster name: \(error)")
+                completion(nil)
+            } else if let userDocument = snapshot?.documents.first, let userName = userDocument.data()["userName"] as? String {
+                print("User Document Found: \(userDocument.data())")
+                if userName.isEmpty {
+                    print("User has empty username, setting to default name")
+                    completion("匿名好夥伴")
+                } else {
+                    print("User Document Found: \(userDocument.data())")
+                    completion(userName)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+}
+
+extension GoodThingMemoryWallViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toMemoryWallDetailPage", sender: publicMemory[indexPath.row])
     }
@@ -152,6 +203,7 @@ extension GoodThingMemoryWallViewController {
            let nextVC = segue.destination as? MemoryWallDetailPageViewController,
            let selectedMemory = sender as? GoodThingMemory {
             nextVC.selectedMemory = selectedMemory
+            nextVC.posterName = posterNames[selectedMemory.memoryCreatorID] ?? "匿名好夥伴"
         } else if segue.identifier == "toPostPublicMemoryVC",
                   let nextVC = segue.destination as? PostPublicMemoryViewController {
         }
