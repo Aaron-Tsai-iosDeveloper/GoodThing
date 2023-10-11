@@ -15,8 +15,8 @@ class CommentViewController: UIViewController {
     var dismissClosure: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
-        let paleCyanBlue = UIColor(red: 0.7, green: 0.9, blue: 1.0, alpha: 1.0)
-        view.backgroundColor = paleCyanBlue
+        
+        view.backgroundColor = .customBrown
 
 
         setupLabels()
@@ -27,13 +27,13 @@ class CommentViewController: UIViewController {
     }
     private func setupLabels() {
         let nameLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 260, height: 20))
-        nameLabel.text = "留言者姓名"
+        nameLabel.text = ""
         view.addSubview(nameLabel)
         let floorLabel = UILabel(frame: CGRect(x: 20, y: nameLabel.frame.maxY + 10, width: 130, height: 20))
         floorLabel.text = ""
         view.addSubview(floorLabel)
         let timeLabel = UILabel(frame: CGRect(x: floorLabel.frame.maxX + 10, y: nameLabel.frame.maxY + 10, width: 130, height: 20))
-        timeLabel.text = "留言時間"
+        timeLabel.text = ""
         view.addSubview(timeLabel)
     }
     private func setupTextView() {
@@ -50,7 +50,7 @@ class CommentViewController: UIViewController {
     private func setupButton() {
         confirmButton = UIButton(frame: CGRect(x: commentTextView.frame.maxX + 10 , y: commentTextView.frame.minY , width: 100, height: 40))
         confirmButton.setTitle("取消", for: .normal)
-        confirmButton.setTitleColor(.systemBlue, for: .normal)
+        confirmButton.setTitleColor(.white, for: .normal)
         confirmButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
         view.addSubview(confirmButton)
     }

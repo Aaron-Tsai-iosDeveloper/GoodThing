@@ -10,17 +10,15 @@ import FirebaseFirestore
 import FirebaseStorage
 import AVFAudio
 
-class PostMemoryViewController: UIViewController {
+class PostPublicMemoryViewController: UIViewController {
 
-    @IBOutlet weak var memoryTitleTextField: UITextField!
-    @IBOutlet weak var memoryContentTextView: UITextView!
-    @IBOutlet weak var postMemoryButton: UIButton!
-    @IBOutlet weak var privateMemoryImageView: UIImageView!
-    @IBOutlet weak var addMemoryImageButton: UIButton!
-    
-    @IBOutlet weak var addMemoryImageLabel: UILabel!
-    var imageURL: String?
-    
+    @IBOutlet private weak var memoryTitleTextField: UITextField!
+    @IBOutlet private weak var memoryContentTextView: UITextView!
+    @IBOutlet private weak var postMemoryButton: UIButton!
+    @IBOutlet private weak var privateMemoryImageView: UIImageView!
+    @IBOutlet private weak var addMemoryImageButton: UIButton!
+    @IBOutlet private weak var addMemoryImageLabel: UILabel!
+    @IBOutlet weak var dailyEncouragementVoiceLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var storeButton: UIButton!
@@ -33,56 +31,83 @@ class PostMemoryViewController: UIViewController {
     private var elapsedTimeInSecond: Int = 30
     let maxRecordingTime = 30
     
+    var uploadGroup: DispatchGroup = DispatchGroup()
+
+    private var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    var imageURL: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         postMemoryButton.addTarget(self, action: #selector(postMemory), for: .touchUpInside)
         memoryContentTextView.layer.borderWidth = 1.0
-        memoryContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6) 
+        memoryContentTextView.layer.borderColor = CGColor(gray: 0.5, alpha: 0.6)
         setupKeyboardClosed()
+        self.view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
         
         configure()
-        setUI()
         updateTimeLabel()
+        setUI()
     }
   
     
     @objc func postMemory() {
-        guard let title = memoryTitleTextField.text, !title.isEmpty,
-              let content = memoryContentTextView.text, !content.isEmpty,
-              let userId = UserDefaults.standard.string(forKey: "userId")
-        else { return }
-        
-        let db = Firestore.firestore()
-        let document = db.collection("GoodThingMemory").document()
-        let id = document.documentID
-        let time = Date.dateFormatterWithTime.string(from: Date())
-        let date = Date.dateFormatterWithDate.string(from: Date())
-        var data: [String: Any] = [
-            "memoryID": id,
-            "memoryTitle": title,
-            "memoryContent": content,
-            "memoryTag": ["感謝"],
-            "memoryPrivacyStatus": true,
-            "memoryCreatedTime": time,
-            "memoryCreatedDate": date,
-            "memoryCreatorID": userId
-        ]
-        if let imageURL = imageURL {
-            data["memoryImage"] = imageURL
-        }
-        if let recordURL = self.recordingURL {
-            data["memoryVoice"] = recordURL
-        }
-        db.collection("GoodThingMemory").document(id).setData(data) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(id)")
-                self.addMemoryImageLabel.text = "心情轉換完畢！"
+        activityIndicator.startAnimating()
+        postMemoryButton.isEnabled = false
+        uploadGroup.notify(queue: .main) {
+            guard let title = self.memoryTitleTextField.text, !title.isEmpty,
+                  let content = self.memoryContentTextView.text, !content.isEmpty else { return }
+            guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+                self.addMemoryImageLabel.text = "請先進行登入或註冊"
                 self.addMemoryImageLabel.textColor = .red
+                return
+            }
+            let db = Firestore.firestore()
+            let document = db.collection("GoodThingMemory").document()
+            let id = document.documentID
+            let time = Date.dateFormatterWithTime.string(from: Date())
+            let date = Date.dateFormatterWithDate.string(from: Date())
+            var data: [String: Any] = [
+                "memoryID": id,
+                "memoryTitle": title,
+                "memoryContent": content,
+                "memoryTag": ["感謝"],
+                "memoryPrivacyStatus": false,
+                "memoryCreatedTime": time,
+                "memoryCreatedDate": date,
+                "memoryCreatorID": userId
+            ]
+            if let imageURL = self.imageURL {
+                data["memoryImage"] = imageURL
+            }
+            if let recordURL = self.recordingURL {
+                data["memoryVoice"] = recordURL
+            }
+            db.collection("GoodThingMemory").document(id).setData(data) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(id)")
+                    self.addMemoryImageLabel.text = "好心情成功分享！"
+                    self.addMemoryImageLabel.textColor = .red
+                    self.activityIndicator.stopAnimating()
+                    self.postMemoryButton.isEnabled = true
+                    
+                    self.memoryTitleTextField.text = ""
+                    self.memoryContentTextView.text = ""
+                    self.privateMemoryImageView.image = nil
+                }
             }
         }
-
     }
     
     @IBAction func addMemoryImageButtonTapped(_ sender: UIButton) {
@@ -154,27 +179,31 @@ class PostMemoryViewController: UIViewController {
     }
 }
 
-extension PostMemoryViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+extension PostPublicMemoryViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             privateMemoryImageView.image = selectedImage
             privateMemoryImageView.contentMode = .scaleAspectFit
             uploadImageToFirebase(selectedImage)
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.dismissKeyboard()
+        }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
 }
 
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
      func uploadImageToFirebase(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
             print("Could not convert image to data.")
             return
         }
-
+         
+        uploadGroup.enter()
+         
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let imageRef = storageRef.child("memoryImages/\(UUID().uuidString).jpg")
@@ -192,12 +221,13 @@ extension PostMemoryViewController {
                     } else if let downloadURL = url {
                         self.imageURL = downloadURL.absoluteString
                     }
+                    self.uploadGroup.leave()
                 }
             }
         }
     }
 }
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
     func setupKeyboardClosed() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -207,7 +237,7 @@ extension PostMemoryViewController {
     }
 }
 
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
     private func configure() {
         storeButton.isEnabled = false
         playButton.isEnabled = false
@@ -238,7 +268,7 @@ extension PostMemoryViewController {
     }
 }
 
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
     func uploadAudioToFirebase() {
         
         guard let audioURL = audioRecorder?.url,
@@ -264,7 +294,7 @@ extension PostMemoryViewController {
     }
 }
 
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (timer) in
             self.elapsedTimeInSecond -= 1
@@ -278,11 +308,10 @@ extension PostMemoryViewController {
         audioRecorder?.stop()
         resetTimer()
         
-        let alertMessage = UIAlertController(title: "錄音時間已達30秒", message: "已經完成儲存！如果需要重錄，請點擊錄音！", preferredStyle: .alert)
+        let alertMessage = UIAlertController(title: "錄音完成", message: "錄音已達到30秒，已自動儲存！", preferredStyle: .alert)
         alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertMessage, animated: true, completion: nil)
     }
-
     func pauseTimer() {
         timer?.invalidate()
     }
@@ -299,7 +328,7 @@ extension PostMemoryViewController {
         timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
 }
-extension PostMemoryViewController: AVAudioRecorderDelegate {
+extension PostPublicMemoryViewController: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             let alertMessage = UIAlertController(title: "錄音完成", message: "加油語錄已經儲存!", preferredStyle: .alert)
@@ -309,7 +338,7 @@ extension PostMemoryViewController: AVAudioRecorderDelegate {
         }
     }
 }
-extension PostMemoryViewController: AVAudioPlayerDelegate {
+extension PostPublicMemoryViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playButton.isSelected = false
         resetTimer()
@@ -318,7 +347,7 @@ extension PostMemoryViewController: AVAudioPlayerDelegate {
         present(alertMessage, animated: true, completion: nil)
     }
 }
-extension PostMemoryViewController {
+extension PostPublicMemoryViewController {
     
     func setUI() {
         playButton.setTitle("", for: .normal)
@@ -332,6 +361,7 @@ extension PostMemoryViewController {
         postMemoryButton.layer.borderColor = UIColor.systemBrown.cgColor
         postMemoryButton.layer.cornerRadius = 10
         memoryContentTextView.layer.cornerRadius = 10
-        recordingLabel.layer.cornerRadius = 10
+        dailyEncouragementVoiceLabel.layer.cornerRadius = 10
+        
     }
 }

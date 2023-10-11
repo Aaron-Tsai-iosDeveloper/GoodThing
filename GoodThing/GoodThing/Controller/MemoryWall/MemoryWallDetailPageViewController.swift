@@ -14,6 +14,7 @@ class MemoryWallDetailPageViewController: UIViewController {
     @IBOutlet weak var memoryWallDetailPageMessageButton: UIButton!
     
     var selectedMemory: GoodThingMemory?
+    var posterName: String?
     var articleComments = [GoodThingComment]()
     
     override func viewDidLoad() {
@@ -77,23 +78,48 @@ extension MemoryWallDetailPageViewController {
 }
 
 extension MemoryWallDetailPageViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 + articleComments.count
-    }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return articleComments.count
+        default:
+            return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             if selectedMemory?.memoryImage != "" {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryImageWallDetailTableViewCell", for: indexPath) as? MemoryImageWallDetailTableViewCell else { return UITableViewCell() }
                 cell.memoryImageWallDetailPageArticleContentLabel.text = selectedMemory?.memoryContent
                 cell.memoryImageWallDetailPageArticleCreatedTimeLabel.text = selectedMemory?.memoryCreatedTime
                 cell.memoryImageWallDetailPageArticleNameLabel.text = selectedMemory?.memoryTitle
-                cell.memoryImageWallDetailPagePosterNameButton.setTitle(selectedMemory?.memoryCreatorID, for: .normal)
-                
-                let imageUrlString = selectedMemory?.memoryImage ?? ""
-                MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
-                    cell.memoryImageWallDetailPageArticleImageView.image = image
+                cell.memoryImageWallDetailPagePosterNameButton.setTitle(posterName, for: .normal)
+                if let imageUrlString = selectedMemory?.memoryImage, !imageUrlString.isEmpty {
+                    cell.memoryImageWallDetailPageArticleImageView.isHidden = false
+                    cell.imageViewHeightConstraint.constant = 271
+                    MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
+                        DispatchQueue.main.async {
+                            cell.memoryImageWallDetailPageArticleImageView.image = image
+                        }
+                    }
+                } else {
+                    cell.memoryImageWallDetailPageArticleImageView.isHidden = true
+                    cell.imageViewHeightConstraint.constant = 0
+                }
+                if let audioURL = selectedMemory?.memoryVoice {
+                    MediaDownloader.shared.downloadAudio(from: audioURL) { url in
+                        if let url = url {
+                            cell.setupAudioPlayer(with: url)
+                        }
+                    }
                 }
                 return cell
             } else {
@@ -101,31 +127,54 @@ extension MemoryWallDetailPageViewController: UITableViewDataSource, UITableView
                 cell.memoryTextWallDetailPageArticleContentLabel.text = selectedMemory?.memoryContent
                 cell.memoryTextWallDetailPageArticleCreatedTimeLabel.text = selectedMemory?.memoryCreatedTime
                 cell.memoryTextWallDetailPageArticleNameLabel.text = selectedMemory?.memoryTitle
-                cell.memoryTextWallDetailPagePosterButton.setTitle(selectedMemory?.memoryCreatorID, for: .normal)
+                cell.memoryTextWallDetailPagePosterButton.setTitle(posterName, for: .normal)
                 return cell
             }
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTapLikeTableViewCell", for: indexPath) as?  MemoryTapLikeTableViewCell else { return UITableViewCell() }
-            cell.memoryWallDetailPageCollectionButton.setTitle("", for: .normal)
-            cell.memoryWallDetailPageShareButton.setTitle("", for: .normal)
-            cell.memoryWallDetailPageTapLikeButton.setTitle("", for: .normal)
-            return cell
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryWallDetailSortTableViewCell", for: indexPath) as? MemoryWallDetailSortTableViewCell else { return UITableViewCell() }
-            return cell
-        default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryCommentTableViewCell", for: indexPath) as? MemoryCommentTableViewCell else { return UITableViewCell() }
-            let rowNumber = indexPath.row - 2
-            let commenter = articleComments[rowNumber - 1].commentCreatorId
-            let cotent = articleComments[rowNumber - 1].commentContent
-            let createdTime = articleComments[rowNumber - 1].commentCreatedTime
-            cell.memoryWallDetailPageRowNumberLabel.text = "B\(rowNumber)"
+            let commenter = articleComments[indexPath.row].commentCreatorId
+            let cotent = articleComments[indexPath.row].commentContent
+            let createdTime = articleComments[indexPath.row].commentCreatedTime
+            cell.memoryWallDetailPageRowNumberLabel.text = "B\(indexPath.row + 1)"
             cell.memoryWallDetailPageCommenterButton.setTitle(commenter, for: .normal)
             cell.memoryWallDetailPageCommentContentLabel.text = cotent
             cell.memoryWallDetailPageCommentCreatedTimeLabel.text = createdTime
             return cell
+        //TODO: 未來優化添加 按讚收藏和留言排序
+//        case 2:
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryTapLikeTableViewCell", for: indexPath) as?  MemoryTapLikeTableViewCell else { return UITableViewCell() }
+//            cell.memoryWallDetailPageCollectionButton.setTitle("", for: .normal)
+//            cell.memoryWallDetailPageShareButton.setTitle("", for: .normal)
+//            cell.memoryWallDetailPageTapLikeButton.setTitle("", for: .normal)
+//            return cell
+//        case 3:
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemoryWallDetailSortTableViewCell", for: indexPath) as? MemoryWallDetailSortTableViewCell else { return UITableViewCell() }
+//            return cell
+        default:
+            return UITableViewCell()
         }
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 2 {
+            return 0
+        }
+        if indexPath.row == 1 {
+            return 0
+        }
+        return UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "好事多"
+        case 1:
+            return "好留言"
+        default:
+            return nil
+        }
+    }
+
+
 }
 extension MemoryWallDetailPageViewController {
     func listenForMemoryCommentsUpdates() {

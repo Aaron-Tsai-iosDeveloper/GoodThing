@@ -27,18 +27,26 @@ class ExclusiveTaskCollectionViewCell: UICollectionViewCell {
     
     let exclusiveTaskPostButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("發佈專屬任務", for: .normal)
-        button.tintColor = .lightGray
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.brown.cgColor
-        button.layer.cornerRadius = 10
+        button.setTitle("確認", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 8
+        button.backgroundColor = .customBrown
+        button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let taskTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "輸入新的任務"
+        textField.placeholder = "輸入個人好事清單"
+        textField.textColor = .brown
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.brown.cgColor
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.customBrown,
+            .font: UIFont.systemFont(ofSize: 16)
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string: "輸入個人好事清單", attributes: attributes)
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField

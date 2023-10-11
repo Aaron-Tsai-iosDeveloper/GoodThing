@@ -8,29 +8,49 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import AVFAudio
 
 class FetchMemoryViewController: UIViewController {
     
     @IBOutlet weak var privateMemoryTableView: UITableView!
-   
-    @IBOutlet weak var privateMemoryDatePicker: UIDatePicker!
+    @IBOutlet weak var datePicker: UIDatePicker!
     lazy var db = Firestore.firestore()
+    let userId = UserDefaults.standard.string(forKey: "userId")
     var privateMemory = [GoodThingMemory]()
     var selectedMemory = [GoodThingMemory]()
-    
+    var datePickerObserver: NSKeyValueObservation?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         privateMemoryTableView.dataSource = self
         privateMemoryTableView.delegate = self
+        
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.addTarget(self, action: #selector(setupBackgroundDimmingView), for: .touchUpOutside)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePickerObserver = datePicker.observe(\.frame, options: [.new], changeHandler: { [weak self] (picker, change) in
+            if let newFrame = change.newValue, newFrame.height > 100 {
+                self?.setupBackgroundDimmingView()
+            }
+        })
+
         listenForPrivateMemoryUpdates()
-        privateMemoryDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-        fetchDataForSelectedDate()
+        fetchMemory(byCreatorID: userId, withPrivateStatus: true) {
+            print(self.userId)
+            self.privateMemoryTableView.reloadData()
+        }
     }
-    @objc func datePickerValueChanged() {
-        fetchDataForSelectedDate()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let location = touch.location(in: self.view)
+            if !datePicker.frame.contains(location) {
+                removeBackgroundDimmingView()
+            }
+        }
     }
-    
+
     func fetchMemory(byCreatorID creatorID: String? = nil, withPrivateStatus isPrivate: Bool? = nil, completion: @escaping () -> Void) {
         var query: Query = db.collection("GoodThingMemory").order(by: "memoryCreatedTime", descending: true)
         if let creatorID = creatorID {
@@ -40,137 +60,151 @@ class FetchMemoryViewController: UIViewController {
             query = query.whereField("memoryPrivacyStatus", isEqualTo: isPrivate)
         }
         query.getDocuments() { (querySnapshot, error) in
-           if let error = error {
-               print("error about fetchmemory : \(error) ")
-           } else {
-               if isPrivate == true {
-                   self.privateMemory.removeAll()
-               }
-               for document in querySnapshot!.documents {
-                   print("Document data:\(document.data())")
-                   do {
-                       let newMemory = try document.data(as: GoodThingMemory.self, decoder: Firestore.Decoder())
-                       if isPrivate == true {
-                           self.privateMemory.append(newMemory)
-                       }
-                   } catch let error {
-                       print("fetchmemory decoding error: \(error)")
-                   }
-               }
-               DispatchQueue.main.async {
-                   completion()
-               }
-           }
-       }
-   }
-    func fetchDataForSelectedDate() {
+            if let error = error {
+                print("error about fetchmemory : \(error) ")
+            } else {
+                if isPrivate == true {
+                    self.privateMemory.removeAll()
+                }
+                for document in querySnapshot!.documents {
+                    print("Document data:\(document.data())")
+                    do {
+                        let newMemory = try document.data(as: GoodThingMemory.self, decoder: Firestore.Decoder())
+                        if isPrivate == true {
+                            self.privateMemory.append(newMemory)
+                        }
+                    } catch let error {
+                        print("fetchmemory decoding error: \(error)")
+                    }
+                }
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
+    }
+    func fetchDataForSelectedDate(_ date: Date) {
         
-        let selectedDate = privateMemoryDatePicker.date
-        let selectedDateString = Date.dateFormatterWithDate.string(from: selectedDate)
-        
+        let selectedDateString = Date.dateFormatterWithDate.string(from: date)
         var query: Query = db.collection("GoodThingMemory")
-            .order(by: "memoryCreatedTime", descending: true)
-            .whereField("memoryCreatedTime", isEqualTo: selectedDateString)
-        
+            .whereField("memoryCreatorID", isEqualTo: userId ?? "")
+            .whereField("memoryPrivacyStatus", isEqualTo: true)
+            .whereField("memoryCreatedDate", isEqualTo: selectedDateString)
+            
         query.getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("error about fetchmemory : \(error) ")
             } else {
-                self.selectedMemory.removeAll()
+                self.privateMemory.removeAll()
                 for document in querySnapshot!.documents {
                     do {
                         let group = try document.data(as: GoodThingMemory.self, decoder: Firestore.Decoder())
-                        self.selectedMemory.append(group)
+                        self.privateMemory.append(group)
                     } catch let error {
                         print("fetchgroups decoding error: \(error)")
                     }
                 }
-                print("successfully fetchmemory:\(self.selectedMemory)")
+                print("successfully fetchmemory:\(self.privateMemory)")
                 DispatchQueue.main.async {
                     self.privateMemoryTableView.reloadData()
                 }
             }
         }
     }
-}
-
-extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return privateMemory.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    deinit {
+        datePickerObserver?.invalidate()
+    }
+}
+    extension FetchMemoryViewController:UITableViewDelegate,UITableViewDataSource {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return privateMemory.count
+        }
         
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PrivateMemoryTableViewCell", for: indexPath) as? PrivateMemoryTableViewCell else { return UITableViewCell() }
             cell.privateMemoryTitleLabel.text = privateMemory[indexPath.row].memoryTitle
             cell.privateMemoryCreatedTimeLabel.text = privateMemory[indexPath.row].memoryCreatedTime
             cell.privateMemoryContentLabel.text = privateMemory[indexPath.row].memoryContent
-        let imageUrlString = privateMemory[indexPath.row].memoryImage ?? ""
+            
+            let imageUrlString = privateMemory[indexPath.row].memoryImage ?? ""
             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
-                cell.privateMemoryImage.image = image
-            }
-//            cell.deletePrivateMemory = { [weak self] in
-//                self?.deletePrivateMemory(at: indexPath)
-//            }
-            return cell
-       
-    }
-//    func deletePrivateMemory(at indexPath: IndexPath) {
-//        let privateMemory = privateMemory[indexPath.row]
-//        let Id = privateMemory.memoryID
-//        db.collection("GoodThingMemory").document(Id).delete() { [weak self] error in
-//            if let error = error {
-//                print("Failed to delete memory: \(error)")
-//            } else {
-//                self?.privateMemory.remove(at: indexPath.row)
-//                DispatchQueue.main.async {
-//                    self?.privateMemoryTableView.deleteRows(at: [indexPath], with: .automatic)
-//                }
-//            }
-//        }
-//    }
-
-}
-extension FetchMemoryViewController {
-    //TODO: 登錄系統建置後，調整CreatorID
-    func listenForPrivateMemoryUpdates() {
-        let query = db.collection("GoodThingMemory")
-            .whereField("memoryPrivacyStatus", isEqualTo: true)
-            .whereField("memoryCreatorID", isEqualTo: "Aaron")
-            
-        query.addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print("Error fetching updates: \(error)")
-                return
-            }
-            
-            var newMemories: [GoodThingMemory] = []
-            
-            for documentChange in snapshot!.documentChanges {
-                switch documentChange.type {
-                case .added:
-                    do {
-                        let newMemory = try Firestore.Decoder().decode(GoodThingMemory.self, from: documentChange.document.data())
-                        newMemories.append(newMemory)
-                    } catch let error {
-                        print("Decoding error: \(error)")
-                    }
-                    
-                default:
-                    break
+                DispatchQueue.main.async {
+                    cell.privateMemoryImage.image = image
                 }
             }
             
-            if !newMemories.isEmpty {
-                self.privateMemory.append(contentsOf: newMemories)
+            if let audioURL = privateMemory[indexPath.row].memoryVoice {
+                MediaDownloader.shared.downloadAudio(from: audioURL) { url in
+                    if let url = url {
+                        DispatchQueue.main.async {
+                            cell.setupAudioPlayer(with: url)
+                        }
+                    }
+                }
+            }
+            return cell
+        }
+        
+    }
+    
+extension FetchMemoryViewController {
+        
+        func listenForPrivateMemoryUpdates() {
+            let query = db.collection("GoodThingMemory")
+                .whereField("memoryPrivacyStatus", isEqualTo: true)
+                .whereField("memoryCreatorID", isEqualTo: userId)
+            
+            query.addSnapshotListener { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching updates: \(error)")
+                    return
+                }
                 
-                self.privateMemory.sort(by: { $0.memoryCreatedTime > $1.memoryCreatedTime })
+                var newMemories: [GoodThingMemory] = []
                 
-                DispatchQueue.main.async {
-                    self.privateMemoryTableView.reloadData()
+                for documentChange in snapshot!.documentChanges {
+                    switch documentChange.type {
+                    case .added:
+                        do {
+                            let newMemory = try Firestore.Decoder().decode(GoodThingMemory.self, from: documentChange.document.data())
+                            newMemories.append(newMemory)
+                        } catch let error {
+                            print("Decoding error: \(error)")
+                        }
+                        
+                    default:
+                        break
+                    }
+                }
+                
+                if !newMemories.isEmpty {
+                    self.privateMemory.append(contentsOf: newMemories)
+                    
+                    self.privateMemory.sort(by: { $0.memoryCreatedTime > $1.memoryCreatedTime })
+                    
+                    DispatchQueue.main.async {
+                        self.privateMemoryTableView.reloadData()
+                    }
                 }
             }
         }
     }
-
-}
+    extension FetchMemoryViewController {
+        @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+            fetchDataForSelectedDate(sender.date)
+        }
+        
+        @objc func setupBackgroundDimmingView() {
+            let dimmingView = UIView(frame: self.view.bounds)
+            dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.3)
+            dimmingView.tag = 100
+            self.view.insertSubview(dimmingView, belowSubview: datePicker)
+        }
+        
+        func removeBackgroundDimmingView() {
+            if let dimmingView = self.view.viewWithTag(100) {
+                dimmingView.removeFromSuperview()
+            }
+        }
+    }
