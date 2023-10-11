@@ -39,10 +39,14 @@
                 if let savedCreatorName = fetchTaskCreatorNameFromUserDefaults() {
                     self.taskCreatorName = savedCreatorName
                 }
-                self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             } else {
                 fetchTask {
-                    self.collectionView.reloadData()
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
                 }
             }
         }
@@ -54,7 +58,7 @@
             collectionView.dataSource = self
             
             let lightBrown = UIColor(red: 210.0/255.0, green: 180.0/255.0, blue: 140.0/255.0, alpha: 1.0)
-            pairingButton.setTitle(" 配對任務頁面 ", for: .normal)
+            pairingButton.setTitle(" 好事任務配對 ", for: .normal)
             pairingButton.backgroundColor = lightBrown
             pairingButton.setTitleColor(.white, for: .normal)
             pairingButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -62,7 +66,7 @@
             pairingButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
             pairingButton.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(pairingButton)
-            exclusiveButton.setTitle(" 專屬任務頁面 ", for: .normal)
+            exclusiveButton.setTitle(" 個人好事清單 ", for: .normal)
             exclusiveButton.backgroundColor = lightBrown
             exclusiveButton.setTitleColor(.white, for: .normal)
             exclusiveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -72,7 +76,7 @@
             view.addSubview(exclusiveButton)
             
             
-            indicatorView.backgroundColor = .brown
+            indicatorView.backgroundColor = lightBrown
             indicatorView.frame = CGRect(x: 25, y: 150, width: 140, height: 1)
             view.addSubview(indicatorView)
             
@@ -129,14 +133,19 @@
                     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PairingTaskCollectionViewCell", for: indexPath) as? PairingTaskCollectionViewCell {
                         
                         if let task = self.task {
-                            cell.usernameButton.setTitle(taskCreatorName, for: .normal)
+                            let userNameText = "好事任務發佈者：\(taskCreatorName ?? "")"
+                            cell.usernameButton.setTitle(userNameText, for: .normal)
+                            let taskTitleText = "好事任務主題：\(task.taskTitle)"
                             cell.taskTitleLabel.text = task.taskTitle
+                            let taskContentText = "好事任務內容：\(task.taskContent)"
                             cell.taskContentLabel.text = task.taskContent
                         }
                         if  let imageUrlString = self.task?.taskImage {
                             cell.taskImageView.isHidden = false
                             MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
-                                cell.taskImageView.image = image
+                                DispatchQueue.main.async {
+                                    cell.taskImageView.image = image
+                                }
                             }
                         }
                         if let audioURL = self.task?.taskVoice {

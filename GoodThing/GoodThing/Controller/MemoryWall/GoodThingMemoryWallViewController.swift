@@ -110,12 +110,14 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
         let posterName = self.posterNames[memory.memoryCreatorID] ?? "匿名好夥伴"
         print("Setting poster name for cell: \(posterName)")
         cell.memoryWallPosterNameLabel.text = "筆名：\(posterName)"
-        cell.memoryWallArticleNameLabel.text = "文章：\(memory.memoryTitle)"
+        cell.memoryWallArticleNameLabel.text = "\(memory.memoryTitle)"
         cell.memoryWallArticleContentLabel.text = memory.memoryContent
         cell.memoryWallArticleCreatedTimeLabel.text = memory.memoryCreatedTime
         let imageUrlString = memory.memoryImage
         MediaDownloader.shared.downloadImage(from: imageUrlString ?? "") { (image) in
-            cell.memoryWallArticleImageView.image = image
+            DispatchQueue.main.async {
+                cell.memoryWallArticleImageView.image = image
+            }
         }
         cell.memoryTags = (memory.memoryTag ?? []).map { "  \( $0 )  " }
         return cell
@@ -126,7 +128,7 @@ extension GoodThingMemoryWallViewController: UITableViewDelegate, UITableViewDat
         let posterName = self.posterNames[memory.memoryCreatorID] ?? "匿名好夥伴"
         print("Setting poster name for cell: \(posterName)")
         cell.memoryWallPosterNameLabel.text = "筆名：\(posterName)"
-        cell.memoryWallArticleNameLabel.text = "文章：\(memory.memoryTitle)"
+        cell.memoryWallArticleNameLabel.text = "\(memory.memoryTitle)"
         cell.memoryWallArticleCreatedTimeLabel.text = memory.memoryCreatedTime
         cell.memoryWallArticleContentLabel.text = memory.memoryContent
         

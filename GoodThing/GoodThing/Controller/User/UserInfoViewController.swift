@@ -41,7 +41,7 @@ class UserInfoViewController: UIViewController {
                 do {
                     let fetchedUserInfo = try document.data(as: GoodThingUser.self, decoder: Firestore.Decoder())
                     self.userInfo = fetchedUserInfo
-                    print("Task fetched successfully: \(fetchedUserInfo)")
+                    print("userInfo fetched successfully: \(fetchedUserInfo)")
                     
                     DispatchQueue.main.async {
                         self.userInfoTableView.reloadData()
@@ -53,7 +53,7 @@ class UserInfoViewController: UIViewController {
         }
     }
     func fetchUserPostedMemory() {
-        //TODO: 修改userId Aaron
+        
         var query: Query = db.collection("GoodThingMemory")
             .order(by: "memoryCreatedTime", descending: true)
             .whereField("memoryCreatorID", isEqualTo: userId)
@@ -80,7 +80,7 @@ class UserInfoViewController: UIViewController {
         }
     }
     func fetchUserPostedTasks() {
-        //TODO: 修改userId Aaron
+        
         var query: Query = db.collection("GoodThingTasks")
             .order(by: "taskCreatedTime", descending: true)
             .whereField("taskCreatorId", isEqualTo: userId)

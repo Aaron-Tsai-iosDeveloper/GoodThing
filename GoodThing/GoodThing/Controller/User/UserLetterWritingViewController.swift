@@ -13,11 +13,13 @@ class UserLetterWritingViewController: UIViewController {
     @IBOutlet weak var letterContentTextView: UITextView!
     @IBOutlet weak var letterSendButton: UIButton!
     @IBOutlet weak var letterReceiverPenNameButton: UIButton!
+    @IBOutlet weak var letterWritingAlertLabel: UILabel!
     var friend: GoodThingUser?
     let db = Firestore.firestore()
     override func viewDidLoad() {
         super.viewDidLoad()
         letterSendButton.addTarget(self, action: #selector(sendLetterButtonTapped), for: .touchUpInside)
+        letterReceiverPenNameButton.setTitle(friend?.userName, for: .normal)
         setupKeyboardClosed()
     }
     
@@ -41,6 +43,9 @@ class UserLetterWritingViewController: UIViewController {
                 print("Failed to send letter: \(error)")
             } else {
                 print("Letter sent successfully!")
+                self.letterWritingAlertLabel.text = "信件成功寄出！"
+                self.letterContentTextView.text = ""
+                self.letterTitleTextField.text = ""
             }
         }
     }
@@ -56,8 +61,8 @@ class UserLetterWritingViewController: UIViewController {
         let conversationId = getConversationId(for: sender, and: receiver)
         let time = Date.dateFormatterWithTime.string(from: Date())
         let letterData: [String: Any] = [
-            "user1": sender,
-            "user2": receiver,
+            "senderId": sender,
+            "receiverId": receiver,
             "title": title,
             "content": content,
             "createdTime": time

@@ -33,10 +33,6 @@ class UserFriendLetterListViewController: UIViewController {
                 }
             }
         }
-
-        @IBAction func LetterListWriteButtonTapped(_ sender: UIButton) {
-          
-        }
     }
 
     extension UserFriendLetterListViewController {
@@ -53,7 +49,9 @@ class UserFriendLetterListViewController: UIViewController {
             print("user1: \(user1)")
             let conversationId = getConversationId(for: user1, and: user2)
             
-            db.collection("Inbox").document(conversationId).collection("Letters").order(by: "createdTime", descending: true).getDocuments { (snapshot, error) in
+            db.collection("Inbox").document(conversationId).collection("Letters").order(by: "createdTime", descending: true)
+                .whereField("receiverId", isEqualTo: user1)
+                .getDocuments { (snapshot, error) in
                 if let error = error {
                     print("Error fetching letters: \(error)")
                     completion(nil, error)
@@ -117,8 +115,13 @@ class UserFriendLetterListViewController: UIViewController {
             if segue.identifier == "ToLetterDetailVC", let destinationVC = segue.destination as? UserFriendLetterDetailViewController, let combinedData = sender as? (letter: GoodThingLetter?, friend: GoodThingUser?) {
                 destinationVC.selectedLetter = combinedData.letter
                 destinationVC.friend = combinedData.friend
-            } else if segue.identifier == "FromLetterListVCToWriteVC", let destinationVC = segue.destination as? UserLetterWritingViewController, let friend = sender as? GoodThingUser {
-                destinationVC.friend = friend
+            } else if segue.identifier == "FromLetterListVCToWriteVC", let destinationVC = segue.destination as? UserLetterWritingViewController {
+                if let friendValue = friend {
+                    print("Friend value is set and its user name is: \(friendValue.userId )")
+                    destinationVC.friend = friendValue
+                } else {
+                    print("Friend value is NOT set!")
+                }
             }
         }
     }

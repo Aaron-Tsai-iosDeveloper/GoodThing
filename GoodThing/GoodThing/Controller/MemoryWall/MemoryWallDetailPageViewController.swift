@@ -104,7 +104,12 @@ extension MemoryWallDetailPageViewController: UITableViewDataSource, UITableView
                 cell.memoryImageWallDetailPagePosterNameButton.setTitle(posterName, for: .normal)
                 if let imageUrlString = selectedMemory?.memoryImage, !imageUrlString.isEmpty {
                     cell.memoryImageWallDetailPageArticleImageView.isHidden = false
-                    cell.imageViewHeightConstraint.constant = 140
+                    cell.imageViewHeightConstraint.constant = 271
+                    MediaDownloader.shared.downloadImage(from: imageUrlString) { (image) in
+                        DispatchQueue.main.async {
+                            cell.memoryImageWallDetailPageArticleImageView.image = image
+                        }
+                    }
                 } else {
                     cell.memoryImageWallDetailPageArticleImageView.isHidden = true
                     cell.imageViewHeightConstraint.constant = 0

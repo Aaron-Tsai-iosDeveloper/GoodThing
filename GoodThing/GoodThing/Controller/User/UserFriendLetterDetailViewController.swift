@@ -39,8 +39,13 @@ class UserFriendLetterDetailViewController: UIViewController {
 
 extension UserFriendLetterDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FromLetterDetailVCToWriteVC", let destinationVC = segue.destination as? UserLetterWritingViewController, let friend = sender as? GoodThingUser {
-            destinationVC.friend = friend
+        if segue.identifier == "FromLetterDetailVCToWriteVC", let destinationVC = segue.destination as? UserLetterWritingViewController {
+            if let friendValue = friend {
+                print("Friend value is set and its user name is: \(friendValue.userId )")
+                destinationVC.friend = friendValue
+            } else {
+                print("Friend value is NOT set!")
+            }
         }
     }
 }

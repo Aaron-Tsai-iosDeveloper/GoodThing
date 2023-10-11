@@ -243,8 +243,9 @@ extension PostMemoryViewController {
         
         guard let audioURL = audioRecorder?.url,
               let userId = UserDefaults.standard.string(forKey: "userId") else { return }
-
-        let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(audioURL.lastPathComponent)")
+        let uniqueID = UUID().uuidString
+        let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(uniqueID).m4a")
+//        let storageRef = Storage.storage().reference().child("audioFiles/\(userId)_\(audioURL.lastPathComponent)")
         storageRef.putFile(from: audioURL, metadata: nil) { metadata, error in
             if let error = error {
                 print("Failed to upload audio: \(error)")

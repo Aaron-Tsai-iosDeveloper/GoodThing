@@ -57,10 +57,10 @@
             }()
             let postButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("發佈新任務", for: .normal)
-            button.layer.borderWidth = 0.4
-            button.backgroundColor = .systemBrown
-            button.layer.cornerRadius = 10
+            button.setTitle("發佈", for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            button.backgroundColor = .customBrown
+            button.layer.cornerRadius = 8
             button.tintColor = .white
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
@@ -68,19 +68,19 @@
             let replyButton: UIButton = {
                 let button = UIButton(type: .system)
                 button.setTitle("回覆任務", for: .normal)
-                button.layer.borderWidth = 0.4
-                button.layer.cornerRadius = 10
-                button.backgroundColor = .systemBrown
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                button.layer.cornerRadius = 8
+                button.backgroundColor = .customBrown
                 button.tintColor = .white
                 button.translatesAutoresizingMaskIntoConstraints = false
                 return button
             }()
             let recieveButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setTitle("任務新回覆", for: .normal)
-                button.layer.borderWidth = 0.4
-                button.layer.cornerRadius = 10
-                button.backgroundColor = .systemBrown
+            button.setTitle("審核", for: .normal)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                button.layer.cornerRadius = 8
+                button.backgroundColor = .customBrown
                 button.tintColor = .white
             button.translatesAutoresizingMaskIntoConstraints = false
             return button

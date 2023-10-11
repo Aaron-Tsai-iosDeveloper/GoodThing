@@ -15,6 +15,7 @@ class MemoryImageWallTableViewCell: UITableViewCell {
     @IBOutlet weak var memoryWallArticleContentLabel: UILabel!
     @IBOutlet weak var memoryWallArticleCreatedTimeLabel: UILabel!
     @IBOutlet weak var memoryImageWallArticleTagsCollectionView: UICollectionView!
+    @IBOutlet weak var memoryWallTitleView: UIView!
     
     var memoryTags: [String] = [] {
         didSet {
@@ -25,6 +26,9 @@ class MemoryImageWallTableViewCell: UITableViewCell {
         super.awakeFromNib()
         memoryImageWallArticleTagsCollectionView.dataSource = self
         memoryImageWallArticleTagsCollectionView.delegate = self
+        
+        memoryWallTitleView.layer.cornerRadius = 8
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
